@@ -8,15 +8,21 @@ export const metadata = pageMetadata({
   path: "/o-nama",
 });
 
-// PRIVREMENO: stranica „O nama” još nema dizajn ni sadržaj
+// PRIVREMENO: stranica „O nama” još nema dizajn; tekst je sastavljen od podataka sa ostatka sajta, bez tima i fotografija
 export default function AboutPage() {
   return (
     <SimplePage
       title="O nama"
       intro="Jedan tim za ceo digitalni nastup malih i srednjih preduzeća — od ideje do lansiranja."
     >
-      <p>[Tekst o agenciji: ko ste, od kada radite, gde se nalazite i kako radite sa klijentima.]</p>
-      <p>[Tim: imena, uloge i fotografije članova tima, uz njihovu saglasnost.]</p>
+      <p>
+        Pravimo veb sajtove, web shopove, mobilne i veb aplikacije i snimamo dronom za firme iz cele Srbije.
+        Sastanci su uživo ili online, a za snimanje dolazimo na lokaciju.
+      </p>
+      <p>
+        Svaki projekat počinje besplatnim konsultacijama, a fiksnu cenu znate pre početka rada. Posle lansiranja
+        ostajemo dostupni tri meseca bez doplate.
+      </p>
     </SimplePage>
   );
 }

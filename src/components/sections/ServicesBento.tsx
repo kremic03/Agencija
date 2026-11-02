@@ -5,6 +5,7 @@ import { getService, serviceGroups, serviceHref, type Service } from "@/content/
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
+// Od ~880 px kartice stoje po dve u redu (7/5 i 5/7 kolona); ispod toga svaka je pune širine
 const card =
   "flex min-w-0 flex-col overflow-hidden rounded-xl border border-line bg-surface transition-colors hover:border-line-strong";
 
@@ -53,7 +54,7 @@ export function ServicesBento() {
                     src={media.webShopHome.src}
                     alt=""
                     fill
-                    sizes="(min-width: 1100px) 680px, 100vw"
+                    sizes="(min-width: 1100px) 680px, (min-width: 880px) 50vw, 100vw"
                     placeholder="blur"
                     className="object-cover object-left-top"
                   />
@@ -81,7 +82,7 @@ export function ServicesBento() {
                     src={media.webShopLogin.src}
                     alt=""
                     fill
-                    sizes="(min-width: 1100px) 500px, 100vw"
+                    sizes="(min-width: 1100px) 500px, (min-width: 880px) 36vw, 100vw"
                     placeholder="blur"
                     className="object-cover object-top"
                   />
@@ -96,7 +97,7 @@ export function ServicesBento() {
                 src={media.droneOverview.src}
                 alt=""
                 fill
-                sizes="(min-width: 1100px) 700px, 100vw"
+                sizes="(min-width: 1100px) 700px, (min-width: 880px) 54vw, 100vw"
                 placeholder="blur"
                 className="object-cover"
               />

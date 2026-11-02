@@ -16,7 +16,8 @@ export function Hero() {
           sources={belgradeVideo.sources}
           poster={belgradeVideo.poster}
           sizes="100vw"
-          preload
+          highPriority
+          deferUntilLoad
           controlsClassName="right-[clamp(20px,4vw,40px)] bottom-[clamp(20px,3vw,40px)]"
         />
       </div>

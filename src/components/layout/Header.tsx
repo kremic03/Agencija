@@ -2,11 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
 import { mainNav, site } from "@/content/site";
 import { ArrowRightIcon, ChevronDownIcon, MenuIcon } from "@/components/ui/icons";
 import { Logo } from "./Logo";
-import { MegaMenu } from "./MegaMenu";
 import { MobileMenu } from "./MobileMenu";
 
 const MEGA_ID = "mega-meni-usluge";
@@ -23,7 +22,14 @@ function ActiveBar({ narrow }: { narrow?: boolean }) {
   );
 }
 
-export function Header() {
+type Props = {
+  /** Sadržaj mega menija, renderovan na serveru (MegaMenu) */
+  megaMenu: ReactNode;
+  /** Usluge u mobilnom meniju, renderovane na serveru (MobileServiceLinks) */
+  mobileServices: ReactNode;
+};
+
+export function Header({ megaMenu, mobileServices }: Props) {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
@@ -39,6 +45,9 @@ export function Header() {
   }, []);
 
   const closeMega = () => setMegaOpen(false);
+  const closeMegaOnLink = (e: MouseEvent) => {
+    if ((e.target as Element).closest("a")) closeMega();
+  };
 
   // Na početnoj header je providan preko uvodnog videa dok se ne skroluje
   const overlay = isHome && !scrolled && !megaOpen;
@@ -52,6 +61,10 @@ export function Header() {
           closeMega();
           megaButton.current?.focus();
         }
+      }}
+      // Fokus tastature izašao iz headera (npr. Tab posle poslednjeg linka) zatvara meni
+      onBlur={(e) => {
+        if (megaOpen && !e.currentTarget.contains(e.relatedTarget)) closeMega();
       }}
       onMouseLeave={closeMega}
       className={`sticky top-0 z-50 border-b transition-colors ${
@@ -75,7 +88,7 @@ export function Header() {
                 ref={megaButton}
                 type="button"
                 aria-expanded={megaOpen}
-                aria-controls={MEGA_ID}
+                aria-controls={megaOpen ? MEGA_ID : undefined}
                 onClick={() => setMegaOpen((v) => !v)}
                 onMouseEnter={() => setMegaOpen(true)}
                 className={`${navItem} ${megaOpen ? "bg-raised text-fg" : "text-muted hover:bg-raised hover:text-fg"} ${servicesCurrent ? "text-fg" : ""} cursor-pointer active:bg-pressed`}
@@ -113,7 +126,11 @@ export function Header() {
         </Link>
       </div>
 
-      {megaOpen && <MegaMenu id={MEGA_ID} onNavigate={closeMega} />}
+      {megaOpen && (
+        <div id={MEGA_ID} onClick={closeMegaOnLink} className="absolute inset-x-0 top-[68px]">
+          {megaMenu}
+        </div>
+      )}
 
       {/* Mobilni */}
       <div className="flex h-16 items-center justify-between px-5 nav:hidden">
@@ -131,7 +148,7 @@ export function Header() {
           <MenuIcon />
         </button>
       </div>
-      <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
+      <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} services={mobileServices} />
     </header>
   );
 }

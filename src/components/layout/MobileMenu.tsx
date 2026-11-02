@@ -1,19 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type MouseEvent, type ReactNode } from "react";
 import { mainNav, site } from "@/content/site";
-import { serviceGroups, serviceHref, services, type ServiceGroup } from "@/content/services";
 import { CloseIcon, MinusIcon, PlusIcon } from "@/components/ui/icons";
 import { Logo } from "./Logo";
 
-type Props = { open: boolean; onClose: () => void };
+type Props = { open: boolean; onClose: () => void; services: ReactNode };
 
 /**
  * Mobilni meni kao nativni <dialog>: zadržava fokus unutar menija,
  * zatvara se tasterom Escape i čini ostatak stranice neaktivnim.
+ * Lista usluga stiže sa servera (prop `services`).
  */
-export function MobileMenu({ open, onClose }: Props) {
+export function MobileMenu({ open, onClose, services }: Props) {
   const ref = useRef<HTMLDialogElement>(null);
   const [servicesOpen, setServicesOpen] = useState(true);
   const listId = useId();
@@ -25,7 +25,10 @@ export function MobileMenu({ open, onClose }: Props) {
     if (!open && dialog.open) dialog.close();
   }, [open]);
 
-  const groups = Object.keys(serviceGroups) as ServiceGroup[];
+  // Klik na link ka stranici sajta zatvara meni (telefon ostavlja meni otvoren)
+  const closeOnLink = (e: MouseEvent) => {
+    if ((e.target as Element).closest('a[href^="/"]')) onClose();
+  };
 
   return (
     <dialog
@@ -46,7 +49,7 @@ export function MobileMenu({ open, onClose }: Props) {
         </button>
       </div>
 
-      <nav aria-label="Mobilna navigacija" className="flex-1 overflow-y-auto px-5 pt-2 pb-6">
+      <nav aria-label="Mobilna navigacija" onClick={closeOnLink} className="flex-1 overflow-y-auto px-5 pt-2 pb-6">
         <button
           type="button"
           aria-expanded={servicesOpen}
@@ -60,38 +63,13 @@ export function MobileMenu({ open, onClose }: Props) {
           </span>
         </button>
         <div id={listId} hidden={!servicesOpen} className="border-b border-line pt-4 pb-3">
-          {groups.map((group, gi) => (
-            <div key={group}>
-              <p
-                className={`pb-2 font-mono text-[11.5px] leading-none tracking-[0.06em] text-subtle uppercase ${gi > 0 ? "pt-4" : "pt-1"}`}
-              >
-                {serviceGroups[group]}
-              </p>
-              <ul className="flex flex-col gap-1">
-                {services
-                  .filter((s) => s.group === group)
-                  .map((s) => (
-                    <li key={s.slug}>
-                      <Link
-                        href={serviceHref(s.slug)}
-                        onClick={onClose}
-                        className="-mx-3 flex min-h-14 flex-col justify-center gap-[3px] rounded-md px-3 py-1.5 active:bg-raised"
-                      >
-                        <span className="text-base leading-[1.25] font-medium">{s.name}</span>
-                        <span className="text-sm leading-[1.35] text-muted">{s.summary}</span>
-                      </Link>
-                    </li>
-                  ))}
-              </ul>
-            </div>
-          ))}
+          {services}
         </div>
         <ul>
           {mainNav.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
-                onClick={onClose}
                 className="flex min-h-15 items-center border-b border-line text-[22px] leading-none font-semibold tracking-[-0.01em]"
               >
                 {item.label}
@@ -101,10 +79,9 @@ export function MobileMenu({ open, onClose }: Props) {
         </ul>
       </nav>
 
-      <div className="flex flex-none flex-col gap-3 border-t border-line bg-surface px-5 pt-4 pb-6">
+      <div onClick={closeOnLink} className="flex flex-none flex-col gap-3 border-t border-line bg-surface px-5 pt-4 pb-6">
         <Link
           href="/kontakt"
-          onClick={onClose}
           className="flex h-13 items-center justify-center rounded-lg bg-accent text-base font-semibold text-on-accent active:bg-accent-active focus-visible:outline-fg"
         >
           Zatraži ponudu

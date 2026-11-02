@@ -8,14 +8,20 @@ export const metadata = pageMetadata({
   path: "/politika-privatnosti",
 });
 
-// PRIVREMENO: pravni tekst mora pripremiti ili proveriti vlasnik sajta
+// PRIVREMENO: kratak opis umesto punog pravnog teksta; pre objave ga treba proveriti i dopuniti (rok čuvanja, rukovalac podacima)
 export default function PrivacyPage() {
   return (
     <SimplePage
       title="Politika privatnosti"
-      intro="Ovde će biti objašnjeno koje podatke prikupljamo preko kontakt forme, zašto i koliko dugo ih čuvamo."
+      intro="Koje podatke prikupljamo preko kontakt forme i kako ih koristimo."
     >
-      <p>[Pravni tekst politike privatnosti, usklađen sa Zakonom o zaštiti podataka o ličnosti.]</p>
+      <p>
+        Preko kontakt forme prikupljamo samo ono što unesete: ime i prezime, naziv firme, kontakt podatke i opis
+        projekta. Te podatke koristimo isključivo da odgovorimo na vaš upit i pripremimo ponudu.
+      </p>
+      <p>
+        Uvid, ispravku ili brisanje svojih podataka možete zatražiti na <a href={`mailto:${site.email}`} className="text-fg underline underline-offset-4 hover:text-accent-text">{site.email}</a>.
+      </p>
     </SimplePage>
   );
 }

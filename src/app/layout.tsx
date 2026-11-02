@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MegaMenu } from "@/components/layout/MegaMenu";
+import { MobileServiceLinks } from "@/components/layout/MobileServiceLinks";
+import { SmoothAnchorScroll } from "@/components/layout/SmoothAnchorScroll";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -33,7 +36,13 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     // suppressHydrationWarning: browser ekstenzije dodaju atribute na <html>
-    <html lang="sr-Latn" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    // data-scroll-behavior: Next pri prelasku na drugu stranicu skroluje trenutno, bez klizanja
+    <html
+      lang="sr-Latn"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body className="flex min-h-dvh flex-col">
         <a
           href="#sadrzaj"
@@ -41,7 +50,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Preskoči na sadržaj
         </a>
-        <Header />
+        <SmoothAnchorScroll />
+        <Header megaMenu={<MegaMenu />} mobileServices={<MobileServiceLinks />} />
         <main id="sadrzaj" className="flex-1">
           {children}
         </main>

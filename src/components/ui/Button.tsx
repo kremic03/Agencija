@@ -22,7 +22,7 @@ const sizes: Record<Size, string> = {
   lg: "h-13 px-[22px] text-base",
 };
 
-export function buttonClasses({
+function buttonClasses({
   variant = "primary",
   size = "lg",
   className = "",
