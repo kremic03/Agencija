@@ -5,10 +5,11 @@ import { getService, serviceHref, type Service } from "@/content/services";
 import { projects } from "@/content/portfolio";
 import { pageMetadata } from "@/lib/seo";
 import { ButtonLink } from "@/components/ui/Button";
-import { CheckIcon, PlayIcon } from "@/components/ui/icons";
+import { CheckIcon } from "@/components/ui/icons";
 import { AutoplayVideo } from "@/components/ui/AutoplayVideo";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { PhoneFrame } from "@/components/ui/PhoneFrame";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { FaqSection } from "@/components/sections/FaqSection";
@@ -19,14 +20,21 @@ export function serviceMetadata(slug: string) {
   return pageMetadata({ ...seo, path: serviceHref(slug) });
 }
 
-// Raspored primera: 2/1 pa 1/2 kolone, visine 440 i 320 px (na telefonu jedna kolona)
+// Raspored primera: 2/1 pa 1/2 kolone, visine 440 i 320 px (na telefonu jedna kolona).
+// Od md (768 px) mreža ima 3 kolone: jedna je ~31vw, dve ~62vw.
+const wideExample = "(min-width: 1100px) 800px, (min-width: 768px) 62vw, 100vw";
+const narrowExample = "(min-width: 1100px) 400px, (min-width: 768px) 31vw, 100vw";
 const exampleLayout = ["md:col-span-2 min-h-110", "min-h-110", "min-h-80", "md:col-span-2 min-h-80"];
-const exampleSizes = ["(min-width: 1100px) 800px, 100vw", "(min-width: 1100px) 400px, 100vw", "(min-width: 1100px) 400px, 100vw", "(min-width: 1100px) 800px, 100vw"];
+const exampleSizes = [wideExample, narrowExample, narrowExample, wideExample];
 
 const heroSizes = "(min-width: 1100px) 680px, 100vw";
 const heroBox = "relative min-w-0 flex-[1.2_1_480px] overflow-hidden rounded-xl border border-line";
 
-/** Medij u uvodu: video (dron), screenshot u browser okviru ili ekran u okviru telefona */
+/**
+ * Medij u uvodu: video (dron), screenshot u browser okviru ili ekran u okviru telefona.
+ * Visok prioritet dobija samo medij koji je izmereni LCP element (video poster i
+ * screenshot preko cele kutije); kod ostalih je LCP naslov, pa se slika samo ne odlaže.
+ */
 function HeroMediaBox({ service }: { service: Service }) {
   const { heroMedia, heroImage, heroOverlay } = service.page;
 
@@ -34,7 +42,7 @@ function HeroMediaBox({ service }: { service: Service }) {
     return (
       <div className={`${heroBox} bg-raised px-[clamp(16px,2.5vw,32px)] pt-[clamp(16px,2.5vw,32px)]`}>
         <BrowserFrame>
-          <Image src={heroMedia.image.src} alt={heroMedia.image.alt} sizes={heroSizes} preload placeholder="blur" className="h-auto w-full" />
+          <Image src={heroMedia.image.src} alt={heroMedia.image.alt} sizes={heroSizes} loading="eager" placeholder="blur" className="h-auto w-full" />
         </BrowserFrame>
       </div>
     );
@@ -48,22 +56,30 @@ function HeroMediaBox({ service }: { service: Service }) {
           poster={droneVideo.poster}
           alt={droneVideo.poster.alt}
           sizes={heroSizes}
-          preload
+          highPriority
+          deferUntilLoad
           controlsClassName="bottom-4 right-4"
         />
       )}
       {heroMedia?.kind === "browser" && (
         <BrowserFrame className="absolute inset-x-[clamp(16px,2.5vw,32px)] top-[clamp(16px,2.5vw,32px)] bottom-0">
-          <Image src={heroMedia.image.src} alt={heroMedia.image.alt} fill sizes={heroSizes} preload placeholder="blur" className="object-cover object-top" />
+          <Image
+            src={heroMedia.image.src}
+            alt={heroMedia.image.alt}
+            fill
+            sizes={heroSizes}
+            fetchPriority="high"
+            loading="eager"
+            placeholder="blur"
+            className="object-cover object-top"
+          />
         </BrowserFrame>
       )}
       {heroMedia?.kind === "phone" && (
-        <div className="absolute top-7 bottom-0 left-1/2 aspect-9/17 -translate-x-1/2 rounded-t-[30px] border border-b-0 border-line-strong bg-bg p-[7px] pb-0">
-          {/* Pozadina u boji screenshot-a, da cela forma stane bez isecanja */}
-          <div className="relative h-full overflow-hidden rounded-t-[23px] bg-[#e8e5de]">
-            <Image src={heroMedia.image.src} alt={heroMedia.image.alt} fill sizes="260px" preload className="object-contain" />
-          </div>
-        </div>
+        // Pozadina u boji screenshot-a, da cela forma stane bez isecanja
+        <PhoneFrame screenClassName="relative bg-[#e8e5de]">
+          <Image src={heroMedia.image.src} alt={heroMedia.image.alt} fill sizes="260px" loading="eager" className="object-contain" />
+        </PhoneFrame>
       )}
       {!heroMedia && <ImagePlaceholder label={heroImage} />}
       {heroOverlay && (
@@ -85,30 +101,25 @@ function HeroMediaBox({ service }: { service: Service }) {
 export function ServicePage({ slug }: { slug: string }) {
   const service = getService(slug);
   const { page } = service;
-  const examples = page.examples
-    ? page.examples.map((ex, i) => ({
-        key: `${i}-${ex.title}`,
-        title: ex.title,
-        tag: ex.tag,
-        duration: ex.video?.duration,
-        placeholderVideo: false,
-        media: ex.video ? (
-          <ExampleVideo example={{ ...ex, video: ex.video }} sizes={exampleSizes[i % exampleSizes.length]} />
-        ) : (
-          <Image src={ex.image.src} alt={ex.image.alt} fill sizes={exampleSizes[i % exampleSizes.length]} placeholder="blur" className="object-cover" />
-        ),
-      }))
-    : projects
-        .filter((p) => p.service === slug)
-        .slice(0, 4)
-        .map((p) => ({
-          key: p.id,
-          title: p.title,
-          tag: p.tag,
-          duration: p.duration,
-          placeholderVideo: p.media === "video",
-          media: <ImagePlaceholder label={p.image} />,
-        }));
+  // Primeri sa stranice usluge, a ako ih nema, projekti te usluge iz portfolija
+  const examples = (page.examples ?? projects.filter((p) => p.service === slug).slice(0, 4)).map((ex, i) => ({
+    key: `${i}-${ex.title}`,
+    title: ex.title,
+    tag: ex.tag,
+    duration: ex.video?.duration,
+    media: ex.video ? (
+      <ExampleVideo example={{ ...ex, video: ex.video }} sizes={exampleSizes[i % exampleSizes.length]} />
+    ) : (
+      <Image
+        src={ex.image.src}
+        alt={ex.image.alt}
+        fill
+        sizes={exampleSizes[i % exampleSizes.length]}
+        placeholder="blur"
+        className={ex.screenshot ? "object-cover object-left-top" : "object-cover"}
+      />
+    ),
+  }));
 
   return (
     <>
@@ -192,14 +203,6 @@ export function ServicePage({ slug }: { slug: string }) {
                     aria-hidden="true"
                     className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,var(--color-bg)_0%,color-mix(in_srgb,var(--color-bg)_60%,transparent)_35%,transparent_70%)]"
                   />
-                  {ex.placeholderVideo && (
-                    <span
-                      aria-hidden="true"
-                      className="absolute top-4 right-4 grid size-11 place-items-center rounded-full border border-line-strong bg-bg/70 text-fg"
-                    >
-                      <PlayIcon />
-                    </span>
-                  )}
                   <div className="pointer-events-none relative flex flex-col gap-1.5 p-5">
                     <p className="font-mono text-xs leading-none tracking-[0.06em] text-muted uppercase">
                       {ex.tag}

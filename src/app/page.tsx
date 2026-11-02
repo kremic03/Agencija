@@ -33,7 +33,7 @@ export default function HomePage() {
       <Stats />
       <Testimonials />
       <FaqSection eyebrow="(04) Česta pitanja" title="Pitanja koja čujemo svake nedelje." items={homeFaq}>
-        <p className="text-base leading-[1.6] text-muted">
+        <p className="text-base leading-1.6 text-muted">
           Niste našli odgovor? Pišite na{" "}
           <a href={`mailto:${site.email}`} className="text-fg underline underline-offset-3 hover:text-accent-text">
             {site.email}
@@ -42,7 +42,7 @@ export default function HomePage() {
         </p>
       </FaqSection>
       <CtaBanner
-        title="Recite nam šta vam treba. Ponudu dobijate za [24 sata]."
+        title="Recite nam šta vam treba. Ponudu dobijate za 24 sata."
         text="Upitnik traje oko 3 minuta. Bez obaveze i bez tehničkog žargona."
       />
     </>

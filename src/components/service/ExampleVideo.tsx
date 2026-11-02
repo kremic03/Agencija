@@ -1,20 +1,36 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Example } from "@/content/services";
 import { PlayIcon } from "@/components/ui/icons";
+
+type Props = {
+  example: Example & { video: NonNullable<Example["video"]> };
+  sizes: string;
+  /** Za poster koji je LCP element */
+  fetchPriority?: "high";
+  loading?: "eager";
+};
 
 /**
  * Primer sa videom: dok se ne klikne prikazuje se samo poster, pa se video
  * ne preuzima bez potrebe. Posle klika pušta se sa kontrolama.
  */
-export function ExampleVideo({ example, sizes }: { example: Example & { video: NonNullable<Example["video"]> }; sizes: string }) {
+export function ExampleVideo({ example, sizes, fetchPriority, loading }: Props) {
   const [playing, setPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Pauza kada Next sakrije rutu posle navigacije (<Activity>)
+  useEffect(() => {
+    const video = videoRef.current;
+    return () => video?.pause();
+  }, [playing]);
 
   if (playing) {
     return (
       <video
+        ref={videoRef}
         autoPlay
         controls
         playsInline
@@ -23,7 +39,7 @@ export function ExampleVideo({ example, sizes }: { example: Example & { video: N
         className="absolute inset-0 z-10 size-full bg-bg object-cover"
       >
         {example.video.sources.map((s) => (
-          <source key={s.src} src={s.src} media={s.media} type="video/mp4" />
+          <source key={s.src} src={s.src} media={s.media} type={s.type ?? "video/mp4"} />
         ))}
       </video>
     );
@@ -31,7 +47,16 @@ export function ExampleVideo({ example, sizes }: { example: Example & { video: N
 
   return (
     <>
-      <Image src={example.image.src} alt={example.image.alt} fill sizes={sizes} placeholder="blur" className="object-cover" />
+      <Image
+        src={example.image.src}
+        alt={example.image.alt}
+        fill
+        sizes={sizes}
+        fetchPriority={fetchPriority}
+        loading={loading}
+        placeholder="blur"
+        className="object-cover"
+      />
       <button
         type="button"
         onClick={() => setPlaying(true)}

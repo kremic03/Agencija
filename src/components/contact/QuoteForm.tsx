@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState, type FormEvent, type ReactNode } from "react";
-import { serviceGroups, services, type ServiceGroup } from "@/content/services";
 import { site } from "@/content/site";
 import { AlertIcon, ArrowLeftIcon, ArrowRightIcon, CheckIcon } from "@/components/ui/icons";
 
@@ -9,13 +8,13 @@ const STEPS = ["Usluga", "Detalji", "Budžet i rok", "Kontakt"];
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 const input =
-  "min-h-12 w-full rounded-md border border-line-strong bg-bg px-3.5 py-3 text-base leading-[1.4] text-fg outline-none focus:border-accent focus:shadow-[0_0_0_3px_rgb(255_107_44/0.22)] aria-invalid:border-error aria-invalid:shadow-[0_0_0_3px_rgb(248_113_113/0.18)]";
+  "min-h-12 w-full rounded-md border border-line-control bg-bg px-3.5 py-3 text-base leading-[1.4] text-fg outline-none focus:border-accent focus:shadow-[0_0_0_3px_rgb(255_107_44/0.22)] aria-invalid:border-error aria-invalid:shadow-[0_0_0_3px_rgb(248_113_113/0.18)]";
 const labelText = "text-[14.5px] leading-[1.3] font-medium";
 
 /** Izbor kao „čip”: nativni radio/checkbox, stilizovan preko roditeljskog labela */
 function Chip({ type, name, value, defaultChecked }: { type: "radio" | "checkbox"; name: string; value: string; defaultChecked?: boolean }) {
   return (
-    <label className="flex min-h-12 cursor-pointer items-center justify-center rounded-lg border border-line-strong px-4.5 text-center text-[15px] leading-[1.2] font-medium text-muted transition-colors hover:border-subtle has-checked:border-accent has-checked:bg-accent/12 has-checked:font-semibold has-checked:text-fg has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-accent-text">
+    <label className="flex min-h-12 cursor-pointer items-center justify-center rounded-lg border border-line-control px-4.5 text-center text-[15px] leading-[1.2] font-medium text-muted transition-colors hover:border-subtle has-checked:border-accent has-checked:bg-accent/12 has-checked:font-semibold has-checked:text-fg has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-accent-text">
       <input type={type} name={name} value={value} defaultChecked={defaultChecked} className="sr-only" />
       {value}
     </label>
@@ -42,6 +41,13 @@ function FieldError({ id, children }: { id: string; children: ReactNode }) {
   );
 }
 
+/** Usluge za prvi korak, grupisane; stižu sa servera (samo polja koja forma koristi) */
+export type ServiceOptionGroup = {
+  group: string;
+  label: string;
+  items: { slug: string; name: string; shortName: string; summary: string }[];
+};
+
 function CheckBox() {
   return (
     <span
@@ -53,7 +59,7 @@ function CheckBox() {
   );
 }
 
-export function QuoteForm() {
+export function QuoteForm({ serviceOptions }: { serviceOptions: ServiceOptionGroup[] }) {
   const [step, setStep] = useState(1);
   const [selected, setSelected] = useState<string[]>([]);
   const [errors, setErrors] = useState<{ name?: boolean; email?: boolean }>({});
@@ -101,8 +107,6 @@ export function QuoteForm() {
     </div>
   );
 
-  const groups = Object.keys(serviceGroups) as ServiceGroup[];
-
   return (
     <form
       noValidate
@@ -141,33 +145,31 @@ export function QuoteForm() {
         {/* Korak 1 */}
         <div hidden={step !== 1} className="flex flex-col gap-6">
           {heading(0, "Šta vam je potrebno?", "Izaberite jednu ili više usluga.")}
-          {groups.map((group) => (
+          {serviceOptions.map(({ group, label, items }) => (
             <fieldset key={group} className="flex flex-col gap-2.5">
-              <legend className="eyebrow pb-2.5">{serviceGroups[group]}</legend>
+              <legend className="eyebrow pb-2.5">{label}</legend>
               <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-2.5">
-                {services
-                  .filter((s) => s.group === group)
-                  .map((s) => (
-                    <label
-                      key={s.slug}
-                      className="group flex min-h-19 cursor-pointer items-start gap-3 rounded-lg border border-line-strong bg-surface p-4 transition-colors hover:border-subtle has-checked:border-accent has-checked:bg-[color-mix(in_srgb,var(--color-accent)_10%,var(--color-surface))] has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-accent-text"
-                    >
-                      <input
-                        type="checkbox"
-                        name="services"
-                        value={s.name}
-                        className="sr-only"
-                        onChange={(e) =>
-                          setSelected((sel) => (e.target.checked ? [...sel, s.slug] : sel.filter((x) => x !== s.slug)))
-                        }
-                      />
-                      <CheckBox />
-                      <span className="flex min-w-0 flex-col gap-1">
-                        <span className="text-[15.5px] leading-[1.25] font-semibold">{s.shortName}</span>
-                        <span className="text-[13.5px] leading-[1.4] text-muted">{s.summary}</span>
-                      </span>
-                    </label>
-                  ))}
+                {items.map((s) => (
+                  <label
+                    key={s.slug}
+                    className="group flex min-h-19 cursor-pointer items-start gap-3 rounded-lg border border-line-control bg-surface p-4 transition-colors hover:border-subtle has-checked:border-accent has-checked:bg-[color-mix(in_srgb,var(--color-accent)_10%,var(--color-surface))] has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-accent-text"
+                  >
+                    <input
+                      type="checkbox"
+                      name="services"
+                      value={s.name}
+                      className="sr-only"
+                      onChange={(e) =>
+                        setSelected((sel) => (e.target.checked ? [...sel, s.slug] : sel.filter((x) => x !== s.slug)))
+                      }
+                    />
+                    <CheckBox />
+                    <span className="flex min-w-0 flex-col gap-1">
+                      <span className="text-[15.5px] leading-[1.25] font-semibold">{s.shortName}</span>
+                      <span className="text-[13.5px] leading-[1.4] text-muted">{s.summary}</span>
+                    </span>
+                  </label>
+                ))}
               </div>
             </fieldset>
           ))}
@@ -229,40 +231,45 @@ export function QuoteForm() {
         <div hidden={step !== 4} className="flex flex-col gap-6">
           {heading(3, "Gde da vam pošaljemo ponudu?", "Polja označena zvezdicom su obavezna.")}
           <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4">
-            <label className="flex flex-col gap-2">
-              <span className={labelText}>Ime i prezime *</span>
-              <input
-                type="text"
-                name="name"
-                autoComplete="name"
-                required
-                placeholder="Marija Petrović"
-                aria-invalid={errors.name || undefined}
-                aria-describedby={errors.name ? "greska-ime" : undefined}
-                className={input}
-              />
+            {/* Greška je van <label>, da se ne čita dvaput (u nazivu polja i kroz aria-describedby) */}
+            <div className="flex flex-col gap-2">
+              <label className="flex flex-col gap-2">
+                <span className={labelText}>Ime i prezime *</span>
+                <input
+                  type="text"
+                  name="name"
+                  autoComplete="name"
+                  required
+                  placeholder="Marija Petrović"
+                  aria-invalid={errors.name || undefined}
+                  aria-describedby={errors.name ? "greska-ime" : undefined}
+                  className={input}
+                />
+              </label>
               {errors.name && <FieldError id="greska-ime">Unesite ime da znamo kome se obraćamo.</FieldError>}
-            </label>
+            </div>
             <label className="flex flex-col gap-2">
               <span className={labelText}>Naziv firme</span>
               <input type="text" name="company" autoComplete="organization" placeholder="Ordinacija Osmeh" className={input} />
             </label>
-            <label className="flex flex-col gap-2">
-              <span className={labelText}>Email *</span>
-              <input
-                type="email"
-                name="email"
-                autoComplete="email"
-                required
-                placeholder="ime@firma.rs"
-                aria-invalid={errors.email || undefined}
-                aria-describedby={errors.email ? "greska-email" : undefined}
-                className={input}
-              />
+            <div className="flex flex-col gap-2">
+              <label className="flex flex-col gap-2">
+                <span className={labelText}>Email *</span>
+                <input
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  required
+                  placeholder="ime@firma.rs"
+                  aria-invalid={errors.email || undefined}
+                  aria-describedby={errors.email ? "greska-email" : undefined}
+                  className={input}
+                />
+              </label>
               {errors.email && (
                 <FieldError id="greska-email">Proverite email — izgleda da nedostaje „@“ ili domen.</FieldError>
               )}
-            </label>
+            </div>
             <label className="flex flex-col gap-2">
               <span className={labelText}>Telefon</span>
               <input type="tel" name="phone" autoComplete="tel" placeholder="+381 6x xxx xxxx" className={input} />

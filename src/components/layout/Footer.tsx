@@ -5,6 +5,9 @@ import { serviceHref, services } from "@/content/services";
 import { Logo } from "./Logo";
 
 const linkClass = "flex min-h-9 items-center text-[15px] leading-[1.3] text-muted hover:text-fg";
+const columnTitle = "pb-3 font-mono text-[11.5px] leading-none tracking-[0.06em] text-subtle uppercase";
+// Prazna polja (adresa, radno vreme) se ne prikazuju
+const officeLines = [site.address.street, site.address.city, site.hours].filter(Boolean);
 
 async function CopyrightYear() {
   "use cache";
@@ -31,7 +34,7 @@ export function Footer() {
           </div>
 
           <nav aria-labelledby="footer-usluge" className="flex flex-[1_1_160px] flex-col gap-1">
-            <p id="footer-usluge" className="pb-3 font-mono text-[11.5px] leading-none tracking-[0.06em] text-subtle uppercase">
+            <p id="footer-usluge" className={columnTitle}>
               Usluge
             </p>
             <ul>
@@ -46,7 +49,7 @@ export function Footer() {
           </nav>
 
           <nav aria-labelledby="footer-agencija" className="flex flex-[1_1_160px] flex-col gap-1">
-            <p id="footer-agencija" className="pb-3 font-mono text-[11.5px] leading-none tracking-[0.06em] text-subtle uppercase">
+            <p id="footer-agencija" className={columnTitle}>
               Agencija
             </p>
             <ul>
@@ -60,21 +63,22 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className="flex flex-[1_1_200px] flex-col gap-1">
-            <p className="pb-3 font-mono text-[11.5px] leading-none tracking-[0.06em] text-subtle uppercase">Kancelarija</p>
-            <address className="text-[15px] leading-[1.6] text-muted not-italic">
-              {site.address.street}
-              <br />
-              {site.address.city}
-              <br />
-              {site.hours}
-            </address>
-          </div>
+          {officeLines.length > 0 && (
+            <div className="flex flex-[1_1_200px] flex-col gap-1">
+              <p className={columnTitle}>Kancelarija</p>
+              <address className="flex flex-col text-[15px] leading-[1.6] text-muted not-italic">
+                {officeLines.map((line) => (
+                  <span key={line}>{line}</span>
+                ))}
+              </address>
+            </div>
+          )}
         </div>
 
         <div className="flex flex-wrap justify-between gap-x-6 gap-y-3 border-t border-line pt-6 text-[13.5px] leading-normal text-subtle">
           <p>
-            © <CopyrightYear /> {site.legalName} · PIB {site.taxId}
+            © <CopyrightYear /> {site.legalName || site.name}
+            {site.taxId && ` · PIB ${site.taxId}`}
           </p>
           <ul className="flex gap-5">
             <li>

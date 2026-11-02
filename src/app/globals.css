@@ -15,6 +15,7 @@
   --color-pressed: #1f1f23; /* --c3 pressed / disabled */
   --color-line: #26262b; /* --ln borderi, razdelnici */
   --color-line-strong: #34343a; /* --ln2 border kontrola */
+  --color-line-control: #606066; /* granica polja forme: ≥3:1 prema bg i surface (WCAG 1.4.11) */
   --color-fg: #f4f4f5; /* primarni tekst */
   --color-muted: #a1a1aa; /* sekundarni tekst */
   --color-subtle: #8b8b94; /* oznake, metapodaci */
@@ -43,6 +44,8 @@
   html {
     color-scheme: dark;
     scroll-padding-top: 88px;
+    /* Klik na link ka sekciji (npr. /#proces) klizi do nje; uz smanjeno kretanje skok je trenutan (dole) */
+    scroll-behavior: smooth;
   }
 
   /* Zaključava skrol dok je mobilni meni otvoren */
@@ -61,6 +64,11 @@
   :focus-visible {
     outline: 2px solid var(--color-accent-text);
     outline-offset: 2px;
+  }
+
+  /* Sekcija dobija fokus posle skrola do nje (SmoothAnchorScroll), bez okvira oko cele sekcije */
+  [tabindex="-1"]:focus {
+    outline: none;
   }
 
   ::selection {

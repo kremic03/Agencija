@@ -52,20 +52,41 @@ export const media = {
   },
 } satisfies Record<string, Media>;
 
-/** Snimak dronom iznad Beograda: 15 s, H.264, bez zvuka */
+/*
+ * Video fajlovi se keširaju godinu dana (next.config.ts), pa pri svakoj
+ * izmeni snimka treba povećati verziju u imenu fajla (.v2 → .v3).
+ */
+
+export type VideoSource = { src: string; media?: string; type?: string };
+
+const MOBILE = "(max-width: 767px)";
+const HEVC_720 = 'video/mp4; codecs="hvc1.1.6.L93.B0"';
+const HEVC_1080 = 'video/mp4; codecs="hvc1.1.6.L120.B0"';
+const H264_720 = 'video/mp4; codecs="avc1.64001F"';
+const H264_1080 = 'video/mp4; codecs="avc1.640028"';
+
+/**
+ * Browser uzima prvi izvor koji odgovara ekranu i koji ume da pusti:
+ * HEVC (~40% manji, Safari i Chrome sa hardverskim dekoderom), pa H.264 za ostale.
+ * 720p: HEVC 1 Mbps / H.264 1,35 Mbps; 1080p: HEVC 2 Mbps / H.264 2,6 Mbps.
+ */
+function videoSources(name: string): VideoSource[] {
+  return [
+    { src: `/video/${name}-720-hevc.v2.mp4`, media: MOBILE, type: HEVC_720 },
+    { src: `/video/${name}-720.v2.mp4`, media: MOBILE, type: H264_720 },
+    { src: `/video/${name}-1080-hevc.v2.mp4`, type: HEVC_1080 },
+    { src: `/video/${name}-1080.v2.mp4`, type: H264_1080 },
+  ];
+}
+
+/** Snimak dronom iznad Beograda: 15 s, 25 fps, bez zvuka */
 export const belgradeVideo = {
-  sources: [
-    { src: "/video/beograd-720.mp4", media: "(max-width: 767px)" },
-    { src: "/video/beograd-1080.mp4" },
-  ],
+  sources: videoSources("beograd"),
   poster: media.belgradeSava,
 };
 
-/** Snimak utvrđenja: 15 s, H.264, bez zvuka */
+/** Snimak utvrđenja: 15 s, 25 fps, bez zvuka */
 export const droneVideo = {
-  sources: [
-    { src: "/video/dron-720.mp4", media: "(max-width: 767px)" },
-    { src: "/video/dron-1080.mp4" },
-  ],
+  sources: videoSources("dron"),
   poster: media.droneAbove,
 };

@@ -2,7 +2,7 @@
 
 Prezentacioni veb sajt digitalne agencije koja se bavi izradom veb sajtova i mobilnih aplikacija, održavanjem sajtova i snimanjem svadbi i proslava iz vazduha DJI dronom.
 
-> **Status:** u ranoj fazi razvoja. Trenutno se postavlja razvojno okruženje i početna struktura projekta.
+> **Status:** u razvoju. Dizajn je implementiran; privremeni sadržaj je označen komentarom `PRIVREMENO` u kodu, a slanje upita sa kontakt forme još nije povezano.
 
 ---
 
@@ -44,8 +44,6 @@ Sajt je namenjen pojedincima, preduzetnicima i firmama kojima treba prisustvo na
 
 ## Pokretanje projekta lokalno
 
-> Uputstvo će biti dopunjeno kada se postavi početni projekat.
-
 **Preduslovi:** [Node.js](https://nodejs.org/) 20.9 ili noviji i npm.
 
 ```bash
@@ -65,6 +63,20 @@ npm run dev
 ```
 
 Sajt je zatim dostupan na adresi [http://localhost:3000](http://localhost:3000).
+
+Provere pre objave:
+
+```bash
+npm run lint        # ESLint
+npx tsc --noEmit    # TypeScript
+npm run build       # produkcijski build
+```
+
+## Napomene za održavanje
+
+- **Video** je u `public/video/` i kešira se godinu dana (`next.config.ts`). Svaki snimak ima četiri verzije: 720p i 1080p, u HEVC-u (manji fajl) i H.264 (za browsere bez HEVC-a); spisak i bitrate-ovi su u `src/content/media.ts`. Pri izmeni snimka povećati verziju u imenu fajla (npr. `.v2` → `.v3`).
+- **Fotografije** su u `src/assets/images/` (obrađene, bez metapodataka); originali ostaju van Git-a u `materijali/`.
+- **Keš build-a:** Turbopack keš za `next build` je isključen u `next.config.ts`, jer sa uključenim kešom nove Tailwind klase ne ulaze u produkcijski CSS.
 
 > ⚠️ Fajl `.env.local` sadrži tajne ključeve i **nikada se ne postavlja na GitHub**.
 
