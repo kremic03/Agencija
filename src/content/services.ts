@@ -87,7 +87,7 @@ export const defaultProcess: Step[] = [
   {
     title: "Lansiranje i podrška",
     description:
-      "Puštamo projekat u rad, obučavamo vaš tim i ostajemo dostupni tri meseca bez doplate.",
+      "Puštamo projekat u rad, obučavamo vaš tim i ostajemo uz vas i posle objave.",
   },
 ];
 
@@ -125,7 +125,7 @@ export const services: Service[] = [
           { title: "Tehnička SEO osnova", description: "Naslovi, opisi, sitemap i brzina pripremljeni za pretraživače." },
           { title: "Jednostavno uređivanje", description: "Sami menjate tekstove, slike i cene kroz pregledan panel." },
           { title: "Kontakt forma", description: "Upiti sa sajta stižu direktno na vaš e-mail." },
-          { title: "Obuka i podrška", description: "Obuka za vaš tim i tri meseca podrške posle lansiranja." },
+          { title: "Obuka i podrška", description: "Obučavamo vaš tim i ostajemo uz vas i posle objave." },
         ],
       },
       examplesTitle: "Sajtovi koje smo napravili.",
@@ -151,7 +151,7 @@ export const services: Service[] = [
           {
             name: "Po meri",
             audience: "Za složenije sajtove sa posebnim funkcijama.",
-            items: ["Analiza potreba", "Integracije sa vašim sistemima", "Višejezični sadržaj", "Prioritetna podrška"],
+            items: ["Analiza potreba", "Integracije sa vašim sistemima", "Višejezični sadržaj", "Podrška posle objave"],
           },
         ],
       },
@@ -201,7 +201,7 @@ export const services: Service[] = [
           { title: "Admin panel", description: "Sadržaj, korisnike i porudžbine vodite iz pregledača." },
           { title: "Push notifikacije", description: "Obaveštenja o akcijama, terminima i novostima." },
           { title: "Objava u prodavnicama", description: "Pripremamo i predajemo aplikaciju na App Store i Google Play." },
-          { title: "Održavanje", description: "Ažuriranja za nove verzije iOS-a i Android-a." },
+          { title: "Podrška posle objave", description: "Ostajemo uz vas i posle objave, uz ažuriranja za nove verzije iOS-a i Android-a." },
         ],
       },
       examplesTitle: "Aplikacije koje smo napravili.",
@@ -239,8 +239,8 @@ export const services: Service[] = [
           answer: "Da. Pravimo jednu aplikaciju koja radi na obe platforme.",
         },
         {
-          question: "Ko održava aplikaciju posle objave?",
-          answer: "Možemo mi, kroz mesečno održavanje, ili vaš tim — predajemo kompletan izvorni kod.",
+          question: "Šta je sa aplikacijom posle objave?",
+          answer: "Ostajemo uz vas i posle objave: pratimo kako aplikacija radi i pomažemo kada zatreba.",
         },
       ],
       cta: defaultCta,
@@ -274,7 +274,7 @@ export const services: Service[] = [
           { title: "Izveštaji i dashboardi", description: "Ključni brojevi na jednom ekranu, uz izvoz u Excel i PDF." },
           { title: "Integracije", description: "Povezivanje sa knjigovodstvom, e-mailom i drugim alatima." },
           { title: "Bezbednost", description: "Šifrovane veze, rezervne kopije i evidencija promena." },
-          { title: "Hosting i održavanje", description: "Brinemo o serveru, ažuriranjima i dostupnosti." },
+          { title: "Podrška posle objave", description: "Ostajemo uz vas i posle objave, da aplikacija nastavi da radi kako treba." },
         ],
       },
       examplesTitle: "Aplikacije koje rade za naše klijente.",
@@ -306,10 +306,6 @@ export const services: Service[] = [
         {
           question: "Koja je razlika između sajta i veb aplikacije?",
           answer: "Sajt predstavlja firmu posetiocima. Veb aplikacija je alat za rad — korisnici se prijavljuju, unose i obrađuju podatke.",
-        },
-        {
-          question: "Gde se čuvaju podaci?",
-          answer: "Na serveru u EU ili Srbiji, uz redovne rezervne kopije. Podaci pripadaju vama.",
         },
         {
           question: "Možemo li da krenemo sa manjom verzijom?",
@@ -396,7 +392,7 @@ export const services: Service[] = [
           { title: "Poziv i plan kadrova", description: "Dogovaramo šta želite da pokažete i u koje doba dana je svetlo najbolje." },
           { title: "Izviđanje", description: "Proveravamo zonu leta i pratimo prognozu." },
           { title: "Snimanje", description: "Dolazimo na lokaciju. Vi ne morate da budete prisutni." },
-          { title: "Montaža i isporuka", description: "Montiramo, radimo color grading i šaljemo link. Jedna runda izmena je uključena." },
+          { title: "Montaža i isporuka", description: "Montiramo, radimo color grading i šaljemo link za preuzimanje." },
         ],
       },
       faqTitle: "Pitanja o snimanju dronom.",

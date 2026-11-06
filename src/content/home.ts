@@ -65,7 +65,7 @@ export const homeFaq: Faq[] = [
   },
   {
     question: "Šta ako mi se nešto ne dopadne?",
-    answer: "Svaka faza uključuje dve runde izmena. Ne idemo dalje dok ne odobrite prethodni korak.",
+    answer: "Ne idemo dalje dok ne odobrite prethodni korak, pa svaku primedbu rešavamo na vreme.",
   },
   {
     question: "Da li radite sa klijentima iz drugih gradova?",

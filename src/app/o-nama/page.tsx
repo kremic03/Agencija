@@ -19,7 +19,7 @@ const principles = [
   },
   {
     title: "Vidite napredak svake nedelje.",
-    text: "Radimo u kratkim ciklusima i šaljemo vam ono što je gotovo. Svaka faza uključuje dve runde izmena, a ne idemo dalje dok ne odobrite prethodni korak.",
+    text: "Radimo u kratkim ciklusima i šaljemo vam ono što je gotovo. Ne idemo dalje dok ne odobrite prethodni korak.",
   },
   {
     title: "Govorimo jezikom koji razumete.",
@@ -27,7 +27,7 @@ const principles = [
   },
   {
     title: "Ostajemo i posle lansiranja.",
-    text: "Tri meseca posle lansiranja dostupni smo bez doplate, da nijedan problem ne ostane na vama.",
+    text: "Kada projekat ugleda svetlo dana, ne nestajemo. Tu smo i posle objave, da sve nastavi da radi kako treba.",
   },
 ];
 
