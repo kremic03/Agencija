@@ -1,8 +1,8 @@
 /*
  * Sadržaj početne strane.
  *
- * PRIVREMENO: brojke, utisci klijenata i izdvojeni projekti su mesta
- * za prave podatke. Utiske objavljivati samo uz pisanu dozvolu klijenta.
+ * PRIVREMENO: utisci klijenata su mesta za prave podatke. Utiske objavljivati
+ * samo uz pisanu dozvolu klijenta.
  */
 import type { Faq } from "./services";
 
@@ -15,10 +15,22 @@ export const hero = {
 };
 
 export const stats = [
-  { value: "140", unit: "+", label: "završenih projekata" },
-  { value: "9", unit: " god.", label: "na tržištu" },
-  { value: "4,9", unit: "/5", label: "prosečna ocena na Google-u" },
+  { value: "15", unit: "+ god.", label: "iskustva u snimanju dronom" },
+  { value: "~10", unit: "", label: "projekata veb aplikacija" },
   { value: "24", unit: "h", label: "od upita do pisane ponude" },
+];
+
+export const productions = [
+  {
+    name: "Žigosani u reketu",
+    kind: "Produkcija",
+    text: "Snimanje dronom na setu, u saradnji sa ekipom produkcije.",
+  },
+  {
+    name: "Lepi Brka",
+    kind: "Emisija",
+    text: "Obilazak mesta širom Srbije sa profesionalnom ekipom snimatelja i kadrovi iz vazduha za emisiju.",
+  },
 ];
 
 export const testimonials = [

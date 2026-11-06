@@ -59,6 +59,8 @@ export type Service = {
     heroMedia?: HeroMedia;
     heroOverlay?: { left: string; right: string };
     included: { title: string; items: { title: string; description: string }[] };
+    /** Prikazuje izdvojene produkcije (home.ts) pre primera radova */
+    showProductions?: boolean;
     examplesTitle: string;
     /** Pravi primeri; bez njih se prikazuju projekti iz portfolija */
     examples?: Example[];
@@ -349,7 +351,7 @@ export const services: Service[] = [
     seo: {
       title: "Snimanje dronom u Srbiji: video i foto",
       description:
-        "Snimanje dronom u 4K širom Srbije za nekretnine, evente, turizam i industriju: plan kadrova, dozvole za letenje, montaža i verzije za mreže.",
+        "Snimanje dronom u 4K širom Srbije, sa 15+ godina iskustva: nekretnine, eventi, turizam, emisije i produkcije. Dozvole, montaža i verzije za mreže.",
     },
     page: {
       title: "Snimci iz vazduha koji prodaju prostor, mesto i doživljaj.",
@@ -369,6 +371,7 @@ export const services: Service[] = [
           { title: "Isporuka za 5 dana", description: "Link za preuzimanje, materijal čuvamo 12 meseci." },
         ],
       },
+      showProductions: true,
       examplesTitle: "Četiri oblasti, isti standard.",
       examples: [
         {

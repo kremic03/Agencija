@@ -4,6 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 import { ButtonLink } from "@/components/ui/Button";
 import { PortfolioGrid, type PortfolioCard } from "@/components/portfolio/PortfolioGrid";
 import { ProjectMedia } from "@/components/portfolio/ProjectMedia";
+import { FeaturedProductions } from "@/components/sections/FeaturedProductions";
 
 export const metadata = pageMetadata({
   title: "Portfolio: sajtovi, web shopovi i snimci dronom",
@@ -44,6 +45,8 @@ export default function PortfolioPage() {
             Sajtovi, web shopovi i snimci iz vazduha — od obale Save do kamenog utvrđenja.
           </p>
         </div>
+
+        <FeaturedProductions />
 
         <PortfolioGrid projects={cards} filters={filters} />
 

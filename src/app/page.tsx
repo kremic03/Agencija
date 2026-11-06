@@ -6,6 +6,7 @@ import { websiteSchema } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Hero } from "@/components/sections/Hero";
 import { ServicesBento } from "@/components/sections/ServicesBento";
+import { FeaturedProductions } from "@/components/sections/FeaturedProductions";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { Stats } from "@/components/sections/Stats";
 import { Testimonials } from "@/components/sections/Testimonials";
@@ -26,6 +27,7 @@ export default function HomePage() {
       <JsonLd data={websiteSchema()} />
       <Hero />
       <ServicesBento />
+      <FeaturedProductions className="section-y container-page" />
       <ProcessSection
         id="proces"
         eyebrow="(02) Proces rada"

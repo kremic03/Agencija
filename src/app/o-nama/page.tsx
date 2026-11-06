@@ -43,6 +43,11 @@ export default function AboutPage() {
         Sastanci su uživo ili online, a za snimanje dolazimo na lokaciju. Umesto da sajt, aplikaciju i video
         tražite na tri mesta, sve radi jedan tim.
       </p>
+      <p>
+        Dronom snimamo više od 15 godina, između ostalog za produkciju „Žigosani u reketu” i emisiju „Lepi Brka”, sa
+        kojom smo uz profesionalnu ekipu snimatelja obilazili mesta širom Srbije. Iza nas je i desetak projekata veb
+        aplikacija.
+      </p>
 
       <h2 className={heading}>Kako radimo</h2>
       <ul className="flex flex-col gap-4">
