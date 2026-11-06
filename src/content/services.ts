@@ -14,12 +14,11 @@ export const serviceGroups: Record<ServiceGroup, string> = {
 
 export type ServiceIconName = "web" | "mobile" | "webapp" | "drone";
 
-export type Step = { title: string; description: string; time: string };
+export type Step = { title: string; description: string };
 export type Faq = { question: string; answer: string };
 export type Package = {
   name: string;
   audience: string;
-  price: string;
   items: string[];
   highlighted?: boolean;
 };
@@ -50,7 +49,6 @@ export type Service = {
   summary: string;
   /** Opis na kartici na početnoj */
   cardText: string;
-  priceFrom: string;
   seo: { title: string; description: string };
   page: {
     title: string;
@@ -72,29 +70,24 @@ export type Service = {
   };
 };
 
-// PRIVREMENO: rokovi u koracima
 export const defaultProcess: Step[] = [
   {
     title: "Razgovor",
     description:
-      "Besplatne konsultacije od 30 minuta. Slušamo šta vam treba i predlažemo rešenje — ponekad i jeftinije od planiranog.",
-    time: "1 dan",
+      "Besplatne konsultacije. Slušamo šta vam treba i predlažemo rešenje — ponekad i jeftinije od planiranog.",
   },
   {
     title: "Ponuda i plan",
-    description: "Pisana ponuda sa fiksnom cenom, rokovima i spiskom svega što je uključeno.",
-    time: "2–3 dana",
+    description: "Pisana ponuda sa fiksnom cenom i spiskom svega što je uključeno.",
   },
   {
     title: "Izrada",
     description: "Radimo u kratkim ciklusima. Svake nedelje vidite napredak i šaljete komentare.",
-    time: "2–8 nedelja",
   },
   {
     title: "Lansiranje i podrška",
     description:
       "Puštamo projekat u rad, obučavamo vaš tim i ostajemo dostupni tri meseca bez doplate.",
-    time: "3 meseca podrške",
   },
 ];
 
@@ -113,7 +106,6 @@ export const services: Service[] = [
     summary: "Prezentacioni sajtovi i web shopovi",
     cardText:
       "Prezentacioni sajtovi i web shopovi koji se brzo učitavaju, pripremljeni su za pretraživače i koje sami menjate.",
-    priceFrom: "450 €",
     seo: {
       title: "Izrada veb sajtova i web shopova u Srbiji",
       description:
@@ -142,26 +134,23 @@ export const services: Service[] = [
         { title: "Prijava kupaca", tag: "Web shop", image: media.webShopLogin, screenshot: true },
       ],
       packages: {
-        title: "Jasne cene. Konačan iznos dobijate pre početka.",
-        note: "Cene su bez PDV-a.",
+        title: "Izaberite paket koji vam odgovara.",
+        note: "Tačnu cenu dobijate u pisanoj ponudi.",
         items: [
           {
             name: "Prezentacioni sajt",
             audience: "Za firme kojima treba predstavljanje i upiti.",
-            price: "450",
             items: ["Do 5 stranica", "Kontakt forma", "Osnovna SEO podešavanja", "Obuka za uređivanje"],
           },
           {
             name: "Web shop",
             audience: "Za prodaju proizvoda preko interneta.",
-            price: "1.200",
             highlighted: true,
             items: ["Katalog proizvoda i korpa", "Plaćanje karticom ili pouzećem", "Pregled porudžbina", "Obuka za vaš tim"],
           },
           {
             name: "Po meri",
             audience: "Za složenije sajtove sa posebnim funkcijama.",
-            price: "Na upit",
             items: ["Analiza potreba", "Integracije sa vašim sistemima", "Višejezični sadržaj", "Prioritetna podrška"],
           },
         ],
@@ -171,7 +160,7 @@ export const services: Service[] = [
       faq: [
         {
           question: "Koliko traje izrada sajta?",
-          answer: "Prezentacioni sajt 2–4 nedelje, web shop 4–8 nedelja. Tačan rok dobijate u pisanoj ponudi.",
+          answer: "Zavisi od obima projekta. Tačan rok dobijate u pisanoj ponudi.",
         },
         {
           question: "Da li mogu sam da menjam sadržaj?",
@@ -193,7 +182,6 @@ export const services: Service[] = [
     icon: "mobile",
     summary: "Nativne iOS i Android aplikacije",
     cardText: "Aplikacije za iOS i Android — za rezervacije, loyalty programe ili interne procese.",
-    priceFrom: "3.500 €",
     seo: {
       title: "Izrada mobilnih aplikacija za iOS i Android",
       description:
@@ -219,25 +207,22 @@ export const services: Service[] = [
       examplesTitle: "Aplikacije koje smo napravili.",
       packages: {
         title: "Cena zavisi od obima. Okvir znate unapred.",
-        note: "Cene su bez PDV-a.",
+        note: "Tačnu cenu dobijate u pisanoj ponudi.",
         items: [
           {
             name: "MVP",
             audience: "Za proveru ideje sa prvim korisnicima.",
-            price: "3.500",
             items: ["Do 8 ekrana", "Jedna osnovna funkcija", "Objava u prodavnicama"],
           },
           {
             name: "Standard",
             audience: "Za rezervacije, loyalty i porudžbine.",
-            price: "7.500",
             highlighted: true,
             items: ["Korisnički nalozi", "Admin panel", "Push notifikacije", "Analitika korišćenja"],
           },
           {
             name: "Po meri",
             audience: "Za složene i interne sisteme.",
-            price: "Na upit",
             items: ["Integracije sa postojećim sistemima", "Offline rad", "Napredne uloge i dozvole"],
           },
         ],
@@ -247,7 +232,7 @@ export const services: Service[] = [
       faq: [
         {
           question: "Koliko traje izrada aplikacije?",
-          answer: "Obično 2–4 meseca, u zavisnosti od broja ekrana i funkcija.",
+          answer: "Zavisi od broja ekrana i funkcija. Tačan rok dobijate u pisanoj ponudi.",
         },
         {
           question: "Da li aplikacija radi i na iOS-u i na Android-u?",
@@ -270,7 +255,6 @@ export const services: Service[] = [
     summary: "Custom softver, dashboardi i SaaS",
     cardText:
       "Custom softver, dashboardi i SaaS. Zamenite Excel tabele alatom napravljenim baš za vaš posao.",
-    priceFrom: "2.900 €",
     seo: {
       title: "Izrada veb aplikacija po meri",
       description:
@@ -296,25 +280,22 @@ export const services: Service[] = [
       examplesTitle: "Aplikacije koje rade za naše klijente.",
       packages: {
         title: "Počinjemo malim korakom, rastemo sa vama.",
-        note: "Cene su bez PDV-a.",
+        note: "Tačnu cenu dobijate u pisanoj ponudi.",
         items: [
           {
             name: "Interni alat",
             audience: "Za jedan proces koji danas radite ručno.",
-            price: "2.900",
             items: ["Analiza procesa", "Do 3 korisničke uloge", "Izvoz podataka"],
           },
           {
             name: "Poslovna aplikacija",
             audience: "Za više timova i povezane procese.",
-            price: "6.500",
             highlighted: true,
             items: ["Dashboard i izveštaji", "Integracije sa postojećim alatima", "Napredne dozvole", "Obuka za tim"],
           },
           {
             name: "SaaS",
             audience: "Za softver koji prodajete drugim firmama.",
-            price: "Na upit",
             items: ["Pretplate i naplata", "Više klijenata u jednom sistemu", "Skaliranje infrastrukture"],
           },
         ],
@@ -346,29 +327,27 @@ export const services: Service[] = [
     icon: "drone",
     summary: "Nekretnine, eventi, turizam, industrija",
     cardText:
-      "Nekretnine, eventi, turizam i industrija — u 4K, sa licenciranim pilotima i svim dozvolama.",
-    priceFrom: "180 €",
+      "Nekretnine, eventi, turizam i industrija — sa pilotima licenciranim kod DCV.",
     seo: {
       title: "Snimanje dronom u Srbiji: video i foto",
       description:
-        "Snimanje dronom u 4K širom Srbije, sa 15+ godina iskustva: nekretnine, eventi, turizam, emisije i produkcije. Dozvole, montaža i verzije za mreže.",
+        "Snimanje dronom širom Srbije, sa 15+ godina iskustva: nekretnine, eventi, turizam, emisije i produkcije. Plan kadrova, montaža i verzije za mreže.",
     },
     page: {
       title: "Snimci iz vazduha koji prodaju prostor, mesto i doživljaj.",
       intro:
-        "Za agente za nekretnine, hotele, organizatore događaja i industriju. Licencirani piloti, sve dozvole i gotov materijal za 5 radnih dana.",
+        "Za agente za nekretnine, hotele, organizatore događaja i industriju. Piloti licencirani kod DCV i gotov materijal spreman za objavu.",
       heroImage: "Foto iz drona: vila sa bazenom, zlatni sat",
       heroMedia: { kind: "video" },
-      heroOverlay: { left: "REC 00:00:14", right: "ALT 85 M · 4K/60" },
+      heroOverlay: { left: "REC 00:00:14", right: "ALT 85 M" },
       included: {
         title: "Vi birate lokaciju. Sve ostalo je na nama.",
         items: [
-          { title: "Licencirani pilot", description: "Registrovan kod DCV, sa polisom osiguranja od odgovornosti." },
-          { title: "Sve dozvole", description: "Za kontrolisane i zaštićene zone podnosimo zahteve u vaše ime." },
-          { title: "4K video i RAW foto", description: "Kamera sa 1\" senzorom, 10-bit snimak za kvalitetan color grading." },
+          { title: "Licencirani pilot", description: "Pilot je licenciran i registrovan kod DCV." },
+          { title: "Video i fotografije", description: "Snimci i fotografije iz vazduha, obrađeni i spremni za objavu." },
           { title: "Montaža i color grading", description: "Gotov video sa licenciranom muzikom, spreman za objavu." },
           { title: "Verzije za mreže", description: "Isti materijal isečen u 9:16 za Instagram, TikTok i Reels." },
-          { title: "Isporuka za 5 dana", description: "Link za preuzimanje, materijal čuvamo 12 meseci." },
+          { title: "Isporuka preko linka", description: "Gotov materijal dobijate preko linka za preuzimanje." },
         ],
       },
       showProductions: true,
@@ -390,65 +369,54 @@ export const services: Service[] = [
         },
       ],
       packages: {
-        title: "Jasne cene. Konačan iznos dobijate pre snimanja.",
-        note: "Cene su bez PDV-a. Putni troškovi van grada: 0,40 € po km.",
+        title: "Izaberite paket koji vam odgovara.",
+        note: "Tačnu cenu dobijate u pisanoj ponudi.",
         items: [
           {
             name: "Foto",
             audience: "Za oglase nekretnina i sajtove hotela.",
-            price: "180",
-            items: ["Do 1 sat leta na jednoj lokaciji", "25 obrađenih fotografija", "Isporuka za 3 radna dana"],
+            items: ["Do 1 sat leta na jednoj lokaciji", "25 obrađenih fotografija"],
           },
           {
             name: "Video",
             audience: "Za prodaju nekretnina, promociju objekta i mreže.",
-            price: "390",
             highlighted: true,
-            items: ["Do 2 sata na lokaciji", "Montiran video 60–90 s u 4K", "Verzija 9:16 za Reels i TikTok", "15 obrađenih fotografija"],
+            items: ["Do 2 sata na lokaciji", "Montiran video 60–90 s", "Verzija 9:16 za Reels i TikTok", "15 obrađenih fotografija"],
           },
           {
             name: "Kampanja",
             audience: "Za evente, turizam i industrijske objekte.",
-            price: "890",
-            items: ["Ceo dan snimanja, više lokacija", "Promo spot + 5 kratkih videa", "Snimatelj sa zemlje uključen", "Dozvole za kontrolisane zone"],
+            items: ["Ceo dan snimanja, više lokacija", "Promo spot + 5 kratkih videa", "Snimatelj sa zemlje uključen"],
           },
         ],
       },
       process: {
-        title: "Od poziva do gotovog snimka za 5 dana.",
+        title: "Od poziva do gotovog snimka.",
         steps: [
-          { title: "Poziv i plan kadrova", description: "Dogovaramo šta želite da pokažete i u koje doba dana je svetlo najbolje.", time: "isti dan" },
-          { title: "Dozvole i izviđanje", description: "Proveravamo zonu leta, pribavljamo dozvole i pratimo prognozu.", time: "1–2 dana" },
-          { title: "Snimanje", description: "Dolazimo na lokaciju. Vi ne morate da budete prisutni.", time: "1–3 sata" },
-          { title: "Montaža i isporuka", description: "Montiramo, radimo color grading i šaljemo link. Jedna runda izmena je uključena.", time: "2–3 dana" },
+          { title: "Poziv i plan kadrova", description: "Dogovaramo šta želite da pokažete i u koje doba dana je svetlo najbolje." },
+          { title: "Izviđanje", description: "Proveravamo zonu leta i pratimo prognozu." },
+          { title: "Snimanje", description: "Dolazimo na lokaciju. Vi ne morate da budete prisutni." },
+          { title: "Montaža i isporuka", description: "Montiramo, radimo color grading i šaljemo link. Jedna runda izmena je uključena." },
         ],
       },
       faqTitle: "Pitanja o snimanju dronom.",
       faq: [
         {
-          question: "Da li vam trebaju dozvole za letenje?",
-          answer: "Da, i sve ih pribavljamo mi. Za kontrolisane zone (aerodromi, centri gradova) zahtev podnosimo Direktoratu civilnog vazduhoplovstva najmanje 7 dana unapred.",
-        },
-        {
           question: "Šta ako pada kiša ili duva jak vetar?",
-          answer: "Termin pomeramo bez doplate. Vremensku prognozu proveravamo dan ranije i javljamo vam se do 18h.",
+          answer: "Termin pomeramo bez doplate. Vremensku prognozu proveravamo unapred i na vreme vam se javljamo.",
         },
         {
           question: "Koliko dugo traje snimanje?",
-          answer: "Za nekretninu obično 1–2 sata na lokaciji. Eventi i industrijski objekti zavise od obima — plan kadrova dogovaramo unapred.",
+          answer: "Zavisi od lokacije i obima. Plan kadrova dogovaramo unapred.",
         },
         {
           question: "U kom formatu dobijam materijal?",
-          answer: "Montiran video u 4K i verziji za društvene mreže (9:16), fotografije u JPG i RAW formatu. Sve preko linka za preuzimanje.",
-        },
-        {
-          question: "Da li je oprema osigurana?",
-          answer: "Da. Imamo polisu odgovornosti prema trećim licima do 500.000 €, što mnogi objekti i organizatori traže.",
+          answer: "Montiran video i verzija za društvene mreže (9:16), fotografije u JPG i RAW formatu. Sve preko linka za preuzimanje.",
         },
       ],
       cta: {
-        title: "Pošaljite lokaciju i datum — proverićemo dozvole besplatno.",
-        text: "Odgovor sa terminom i tačnom cenom stiže u roku od 24 sata.",
+        title: "Pošaljite lokaciju i datum — javljamo se sa terminom i cenom.",
+        text: "Odgovor stiže u roku od 24 sata.",
       },
     },
   },

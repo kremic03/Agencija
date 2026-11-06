@@ -49,19 +49,19 @@ export const testimonials = [
 export const homeFaq: Faq[] = [
   {
     question: "Koliko košta izrada sajta?",
-    answer: "Prezentacioni sajt kreće od 450 €, web shop od 1.200 €. Tačnu cenu dobijate u pisanoj ponudi posle besplatnih konsultacija — i ona se ne menja tokom rada.",
+    answer: "Zavisi od obima projekta. Tačnu cenu dobijate u pisanoj ponudi posle besplatnih konsultacija — i ona se ne menja tokom rada.",
   },
   {
     question: "Koliko traje izrada?",
-    answer: "Prezentacioni sajt 2–4 nedelje, web shop 4–8 nedelja, mobilna aplikacija 2–4 meseca. Snimanje dronom zakazujemo obično u roku od 5 radnih dana.",
+    answer: "Zavisi od obima projekta. Tačan rok dobijate u pisanoj ponudi.",
   },
   {
     question: "Da li moram da znam nešto tehnički?",
     answer: "Ne. Sve objašnjavamo jednostavnim jezikom, a na kraju vas obučimo da sami menjate tekstove, slike i cene.",
   },
   {
-    question: "Da li imate dozvole za letenje dronom?",
-    answer: "Da. Naši piloti su registrovani kod Direktorata civilnog vazduhoplovstva, a oprema je osigurana. Dozvole za posebne zone pribavljamo mi.",
+    question: "Da li su vaši piloti licencirani?",
+    answer: "Da. Naši piloti su licencirani i registrovani kod Direktorata civilnog vazduhoplovstva (DCV).",
   },
   {
     question: "Šta ako mi se nešto ne dopadne?",
