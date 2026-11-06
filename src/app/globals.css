@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+/*
+ * Dizajn tokeni (Claude Design: „Dizajn sistem”).
+ * Tamna tema je podrazumevana. Akcenat koristiti samo za CTA,
+ * aktivne indikatore i ključne brojke.
+ */
+@theme {
+  /* Header prelazi u mobilni prikaz ispod 900 px */
+  --breakpoint-nav: 56.25rem;
+
+  --color-bg: #0a0a0b; /* --c0 pozadina stranice */
+  --color-surface: #111113; /* --c1 kartice, forme */
+  --color-raised: #18181b; /* --c2 uzdignuta površina, hover */
+  --color-pressed: #1f1f23; /* --c3 pressed / disabled */
+  --color-line: #26262b; /* --ln borderi, razdelnici */
+  --color-line-strong: #34343a; /* --ln2 border kontrola */
+  --color-line-control: #606066; /* granica polja forme: ≥3:1 prema bg i surface (WCAG 1.4.11) */
+  --color-fg: #f4f4f5; /* primarni tekst */
+  --color-muted: #a1a1aa; /* sekundarni tekst */
+  --color-subtle: #8b8b94; /* oznake, metapodaci */
+  --color-disabled: #5a5a62;
+  --color-accent: #ff6b2c;
+  --color-accent-hover: #ff8445;
+  --color-accent-active: #e85a1e;
+  --color-accent-text: #ff8a50; /* akcenat kao tekst i focus ring */
+  --color-on-accent: #0a0a0b;
+  --color-error: #f87171;
+  --color-error-text: #fca5a5;
+  --color-rec: #ff3b30;
+
+  --radius-sm: 6px; /* tagovi */
+  --radius-md: 8px; /* inputi, nav */
+  --radius-lg: 10px; /* dugmad */
+  --radius-xl: 12px; /* kartice, paneli */
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, Menlo, monospace;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-padding-top: 88px;
+    /* Klik na link ka sekciji (npr. /#proces) klizi do nje; uz smanjeno kretanje skok je trenutan (dole) */
+    scroll-behavior: smooth;
+  }
+
+  /* Zaključava skrol dok je mobilni meni otvoren */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-text);
+    outline-offset: 2px;
+  }
+
+  /* Sekcija dobija fokus posle skrola do nje (SmoothAnchorScroll), bez okvira oko cele sekcije */
+  [tabindex="-1"]:focus {
+    outline: none;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-subtle);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/*
+ * Traka navigacije (NavigationProgress): vidljiva tek posle 100 ms, da ne treperi na
+ * brzim prelazima. Animira samo opacity i transform, pa radi i dok je glavna nit zauzeta.
+ */
+.nav-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  height: 2px;
+  background: var(--color-accent);
+  opacity: 0;
+  transform: scaleX(1);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+.nav-progress.is-active {
+  animation: nav-progress-show 150ms ease 100ms forwards;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav-progress.is-active {
+    animation:
+      nav-progress-show 150ms ease 100ms forwards,
+      nav-progress-grow 8s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+  }
+}
+
+@keyframes nav-progress-show {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes nav-progress-grow {
+  from {
+    transform: scaleX(0.05);
+  }
+  to {
+    transform: scaleX(0.92);
+  }
+}
+
+/* Raspored: sadržaj max 1280 px, margine 40 / 20 px, sekcije 144 / 88 px */
+@utility container-page {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 40px);
+}
+
+@utility section-y {
+  padding-top: clamp(88px, 9.5vw, 144px);
+}
+
+/* Tipografija */
+@utility text-display {
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+@utility text-page-title {
+  font-size: clamp(40px, 4.6vw, 64px);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+@utility text-section-title {
+  font-size: clamp(30px, 2.8vw, 40px);
+  line-height: 1.12;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+@utility text-card-title {
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+@utility text-lead {
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.6;
+  color: var(--color-muted);
+  text-wrap: pretty;
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-subtle);
+}
