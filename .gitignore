@@ -57,3 +57,7 @@ next-env.d.ts
 
 # privremeni fajlovi sandbox-a pri konverziji
 *.sb-*
+
+# playwright
+/test-results/
+/playwright-report/

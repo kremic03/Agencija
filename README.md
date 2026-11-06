@@ -1,6 +1,6 @@
 # Agencija
 
-Prezentacioni veb sajt digitalne agencije koja se bavi izradom veb sajtova i mobilnih aplikacija, održavanjem sajtova i snimanjem svadbi i proslava iz vazduha DJI dronom.
+Prezentacioni veb sajt digitalne agencije iz Beograda koja radi veb sajtove i web shopove, mobilne i veb aplikacije i snimanje dronom za mala i srednja preduzeća širom Srbije.
 
 > **Status:** u razvoju. Dizajn je implementiran; privremeni sadržaj je označen komentarom `PRIVREMENO` u kodu. Kontakt forma šalje upite preko Resend-a; bez verifikovanog domena oni stižu samo na adresu Resend naloga.
 
@@ -14,24 +14,27 @@ Ovaj repozitorijum sadrži izvorni kod sajta agencije. Sajt ima tri cilja:
 - **Pokaže kvalitet rada** kroz primere projekata, fotografije i video snimke.
 - **Omogući lak kontakt.** Posetilac popuni formu, a upit stiže direktno na e-mail agencije.
 
-Sajt je namenjen pojedincima, preduzetnicima i firmama kojima treba prisustvo na internetu ili aplikacija, kao i mladencima i organizatorima proslava koji žele upečatljive snimke iz vazduha.
+Sajt je namenjen malim i srednjim preduzećima kojima treba sajt, aplikacija ili snimak iz vazduha.
 
 ## Usluge koje sajt predstavlja
 
 | Usluga | Opis |
 |---|---|
-| 🌐 **Izrada veb sajtova** | Moderni, brzi i responzivni sajtovi: prezentacioni sajtovi, landing stranice i veb prodavnice, prilagođeni telefonu, tabletu i računaru. |
-| 📱 **Izrada mobilnih aplikacija** | Aplikacije za Android i iOS, od ideje i dizajna do objave na prodavnicama aplikacija. |
-| 🛠️ **Održavanje veb sajtova** | Redovna ažuriranja, bezbednosne provere, rezervne kopije, izmene sadržaja i tehnička podrška za postojeće sajtove. |
-| 🚁 **Snimanje dronom** | Snimanje svadbi, rođendana i drugih proslava DJI dronom: kadrovi iz vazduha u visokoj rezoluciji koji daju filmski utisak. |
+| 🌐 **Izrada veb sajtova** | Prezentacioni sajtovi i web shopovi koji se brzo učitavaju, pripremljeni su za pretraživače i koje klijent sam menja. |
+| 📱 **Mobilne aplikacije** | Aplikacije za iOS i Android, od ideje i dizajna do objave u prodavnicama aplikacija. |
+| 🖥️ **Veb aplikacije** | Softver po meri, dashboardi i SaaS proizvodi koji zamenjuju Excel tabele i ručni rad. |
+| 🚁 **Snimanje dronom** | Video i fotografije iz vazduha za nekretnine, evente, turizam i industriju, kao i za emisije i produkcije. |
 
-## Planirani sadržaj sajta
+Tekstovi usluga su u `src/content/services.ts`.
 
-- **Početna strana** sa kratkim predstavljanjem agencije i pregledom usluga
-- **Posebne stranice** za svaku uslugu, sa detaljnim opisom
-- **Portfolio**: primeri sajtova, aplikacija i snimaka dronom
+## Sadržaj sajta
+
+- **Početna strana** sa predstavljanjem agencije i pregledom usluga
+- **Usluge**: pregled i posebna stranica za svaku uslugu
+- **Portfolio**: primeri radova i stranica za svaki projekat
 - **O nama**
 - **Kontakt** sa formom za slanje upita
+- **Politika privatnosti**
 
 ## Tehnologije
 
@@ -41,6 +44,7 @@ Sajt je namenjen pojedincima, preduzetnicima i firmama kojima treba prisustvo na
 | [TypeScript](https://www.typescriptlang.org/) | JavaScript sa tipovima, za pouzdaniji kod sa manje grešaka |
 | [Tailwind CSS](https://tailwindcss.com/) | Stilizovanje i responzivni dizajn |
 | [Resend](https://resend.com/) | Slanje upita sa kontakt forme na e-mail |
+| [Playwright](https://playwright.dev/) | Automatski testovi u pregledaču |
 
 ## Pokretanje projekta lokalno
 
@@ -70,7 +74,10 @@ Provere pre objave:
 npm run lint        # ESLint
 npx tsc --noEmit    # TypeScript
 npm run build       # produkcijski build
+npm test            # automatski testovi (oko 2 minuta)
 ```
+
+`npm test` sam pravi produkcijski build i pokreće ga na portu 3457, pa taj port mora da bude slobodan. Testovi koriste Google Chrome instaliran na računaru i lažni Resend, tako da nijedan test ne šalje pravi mejl. Testovi su u folderu `tests/`.
 
 ## Napomene za održavanje
 

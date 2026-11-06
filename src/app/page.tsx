@@ -16,7 +16,7 @@ import { CtaBanner } from "@/components/sections/CtaBanner";
 export const metadata = pageMetadata({
   title: `Izrada sajtova, aplikacija i snimanje dronom u Srbiji | ${site.name}`,
   description:
-    "Izrada veb sajtova, mobilnih i veb aplikacija i snimanje dronom za mala i srednja preduzeća širom Srbije. Fiksna cena koju znate pre početka.",
+    "Agencija iz Beograda: izrada veb sajtova, mobilnih i veb aplikacija i snimanje dronom za firme širom Srbije. Fiksna cena koju znate pre početka.",
   path: "/",
   absoluteTitle: true,
 });
@@ -27,7 +27,7 @@ export default function HomePage() {
       <JsonLd data={websiteSchema()} />
       <Hero />
       <ServicesBento />
-      <FeaturedProductions className="section-y container-page" />
+      <FeaturedProductions linkToService className="section-y container-page" />
       <ProcessSection
         id="proces"
         eyebrow="(02) Proces rada"

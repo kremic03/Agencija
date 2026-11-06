@@ -1,8 +1,11 @@
+import Link from "next/link";
 import { productions } from "@/content/home";
+import { serviceHref } from "@/content/services";
+import { ArrowRightIcon } from "@/components/ui/icons";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
-/** Izdvojene produkcije; kada stignu kadrovi iz njih, dodati ih i u portfolio */
-export function FeaturedProductions({ className = "" }: { className?: string }) {
+/** Izdvojene produkcije, samo tekst: kadrovi iz njih se ne smeju objaviti */
+export function FeaturedProductions({ className = "", linkToService }: { className?: string; linkToService?: boolean }) {
   return (
     <section aria-labelledby="produkcije-naslov" className={`flex flex-col gap-10 ${className}`}>
       <SectionHeading id="produkcije-naslov" eyebrow="Izdvojeni radovi" title="Više od 15 godina snimanja dronom, i za domaće produkcije." />
@@ -15,6 +18,15 @@ export function FeaturedProductions({ className = "" }: { className?: string }) 
           </li>
         ))}
       </ul>
+      {linkToService && (
+        <Link
+          href={serviceHref("snimanje-dronom")}
+          className="flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold text-accent-text hover:underline"
+        >
+          Više o snimanju dronom
+          <ArrowRightIcon />
+        </Link>
+      )}
     </section>
   );
 }

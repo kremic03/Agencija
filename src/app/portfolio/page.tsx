@@ -1,6 +1,9 @@
+import Link from "next/link";
 import { projectHref, projects } from "@/content/portfolio";
-import { services } from "@/content/services";
+import { serviceHref, services } from "@/content/services";
 import { pageMetadata } from "@/lib/seo";
+import { breadcrumbSchema } from "@/lib/structured-data";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/Button";
 import { PortfolioGrid, type PortfolioCard } from "@/components/portfolio/PortfolioGrid";
 import { ProjectMedia } from "@/components/portfolio/ProjectMedia";
@@ -12,6 +15,8 @@ export const metadata = pageMetadata({
     "Izabrani radovi našeg tima: veb sajtovi i web shopovi, video i fotografije iz drona snimljene u Beogradu i na kulturnoj baštini.",
   path: "/portfolio",
 });
+
+const inlineLink = "text-fg underline underline-offset-4 hover:text-accent-text";
 
 // Filter samo za usluge koje već imaju projekat
 const filters = [
@@ -36,13 +41,21 @@ const cards: PortfolioCard[] = projects.map((p, i) => ({
 export default function PortfolioPage() {
   return (
     <section aria-labelledby="portfolio-naslov" className="pt-[clamp(48px,6vw,96px)] pb-[clamp(88px,9.5vw,144px)]">
+      <JsonLd data={breadcrumbSchema([{ name: "Portfolio", path: "/portfolio" }])} />
       <div className="container-page flex flex-col gap-10">
         <div className="flex max-w-180 flex-col gap-5">
           <h1 id="portfolio-naslov" className="text-page-title">
             Portfolio
           </h1>
           <p className="text-lead">
-            Sajtovi, web shopovi i snimci iz vazduha — od obale Save do kamenog utvrđenja.
+            <Link href={serviceHref("izrada-sajtova")} className={inlineLink}>
+              Sajtovi i web shopovi
+            </Link>{" "}
+            i{" "}
+            <Link href={serviceHref("snimanje-dronom")} className={inlineLink}>
+              snimanje dronom
+            </Link>{" "}
+            — od obale Save do kamenog utvrđenja.
           </p>
         </div>
 

@@ -67,7 +67,7 @@ export function Footer() {
 
           {officeLines.length > 0 && (
             <div className="flex flex-[1_1_200px] flex-col gap-1">
-              <p className={columnTitle}>Kancelarija</p>
+              <p className={columnTitle}>Lokacija</p>
               <address className="flex flex-col text-[15px] leading-[1.6] text-muted not-italic">
                 {officeLines.map((line) => (
                   <span key={line}>{line}</span>

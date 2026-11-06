@@ -5,8 +5,8 @@ import { pageMetadata } from "@/lib/seo";
 import { SimplePage } from "@/components/sections/SimplePage";
 
 export const metadata = pageMetadata({
-  title: "O nama",
-  description: `Ko stoji iza agencije ${site.name}: tim koji pravi sajtove, aplikacije i video iz vazduha za mala i srednja preduzeća širom Srbije.`,
+  title: "O nama: agencija iz Beograda",
+  description: `Ko stoji iza agencije ${site.name}: tim iz Beograda koji pravi sajtove, aplikacije i video iz vazduha za mala i srednja preduzeća širom Srbije.`,
   path: "/o-nama",
 });
 
@@ -39,7 +39,7 @@ export default function AboutPage() {
       intro="Jedan tim za ceo digitalni nastup malih i srednjih preduzeća — od ideje do lansiranja."
     >
       <p>
-        Pravimo veb sajtove, web shopove, mobilne i veb aplikacije i snimamo dronom za firme iz cele Srbije.
+        Nalazimo se u Beogradu. Pravimo veb sajtove, web shopove, mobilne i veb aplikacije i snimamo dronom za firme iz cele Srbije.
         Sastanci su uživo ili online, a za snimanje dolazimo na lokaciju. Umesto da sajt, aplikaciju i video
         tražite na tri mesta, sve radi jedan tim.
       </p>

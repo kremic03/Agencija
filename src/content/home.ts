@@ -69,6 +69,6 @@ export const homeFaq: Faq[] = [
   },
   {
     question: "Da li radite sa klijentima iz drugih gradova?",
-    answer: "Radimo sa klijentima iz cele Srbije. Sastanci su uživo ili online, a za snimanje dronom dolazimo na lokaciju.",
+    answer: "Da. Nalazimo se u Beogradu, a radimo sa klijentima iz cele Srbije. Sastanci su uživo ili online, a za snimanje dronom dolazimo na lokaciju.",
   },
 ];
