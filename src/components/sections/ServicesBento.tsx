@@ -12,10 +12,7 @@ const card =
 function CardText({ service, className = "" }: { service: Service; className?: string }) {
   return (
     <div className={`flex flex-col gap-3 ${className}`}>
-      <p className="flex justify-between gap-3 font-mono text-xs leading-none tracking-[0.06em] text-subtle uppercase">
-        <span>{serviceGroups[service.group]}</span>
-        <span className="text-muted">od {service.priceFrom}</span>
-      </p>
+      <p className="font-mono text-xs leading-none tracking-[0.06em] text-subtle uppercase">{serviceGroups[service.group]}</p>
       <h3 className="text-card-title">{service.name}</h3>
       <p className="max-w-115 text-base leading-[1.55] text-muted">{service.cardText}</p>
     </div>

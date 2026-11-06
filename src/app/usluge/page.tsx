@@ -42,12 +42,9 @@ export default function ServicesPage() {
                   >
                     <h3 className="text-card-title">{s.name}</h3>
                     <p className="flex-1 text-base leading-[1.55] text-muted">{s.cardText}</p>
-                    <span className="flex items-center justify-between gap-3 pt-2 text-[15px] font-semibold">
-                      <span className="font-normal text-muted">od {s.priceFrom}</span>
-                      <span className="flex items-center gap-2 text-accent-text">
-                        Pogledaj pakete
-                        <ArrowRightIcon />
-                      </span>
+                    <span className="flex items-center gap-2 pt-2 text-[15px] font-semibold text-accent-text">
+                      Pogledaj pakete
+                      <ArrowRightIcon />
                     </span>
                   </Link>
                 </li>

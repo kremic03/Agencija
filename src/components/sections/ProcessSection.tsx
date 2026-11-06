@@ -7,7 +7,7 @@ type Props = {
   title: string;
   text?: string;
   steps: Step[];
-  /** "home": broj + linija, rok ispod; "service": linija iznad, broj i rok u istom redu */
+  /** "home": broj + linija; "service": linija iznad, pa broj */
   variant?: "home" | "service";
 };
 
@@ -33,14 +33,10 @@ export function ProcessSection({ id, eyebrow, title, text, steps, variant = "hom
                 </div>
                 <h3 className="mt-2 text-xl leading-[1.3] font-semibold tracking-[-0.015em]">{step.title}</h3>
                 <p className="text-base leading-[1.55] text-pretty text-muted">{step.description}</p>
-                <p className="font-mono text-[12.5px] leading-none font-medium text-subtle">{step.time}</p>
               </li>
             ) : (
               <li key={step.title} className="flex flex-[1_1_220px] flex-col gap-3 border-t border-line-strong pt-5">
-                <p className="flex justify-between font-mono text-[13px] leading-none font-medium">
-                  <span className="text-accent-text">{num(i)}</span>
-                  <span className="text-subtle">{step.time}</span>
-                </p>
+                <p className="font-mono text-[13px] leading-none font-medium text-accent-text">{num(i)}</p>
                 <h3 className="mt-1 text-xl leading-[1.3] font-semibold tracking-[-0.015em]">{step.title}</h3>
                 <p className="text-[15.5px] leading-[1.55] text-muted">{step.description}</p>
               </li>

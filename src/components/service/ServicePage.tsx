@@ -163,7 +163,7 @@ export function ServicePage({ slug }: { slug: string }) {
                 Zatraži ponudu
               </ButtonLink>
               <ButtonLink href="#paketi" variant="secondary">
-                Paketi i cene
+                Pogledaj pakete
               </ButtonLink>
             </div>
           </div>
@@ -231,11 +231,11 @@ export function ServicePage({ slug }: { slug: string }) {
         </section>
       )}
 
-      {/* Paketi i cene */}
+      {/* Paketi */}
       <section id="paketi" aria-labelledby="paketi-naslov" className="section-y">
         <div className="container-page flex flex-col gap-10">
           <div className="flex flex-wrap items-end justify-between gap-x-16 gap-y-4">
-            <SectionHeading id="paketi-naslov" eyebrow="Paketi i cene" title={page.packages.title} className="max-w-160" />
+            <SectionHeading id="paketi-naslov" eyebrow="Paketi" title={page.packages.title} className="max-w-160" />
             {page.packages.note && (
               <p className="flex-[0_1_340px] text-[14.5px] leading-[1.55] text-subtle">{page.packages.note}</p>
             )}
@@ -257,17 +257,6 @@ export function ServicePage({ slug }: { slug: string }) {
                   )}
                 </div>
                 <p className="min-h-[46px] text-[15px] leading-normal text-muted">{pkg.audience}</p>
-                {/\d/.test(pkg.price) ? (
-                  <p className="flex items-baseline gap-2 pt-2 pb-1">
-                    <span className="text-[15px] leading-none text-muted">od</span>
-                    <span className="text-[44px] leading-none font-semibold tracking-[-0.04em]">{pkg.price}</span>
-                    <span className="text-xl leading-none font-medium text-muted">€</span>
-                  </p>
-                ) : (
-                  <p className="flex min-h-[52px] items-end pt-2 pb-1 text-[28px] leading-none font-semibold tracking-[-0.03em]">
-                    {pkg.price}
-                  </p>
-                )}
                 <ul className="flex flex-1 flex-col gap-3 border-t border-line pt-5">
                   {pkg.items.map((item) => (
                     <li key={item} className="flex gap-2.5 text-[15px] leading-[1.45]">
