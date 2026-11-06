@@ -2,7 +2,7 @@
 
 Prezentacioni veb sajt digitalne agencije koja se bavi izradom veb sajtova i mobilnih aplikacija, održavanjem sajtova i snimanjem svadbi i proslava iz vazduha DJI dronom.
 
-> **Status:** u razvoju. Dizajn je implementiran; privremeni sadržaj je označen komentarom `PRIVREMENO` u kodu, a slanje upita sa kontakt forme još nije povezano.
+> **Status:** u razvoju. Dizajn je implementiran; privremeni sadržaj je označen komentarom `PRIVREMENO` u kodu. Kontakt forma šalje upite preko Resend-a; bez verifikovanog domena oni stižu samo na adresu Resend naloga.
 
 ---
 

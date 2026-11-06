@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState, useTransition, type FormEvent, type ReactNode } from "react";
 import { sendQuote } from "@/app/kontakt/actions";
 import { site } from "@/content/site";
@@ -341,7 +342,14 @@ export function QuoteForm({ serviceOptions }: { serviceOptions: ServiceOptionGro
           <label className="group flex min-h-11 cursor-pointer items-start gap-3 text-[14.5px] leading-normal text-muted has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-accent-text">
             <input type="checkbox" name="consent" value="da" className="sr-only" />
             <CheckBox />
-            Slažem se da me {site.name} kontaktira u vezi sa ovim upitom. Podatke ne delimo sa trećim licima.
+            <span>
+              Slažem se da me {site.name} kontaktira u vezi sa ovim upitom. Podatke koristimo samo za odgovor na upit, u
+              skladu sa{" "}
+              <Link href="/politika-privatnosti" className="text-fg underline underline-offset-3 hover:text-accent-text">
+                politikom privatnosti
+              </Link>
+              .
+            </span>
           </label>
           {failure && (
             <p role="alert" className="rounded-lg border border-error bg-raised p-4 text-[15px] leading-normal text-error-text">
