@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type CSSProperties, type ReactNode } from "react";
 
 /** Podaci kartice bez slika: medij se renderuje na serveru i stiže kao gotov element */
 export type PortfolioCard = {
   id: string;
+  href: string;
   service: string;
   title: string;
   description?: string;
@@ -89,7 +91,11 @@ export function PortfolioGrid({ projects, filters }: Props) {
                 </div>
                 <div className="flex flex-none items-center justify-between gap-4 border-t border-line px-5 py-4">
                   <div className="flex min-w-0 flex-col gap-[5px]">
-                    <h2 className="text-base leading-[1.25] font-semibold">{p.title}</h2>
+                    <h2 className="text-base leading-[1.25] font-semibold">
+                      <Link href={p.href} className="underline-offset-4 hover:text-accent-text hover:underline">
+                        {p.title}
+                      </Link>
+                    </h2>
                     {p.description && (
                       <p className="text-sm leading-[1.3] text-muted">
                         {p.description}

@@ -35,7 +35,9 @@ export function Footer() {
 
           <nav aria-labelledby="footer-usluge" className="flex flex-[1_1_160px] flex-col gap-1">
             <p id="footer-usluge" className={columnTitle}>
-              Usluge
+              <Link href="/usluge" className="hover:text-fg">
+                Usluge
+              </Link>
             </p>
             <ul>
               {services.map((s) => (

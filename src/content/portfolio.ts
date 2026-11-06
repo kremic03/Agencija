@@ -18,6 +18,11 @@ export type Project = Example & {
   service: string;
   media: ProjectMedia;
   description?: string;
+  /**
+   * Priča o projektu (pasusi): zadatak, rešenje, rezultat. Stranica projekta se
+   * indeksira i ulazi u sitemap tek kada ovo postoji, da pretraživači ne vide tanke stranice.
+   */
+  story?: string[];
   url?: string;
   /** Raspored na desktopu: širina u kolonama (od 12) i visina u redovima */
   cols: number;
@@ -106,3 +111,12 @@ export const projects: Project[] = [
     video: { sources: droneVideo.sources, duration: "0:15" },
   },
 ];
+
+export function getProject(id: string): Project {
+  const project = projects.find((p) => p.id === id);
+  if (!project) throw new Error(`Nepoznat projekat: ${id}`);
+  return project;
+}
+
+/** Svaki projekat ima svoju stranicu u app/portfolio/<id>/page.tsx, kao i usluge */
+export const projectHref = (id: string) => `/portfolio/${id}`;

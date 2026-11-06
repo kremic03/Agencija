@@ -11,8 +11,16 @@ function sizesFor({ cols }: Project) {
 }
 
 /** Medij kartice u portfoliju; prva kartica je LCP pa se njen poster preuzima odmah */
-export function ProjectMedia({ project, highPriority = false }: { project: Project; highPriority?: boolean }) {
-  const sizes = sizesFor(project);
+export function ProjectMedia({
+  project,
+  highPriority = false,
+  sizes = sizesFor(project),
+}: {
+  project: Project;
+  highPriority?: boolean;
+  /** Širina prikaza van mreže portfolija (stranica projekta) */
+  sizes?: string;
+}) {
   const priority = highPriority ? ({ fetchPriority: "high", loading: "eager" } as const) : {};
 
   if (project.media === "video" && project.video) {

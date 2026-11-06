@@ -1,4 +1,4 @@
-import { projects } from "@/content/portfolio";
+import { projectHref, projects } from "@/content/portfolio";
 import { services } from "@/content/services";
 import { pageMetadata } from "@/lib/seo";
 import { ButtonLink } from "@/components/ui/Button";
@@ -6,9 +6,9 @@ import { PortfolioGrid, type PortfolioCard } from "@/components/portfolio/Portfo
 import { ProjectMedia } from "@/components/portfolio/ProjectMedia";
 
 export const metadata = pageMetadata({
-  title: "Portfolio",
+  title: "Portfolio: sajtovi, web shopovi i snimci dronom",
   description:
-    "Izabrani radovi: veb sajtovi i web shopovi, video i fotografije iz drona.",
+    "Izabrani radovi našeg tima: veb sajtovi i web shopovi, video i fotografije iz drona snimljene u Beogradu i na kulturnoj baštini.",
   path: "/portfolio",
 });
 
@@ -20,6 +20,7 @@ const filters = [
 
 const cards: PortfolioCard[] = projects.map((p, i) => ({
   id: p.id,
+  href: projectHref(p.id),
   service: p.service,
   title: p.title,
   description: p.description,
