@@ -14,6 +14,7 @@ export function organizationSchema() {
     "@id": organizationId,
     name: site.name,
     url: absoluteUrl("/"),
+    logo: absoluteUrl("/icon.svg"),
     description: site.description,
     areaServed: serbia,
     email: site.email,
@@ -48,6 +49,7 @@ export function serviceSchema(service: Service, path: string) {
     "@context": "https://schema.org",
     "@type": "Service",
     name: service.name,
+    serviceType: service.name,
     description: service.seo.description,
     url: absoluteUrl(path),
     areaServed: serbia,
@@ -55,12 +57,12 @@ export function serviceSchema(service: Service, path: string) {
   };
 }
 
-/** Putanja do stranice; poslednja stavka je sama stranica */
+/** Putanja do stranice, od početne; poslednja stavka je sama stranica */
 export function breadcrumbSchema(items: { name: string; path: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: items.map((item, i) => ({
+    itemListElement: [{ name: "Početna", path: "/" }, ...items].map((item, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: item.name,

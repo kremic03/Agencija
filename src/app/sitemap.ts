@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/usluge",
     ...services.map((s) => serviceHref(s.slug)),
     "/portfolio",
-    // Samo projekti sa pričom; ostali su noindex (portfolio/[id]/page.tsx)
+    // Samo projekti sa pričom; ostali su noindex (projectMetadata u ProjectPage.tsx)
     ...projects.filter((p) => p.story?.length).map((p) => projectHref(p.id)),
     "/kontakt",
     "/o-nama",

@@ -36,6 +36,8 @@ export function Header({ megaMenu, mobileServices }: Props) {
   const [megaOpen, setMegaOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const megaButton = useRef<HTMLButtonElement>(null);
+  // Prelaz mišem otvara meni neposredno pre klika (i na ekranu osetljivom na dodir), pa taj klik ne sme da ga zatvori
+  const openedByHover = useRef(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -44,7 +46,10 @@ export function Header({ megaMenu, mobileServices }: Props) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const closeMega = () => setMegaOpen(false);
+  const closeMega = () => {
+    openedByHover.current = false;
+    setMegaOpen(false);
+  };
   const closeMegaOnLink = (e: MouseEvent) => {
     if ((e.target as Element).closest("a")) closeMega();
   };
@@ -89,8 +94,14 @@ export function Header({ megaMenu, mobileServices }: Props) {
                 type="button"
                 aria-expanded={megaOpen}
                 aria-controls={megaOpen ? MEGA_ID : undefined}
-                onClick={() => setMegaOpen((v) => !v)}
-                onMouseEnter={() => setMegaOpen(true)}
+                onClick={() => {
+                  if (openedByHover.current) openedByHover.current = false;
+                  else setMegaOpen((v) => !v);
+                }}
+                onMouseEnter={() => {
+                  if (!megaOpen) openedByHover.current = true;
+                  setMegaOpen(true);
+                }}
                 className={`${navItem} ${megaOpen ? "bg-raised text-fg" : "text-muted hover:bg-raised hover:text-fg"} ${servicesCurrent ? "text-fg" : ""} cursor-pointer active:bg-pressed`}
               >
                 Usluge

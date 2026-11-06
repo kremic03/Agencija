@@ -107,12 +107,12 @@ export const services: Service[] = [
     cardText:
       "Prezentacioni sajtovi i web shopovi koji se brzo učitavaju, pripremljeni su za pretraživače i koje sami menjate.",
     seo: {
-      title: "Izrada veb sajtova i web shopova u Srbiji",
+      title: "Izrada veb sajtova i web shopova u Beogradu",
       description:
-        "Izrada prezentacionih sajtova i web shopova za firme širom Srbije: brzo učitavanje, prilagođeno telefonu i uređivanje sadržaja bez programera.",
+        "Izrada prezentacionih sajtova i web shopova za firme iz Beograda i cele Srbije: brzo učitavanje, prilagođeno telefonu i uređivanje bez programera.",
     },
     page: {
-      title: "Sajtovi koji se brzo učitavaju i koje sami menjate.",
+      title: "Izrada veb sajtova koji se brzo učitavaju i koje sami menjate.",
       intro:
         "Prezentacioni sajtovi i web shopovi za mala i srednja preduzeća. Tekstove, slike i cene menjate sami, bez programera.",
       heroImage: "Screenshot: sajt klijenta (1440×900)",
@@ -140,7 +140,7 @@ export const services: Service[] = [
           {
             name: "Prezentacioni sajt",
             audience: "Za firme kojima treba predstavljanje i upiti.",
-            items: ["Do 5 stranica", "Kontakt forma", "Osnovna SEO podešavanja", "Obuka za uređivanje"],
+            items: ["Predstavljanje firme i usluga", "Kontakt forma", "Osnovna SEO podešavanja", "Obuka za uređivanje"],
           },
           {
             name: "Web shop",
@@ -185,10 +185,10 @@ export const services: Service[] = [
     seo: {
       title: "Izrada mobilnih aplikacija za iOS i Android",
       description:
-        "Izrada mobilnih aplikacija za iOS i Android: rezervacije, loyalty programi i interni alati, od ideje i dizajna do objave u prodavnicama aplikacija.",
+        "Izrada mobilnih aplikacija za iOS i Android, agencija iz Beograda: rezervacije, loyalty programi i interni alati, od ideje do objave u prodavnicama.",
     },
     page: {
-      title: "Aplikacije koje vaši klijenti zaista koriste.",
+      title: "Izrada mobilnih aplikacija koje vaši klijenti zaista koriste.",
       intro:
         "Aplikacije za iOS i Android za rezervacije, loyalty programe ili interne procese — od ideje i dizajna do objave u App Store-u i Google Play-u.",
       heroImage: "Ekran aplikacije (9:19.5)",
@@ -212,7 +212,7 @@ export const services: Service[] = [
           {
             name: "MVP",
             audience: "Za proveru ideje sa prvim korisnicima.",
-            items: ["Do 8 ekrana", "Jedna osnovna funkcija", "Objava u prodavnicama"],
+            items: ["Dizajn ekrana", "Osnovna funkcija aplikacije", "Objava u prodavnicama"],
           },
           {
             name: "Standard",
@@ -258,10 +258,10 @@ export const services: Service[] = [
     seo: {
       title: "Izrada veb aplikacija po meri",
       description:
-        "Izrada veb aplikacija po meri za firme širom Srbije: interni alati, dashboardi i SaaS proizvodi koji zamenjuju Excel tabele i ručni rad.",
+        "Izrada veb aplikacija po meri za firme iz Beograda i cele Srbije: interni alati, dashboardi i SaaS proizvodi koji zamenjuju Excel tabele i ručni rad.",
     },
     page: {
-      title: "Softver napravljen baš za vaš način rada.",
+      title: "Veb aplikacije po meri, napravljene za vaš način rada.",
       intro:
         "Interni alati, dashboardi i SaaS proizvodi. Zamenite Excel tabele i ručni rad aplikacijom koja radi u pregledaču, na svakom uređaju.",
       heroImage: "Screenshot: dashboard",
@@ -285,7 +285,7 @@ export const services: Service[] = [
           {
             name: "Interni alat",
             audience: "Za jedan proces koji danas radite ručno.",
-            items: ["Analiza procesa", "Do 3 korisničke uloge", "Izvoz podataka"],
+            items: ["Analiza procesa", "Korisničke uloge", "Izvoz podataka"],
           },
           {
             name: "Poslovna aplikacija",
@@ -325,12 +325,12 @@ export const services: Service[] = [
     cardText:
       "Nekretnine, eventi, turizam i industrija — sa pilotima licenciranim kod DCV.",
     seo: {
-      title: "Snimanje dronom u Srbiji: video i foto",
+      title: "Snimanje dronom u Beogradu i širom Srbije",
       description:
-        "Snimanje dronom širom Srbije, sa 15+ godina iskustva: nekretnine, eventi, turizam, emisije i produkcije. Plan kadrova, montaža i verzije za mreže.",
+        "Snimanje dronom u Beogradu i širom Srbije, sa 15+ godina iskustva: nekretnine, eventi, turizam, emisije i produkcije. Video, fotografije i montaža.",
     },
     page: {
-      title: "Snimci iz vazduha koji prodaju prostor, mesto i doživljaj.",
+      title: "Snimanje dronom koje prodaje prostor, mesto i doživljaj.",
       intro:
         "Za agente za nekretnine, hotele, organizatore događaja i industriju. Piloti licencirani kod DCV i gotov materijal spreman za objavu.",
       heroImage: "Foto iz drona: vila sa bazenom, zlatni sat",
@@ -371,18 +371,18 @@ export const services: Service[] = [
           {
             name: "Foto",
             audience: "Za oglase nekretnina i sajtove hotela.",
-            items: ["Do 1 sat leta na jednoj lokaciji", "25 obrađenih fotografija"],
+            items: ["Snimanje na lokaciji", "Obrađene fotografije", "Isporuka preko linka"],
           },
           {
             name: "Video",
             audience: "Za prodaju nekretnina, promociju objekta i mreže.",
             highlighted: true,
-            items: ["Do 2 sata na lokaciji", "Montiran video 60–90 s", "Verzija 9:16 za Reels i TikTok", "15 obrađenih fotografija"],
+            items: ["Snimanje na lokaciji", "Montiran video", "Verzija 9:16 za Reels i TikTok", "Obrađene fotografije"],
           },
           {
             name: "Kampanja",
             audience: "Za evente, turizam i industrijske objekte.",
-            items: ["Ceo dan snimanja, više lokacija", "Promo spot + 5 kratkih videa", "Snimatelj sa zemlje uključen"],
+            items: ["Snimanje na više lokacija", "Promo spot i kratki videi", "Snimatelj sa zemlje"],
           },
         ],
       },
