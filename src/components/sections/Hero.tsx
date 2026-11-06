@@ -15,6 +15,7 @@ export function Hero() {
         <AutoplayVideo
           sources={belgradeVideo.sources}
           poster={belgradeVideo.poster}
+          alt={belgradeVideo.poster.alt}
           sizes="100vw"
           highPriority
           deferUntilLoad

@@ -95,7 +95,7 @@ export function ServicesBento() {
             >
               <Image
                 src={media.droneOverview.src}
-                alt=""
+                alt={media.droneOverview.alt}
                 fill
                 sizes="(min-width: 1100px) 700px, (min-width: 880px) 54vw, 100vw"
                 placeholder="blur"

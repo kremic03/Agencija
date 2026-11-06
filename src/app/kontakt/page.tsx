@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/seo";
 import { QuoteForm } from "@/components/contact/QuoteForm";
 
 export const metadata = pageMetadata({
-  title: "Zatraži ponudu",
+  title: "Kontakt i zahtev za ponudu",
   description:
     "Opišite šta vam treba u četiri kratka koraka — sajt, aplikacija ili snimanje dronom. Pisanu ponudu sa fiksnom cenom šaljemo brzo i bez obaveze.",
   path: "/kontakt",

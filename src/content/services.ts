@@ -113,9 +113,9 @@ export const services: Service[] = [
       "Prezentacioni sajtovi i web shopovi koji se brzo učitavaju, pripremljeni su za pretraživače i koje sami menjate.",
     priceFrom: "450 €",
     seo: {
-      title: "Izrada veb sajtova",
+      title: "Izrada veb sajtova i web shopova u Srbiji",
       description:
-        "Izrada prezentacionih sajtova i web shopova za mala i srednja preduzeća: brzo učitavanje, prilagođeno telefonu i jednostavno uređivanje sadržaja.",
+        "Izrada prezentacionih sajtova i web shopova za firme širom Srbije: brzo učitavanje, prilagođeno telefonu i uređivanje sadržaja bez programera.",
     },
     page: {
       title: "Sajtovi koji se brzo učitavaju i koje sami menjate.",
@@ -193,7 +193,7 @@ export const services: Service[] = [
     cardText: "Aplikacije za iOS i Android — za rezervacije, loyalty programe ili interne procese.",
     priceFrom: "3.500 €",
     seo: {
-      title: "Izrada mobilnih aplikacija",
+      title: "Izrada mobilnih aplikacija za iOS i Android",
       description:
         "Izrada mobilnih aplikacija za iOS i Android: rezervacije, loyalty programi i interni alati, od ideje i dizajna do objave u prodavnicama aplikacija.",
     },
@@ -270,9 +270,9 @@ export const services: Service[] = [
       "Custom softver, dashboardi i SaaS. Zamenite Excel tabele alatom napravljenim baš za vaš posao.",
     priceFrom: "2.900 €",
     seo: {
-      title: "Izrada veb aplikacija",
+      title: "Izrada veb aplikacija po meri",
       description:
-        "Izrada veb aplikacija po meri: interni alati, dashboardi i SaaS proizvodi koji zamenjuju Excel tabele i ručni rad.",
+        "Izrada veb aplikacija po meri za firme širom Srbije: interni alati, dashboardi i SaaS proizvodi koji zamenjuju Excel tabele i ručni rad.",
     },
     page: {
       title: "Softver napravljen baš za vaš način rada.",
@@ -347,9 +347,9 @@ export const services: Service[] = [
       "Nekretnine, eventi, turizam i industrija — u 4K, sa licenciranim pilotima i svim dozvolama.",
     priceFrom: "180 €",
     seo: {
-      title: "Snimanje dronom",
+      title: "Snimanje dronom u Srbiji: video i foto",
       description:
-        "Snimanje dronom u 4K za nekretnine, evente, turizam i industriju: plan kadrova, dozvole za letenje, montaža i verzije za društvene mreže.",
+        "Snimanje dronom u 4K širom Srbije za nekretnine, evente, turizam i industriju: plan kadrova, dozvole za letenje, montaža i verzije za mreže.",
     },
     page: {
       title: "Snimci iz vazduha koji prodaju prostor, mesto i doživljaj.",

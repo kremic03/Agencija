@@ -2,6 +2,8 @@ import { homeFaq } from "@/content/home";
 import { defaultProcess } from "@/content/services";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
+import { websiteSchema } from "@/lib/structured-data";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Hero } from "@/components/sections/Hero";
 import { ServicesBento } from "@/components/sections/ServicesBento";
 import { ProcessSection } from "@/components/sections/ProcessSection";
@@ -11,9 +13,9 @@ import { FaqSection } from "@/components/sections/FaqSection";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 
 export const metadata = pageMetadata({
-  title: `${site.name} — sajtovi, aplikacije i snimanje dronom`,
+  title: `Izrada sajtova, aplikacija i snimanje dronom u Srbiji | ${site.name}`,
   description:
-    "Izrada veb sajtova, mobilnih i veb aplikacija i snimanje dronom za mala i srednja preduzeća. Fiksna cena koju znate pre početka.",
+    "Izrada veb sajtova, mobilnih i veb aplikacija i snimanje dronom za mala i srednja preduzeća širom Srbije. Fiksna cena koju znate pre početka.",
   path: "/",
   absoluteTitle: true,
 });
@@ -21,6 +23,7 @@ export const metadata = pageMetadata({
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={websiteSchema()} />
       <Hero />
       <ServicesBento />
       <ProcessSection

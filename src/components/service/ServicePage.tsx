@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { droneVideo } from "@/content/media";
-import { getService, serviceHref, type Service } from "@/content/services";
+import { getService, serviceHref, services, type Service } from "@/content/services";
 import { projects } from "@/content/portfolio";
 import { pageMetadata } from "@/lib/seo";
+import { breadcrumbSchema, serviceSchema } from "@/lib/structured-data";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/Button";
 import { CheckIcon } from "@/components/ui/icons";
 import { AutoplayVideo } from "@/components/ui/AutoplayVideo";
@@ -121,8 +123,17 @@ export function ServicePage({ slug }: { slug: string }) {
     ),
   }));
 
+  const path = serviceHref(slug);
+
   return (
     <>
+      <JsonLd data={serviceSchema(service, path)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Usluge", path: "/usluge" },
+          { name: service.name, path },
+        ])}
+      />
       {/* Uvod */}
       <section aria-labelledby="usluga-naslov" className="pt-[clamp(48px,5vw,80px)]">
         <div className="container-page flex flex-wrap items-center gap-x-16 gap-y-12">
@@ -130,7 +141,7 @@ export function ServicePage({ slug }: { slug: string }) {
             <nav aria-label="Putanja">
               <ol className="flex items-center gap-2 text-[13.5px] leading-none font-medium text-subtle">
                 <li>
-                  <Link href="/#usluge" className="text-muted hover:text-fg">
+                  <Link href="/usluge" className="text-muted hover:text-fg">
                     Usluge
                   </Link>
                 </li>
@@ -280,6 +291,28 @@ export function ServicePage({ slug }: { slug: string }) {
       <ProcessSection id="proces-usluge" eyebrow="Proces" title={page.process.title} steps={page.process.steps} variant="service" />
 
       <FaqSection eyebrow="FAQ" title={page.faqTitle} items={page.faq} />
+
+      {/* Ostale usluge */}
+      <section aria-labelledby="druge-usluge-naslov" className="section-y">
+        <div className="container-page flex flex-col gap-10">
+          <SectionHeading id="druge-usluge-naslov" eyebrow="Druge usluge" title="Sve to radi isti tim." />
+          <ul className="grid gap-4 md:grid-cols-3">
+            {services
+              .filter((s) => s.slug !== slug)
+              .map((s) => (
+                <li key={s.slug} className="flex">
+                  <Link
+                    href={serviceHref(s.slug)}
+                    className="flex w-full flex-col gap-2 rounded-xl border border-line bg-surface p-6 transition-colors hover:border-line-strong"
+                  >
+                    <span className="text-lg leading-[1.3] font-semibold">{s.name}</span>
+                    <span className="text-[15px] leading-[1.5] text-muted">{s.summary}</span>
+                  </Link>
+                </li>
+              ))}
+          </ul>
+        </div>
+      </section>
 
       {/* Poziv na akciju */}
       <section aria-labelledby="usluga-cta-naslov" className="section-y pb-[clamp(88px,9.5vw,144px)]">
