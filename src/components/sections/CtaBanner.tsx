@@ -12,7 +12,7 @@ export function CtaBanner({ title, text }: Props) {
       <div className="container-page">
         <div className="relative flex min-h-105 items-center overflow-hidden rounded-xl border border-line bg-surface">
           <div className="absolute inset-y-0 right-0 w-[58%]">
-            <Image src={media.droneHorizon.src} alt="" fill sizes="(min-width: 1100px) 740px, 60vw" placeholder="blur" className="object-cover" />
+            <Image src={media.droneHorizon.src} alt={media.droneHorizon.alt} fill sizes="(min-width: 1100px) 740px, 60vw" placeholder="blur" className="object-cover" />
           </div>
           <div
             aria-hidden="true"

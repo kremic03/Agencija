@@ -6,7 +6,9 @@ import { MegaMenu } from "@/components/layout/MegaMenu";
 import { MobileServiceLinks } from "@/components/layout/MobileServiceLinks";
 import { NavigationProgress } from "@/components/layout/NavigationProgress";
 import { SmoothAnchorScroll } from "@/components/layout/SmoothAnchorScroll";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/content/site";
+import { organizationSchema } from "@/lib/structured-data";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -51,6 +53,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Preskoči na sadržaj
         </a>
+        <JsonLd data={organizationSchema()} />
         <NavigationProgress />
         <SmoothAnchorScroll />
         <Header megaMenu={<MegaMenu />} mobileServices={<MobileServiceLinks />} />

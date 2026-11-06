@@ -1,12 +1,35 @@
+import Link from "next/link";
+import { services, serviceHref } from "@/content/services";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 import { SimplePage } from "@/components/sections/SimplePage";
 
 export const metadata = pageMetadata({
   title: "O nama",
-  description: `Ko stoji iza agencije ${site.name}: tim koji pravi sajtove, aplikacije i video iz vazduha za mala i srednja preduzeća.`,
+  description: `Ko stoji iza agencije ${site.name}: tim koji pravi sajtove, aplikacije i video iz vazduha za mala i srednja preduzeća širom Srbije.`,
   path: "/o-nama",
 });
+
+const heading = "pt-4 text-card-title text-fg";
+
+const principles = [
+  {
+    title: "Cena je poznata pre početka.",
+    text: "Posle besplatnih konsultacija dobijate pisanu ponudu sa fiksnom cenom, rokovima i spiskom svega što je uključeno. Cena se ne menja tokom rada.",
+  },
+  {
+    title: "Vidite napredak svake nedelje.",
+    text: "Radimo u kratkim ciklusima i šaljemo vam ono što je gotovo. Svaka faza uključuje dve runde izmena, a ne idemo dalje dok ne odobrite prethodni korak.",
+  },
+  {
+    title: "Govorimo jezikom koji razumete.",
+    text: "Ne morate da znate tehničke izraze. Recite nam cilj, a mi predlažemo rešenje, objašnjavamo ga jednostavno i na kraju vas obučimo da sami menjate sadržaj.",
+  },
+  {
+    title: "Ostajemo i posle lansiranja.",
+    text: "Tri meseca posle lansiranja dostupni smo bez doplate, da nijedan problem ne ostane na vama.",
+  },
+];
 
 // PRIVREMENO: stranica „O nama” još nema dizajn; tekst je sastavljen od podataka sa ostatka sajta, bez tima i fotografija
 export default function AboutPage() {
@@ -17,11 +40,37 @@ export default function AboutPage() {
     >
       <p>
         Pravimo veb sajtove, web shopove, mobilne i veb aplikacije i snimamo dronom za firme iz cele Srbije.
-        Sastanci su uživo ili online, a za snimanje dolazimo na lokaciju.
+        Sastanci su uživo ili online, a za snimanje dolazimo na lokaciju. Umesto da sajt, aplikaciju i video
+        tražite na tri mesta, sve radi jedan tim.
       </p>
+
+      <h2 className={heading}>Kako radimo</h2>
+      <ul className="flex flex-col gap-4">
+        {principles.map((p) => (
+          <li key={p.title}>
+            <h3 className="font-semibold text-fg">{p.title}</h3>
+            <p>{p.text}</p>
+          </li>
+        ))}
+      </ul>
+
+      <h2 className={heading}>Šta radimo</h2>
+      <ul className="flex flex-col gap-3">
+        {services.map((s) => (
+          <li key={s.slug}>
+            <Link href={serviceHref(s.slug)} className="font-semibold text-fg underline underline-offset-4 hover:text-accent-text">
+              {s.name}
+            </Link>
+            : {s.summary.toLowerCase()}.
+          </li>
+        ))}
+      </ul>
       <p>
-        Svaki projekat počinje besplatnim konsultacijama, a fiksnu cenu znate pre početka rada. Posle lansiranja
-        ostajemo dostupni tri meseca bez doplate.
+        Primere možete da pogledate u{" "}
+        <Link href="/portfolio" className="text-fg underline underline-offset-4 hover:text-accent-text">
+          portfoliju
+        </Link>
+        .
       </p>
     </SimplePage>
   );
