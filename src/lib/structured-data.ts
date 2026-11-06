@@ -5,14 +5,7 @@ const absoluteUrl = (path: string) => new URL(path, site.url).toString();
 const organizationId = absoluteUrl("/#organizacija");
 const serbia = { "@type": "Country", name: "Srbija" };
 
-// Privremeni kontakt podaci (site.ts) ne smeju u podatke za pretraživače
-const realEmail = site.email.endsWith("@example.com") ? undefined : site.email;
-const realPhone = site.phone.href.includes("+38100") ? undefined : site.phone.display;
-
-/**
- * Podaci o firmi. Namerno bez ocena i brojki sa početne: dok nisu potvrđene,
- * ne smeju da se predstavljaju pretraživačima kao činjenice.
- */
+/** Podaci o firmi; namerno bez ocena, dok ne postoje proverljive ocene klijenata */
 export function organizationSchema() {
   const hasAddress = site.address.street || site.address.city;
   return {
@@ -23,10 +16,10 @@ export function organizationSchema() {
     url: absoluteUrl("/"),
     description: site.description,
     areaServed: serbia,
+    email: site.email,
+    telephone: site.phone.href.replace("tel:", ""),
     ...(site.legalName && { legalName: site.legalName }),
     ...(site.taxId && { taxID: site.taxId }),
-    ...(realEmail && { email: realEmail }),
-    ...(realPhone && { telephone: realPhone }),
     ...(hasAddress && {
       address: {
         "@type": "PostalAddress",

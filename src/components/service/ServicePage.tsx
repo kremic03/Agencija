@@ -15,6 +15,7 @@ import { PhoneFrame } from "@/components/ui/PhoneFrame";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { FaqSection } from "@/components/sections/FaqSection";
+import { FeaturedProductions } from "@/components/sections/FeaturedProductions";
 import { ExampleVideo } from "./ExampleVideo";
 
 export function serviceMetadata(slug: string) {
@@ -192,6 +193,8 @@ export function ServicePage({ slug }: { slug: string }) {
           </ul>
         </div>
       </section>
+
+      {page.showProductions && <FeaturedProductions className="section-y container-page" />}
 
       {/* Primeri radova */}
       {examples.length > 0 && (

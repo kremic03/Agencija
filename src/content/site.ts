@@ -23,9 +23,8 @@ export const site = {
     "Izrada veb sajtova, mobilnih i veb aplikacija i snimanje dronom za mala i srednja preduzeća.",
   tagline: "Digitalna agencija za sajtove, aplikacije i video iz vazduha. Radimo sa firmama širom Srbije.",
 
-  // PRIVREMENO: kontakt podaci (example.com je rezervisan domen za primere)
-  email: "kontakt@example.com",
-  phone: { display: "+381 00 000 0000", href: "tel:+381000000000" },
+  email: "nikolakremic15@gmail.com",
+  phone: { display: "+381 60 422 4990", href: "tel:+381604224990" },
   // PRIVREMENO: adresa i radno vreme (prazno = ne prikazuje se)
   address: { street: "", city: "" },
   hours: "",
