@@ -7,6 +7,8 @@ type PageSeo = {
   path: string;
   /** Naslov bez „| Naziv” sufiksa (za početnu) */
   absoluteTitle?: boolean;
+  /** Stranica bez dovoljno sadržaja: pretraživač prati linkove, ali je ne indeksira */
+  noindex?: boolean;
 };
 
 // Slika iz app/opengraph-image.tsx; podstranice je ne nasleđuju same
@@ -17,12 +19,13 @@ const shareImage = { url: "/opengraph-image", width: 1200, height: 630, alt: `${
  * Open Graph objekat stranice zamenjuje roditeljski, pa se ovde ponavljaju
  * siteName i locale.
  */
-export function pageMetadata({ title, description, path, absoluteTitle }: PageSeo): Metadata {
+export function pageMetadata({ title, description, path, absoluteTitle, noindex }: PageSeo): Metadata {
   const fullTitle = absoluteTitle ? title : `${title} | ${site.name}`;
   return {
     title: absoluteTitle ? { absolute: title } : title,
     description,
     alternates: { canonical: path },
+    ...(noindex && { robots: { index: false, follow: true } }),
     openGraph: {
       type: "website",
       siteName: site.name,
