@@ -38,13 +38,11 @@ export const testimonials = [
   {
     quote: "Snimanje sa Dejanom na setu bilo je pravo zadovoljstvo — opušteno i profesionalno. Kadrovi su vrhunski.",
     name: "Marko Savić",
-    role: "Direktor režije, „Žigosani u reketu”",
   },
   // PRIVREMENO: predlog teksta — pre objave Sanja treba da odobri tačne reči i objavu
   {
     quote: "Kadrovi iz drona sa naše proslave su vrhunskog kvaliteta, a sve je odrađeno potpuno profesionalno.",
     name: "Sanja",
-    role: "Snimanje dronom · proslava",
   },
 ];
 
