@@ -72,7 +72,7 @@ Provere pre objave:
 
 ```bash
 npm run lint        # ESLint
-npx tsc --noEmit    # TypeScript
+npm run typecheck   # TypeScript (prvo generiše tipove ruta)
 npm run build       # produkcijski build
 npm test            # automatski testovi (oko 2 minuta)
 ```
