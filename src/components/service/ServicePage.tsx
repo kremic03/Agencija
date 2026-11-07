@@ -10,7 +10,6 @@ import { ButtonLink } from "@/components/ui/Button";
 import { CheckIcon } from "@/components/ui/icons";
 import { AutoplayVideo } from "@/components/ui/AutoplayVideo";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { PhoneFrame } from "@/components/ui/PhoneFrame";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProcessSection } from "@/components/sections/ProcessSection";
@@ -39,9 +38,9 @@ const heroBox = "relative min-w-0 flex-[1.2_1_480px] overflow-hidden rounded-xl 
  * screenshot preko cele kutije); kod ostalih je LCP naslov, pa se slika samo ne odlaže.
  */
 function HeroMediaBox({ service }: { service: Service }) {
-  const { heroMedia, heroImage, heroOverlay } = service.page;
+  const { heroMedia, heroOverlay } = service.page;
 
-  if (heroMedia?.kind === "browser" && heroMedia.fit === "natural") {
+  if (heroMedia.kind === "browser" && heroMedia.fit === "natural") {
     return (
       <div className={`${heroBox} bg-raised px-[clamp(16px,2.5vw,32px)] pt-[clamp(16px,2.5vw,32px)]`}>
         <BrowserFrame>
@@ -52,8 +51,8 @@ function HeroMediaBox({ service }: { service: Service }) {
   }
 
   return (
-    <div className={`${heroBox} aspect-4/3 ${heroMedia && heroMedia.kind !== "video" ? "bg-raised" : ""}`}>
-      {heroMedia?.kind === "video" && (
+    <div className={`${heroBox} aspect-4/3 ${heroMedia.kind !== "video" ? "bg-raised" : ""}`}>
+      {heroMedia.kind === "video" && (
         <AutoplayVideo
           sources={droneVideo.sources}
           poster={droneVideo.poster}
@@ -64,7 +63,7 @@ function HeroMediaBox({ service }: { service: Service }) {
           controlsClassName="bottom-4 right-4"
         />
       )}
-      {heroMedia?.kind === "browser" && (
+      {heroMedia.kind === "browser" && (
         <BrowserFrame className="absolute inset-x-[clamp(16px,2.5vw,32px)] top-[clamp(16px,2.5vw,32px)] bottom-0">
           <Image
             src={heroMedia.image.src}
@@ -78,13 +77,12 @@ function HeroMediaBox({ service }: { service: Service }) {
           />
         </BrowserFrame>
       )}
-      {heroMedia?.kind === "phone" && (
+      {heroMedia.kind === "phone" && (
         // Pozadina u boji screenshot-a, da cela forma stane bez isecanja
         <PhoneFrame screenClassName="relative bg-[#e8e5de]">
           <Image src={heroMedia.image.src} alt={heroMedia.image.alt} fill sizes="260px" loading="eager" className="object-contain" />
         </PhoneFrame>
       )}
-      {!heroMedia && <ImagePlaceholder label={heroImage} />}
       {heroOverlay && (
         <p
           aria-hidden="true"

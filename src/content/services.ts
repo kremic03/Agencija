@@ -53,8 +53,7 @@ export type Service = {
   page: {
     title: string;
     intro: string;
-    heroImage: string;
-    heroMedia?: HeroMedia;
+    heroMedia: HeroMedia;
     heroOverlay?: { left: string; right: string };
     included: { title: string; items: { title: string; description: string }[] };
     /** Prikazuje izdvojene produkcije (home.ts) pre primera radova */
@@ -115,7 +114,6 @@ export const services: Service[] = [
       title: "Izrada veb sajtova koji se brzo učitavaju i koje sami menjate.",
       intro:
         "Prezentacioni sajtovi i web shopovi za mala i srednja preduzeća. Tekstove, slike i cene menjate sami, bez programera.",
-      heroImage: "Screenshot: sajt klijenta (1440×900)",
       heroMedia: { kind: "browser", image: media.webShopHome, fit: "natural" },
       included: {
         title: "Sve što sajtu treba za početak rada.",
@@ -191,7 +189,6 @@ export const services: Service[] = [
       title: "Izrada mobilnih aplikacija koje vaši klijenti zaista koriste.",
       intro:
         "Aplikacije za iOS i Android za rezervacije, loyalty programe ili interne procese — od ideje i dizajna do objave u App Store-u i Google Play-u.",
-      heroImage: "Ekran aplikacije (9:19.5)",
       heroMedia: { kind: "phone", image: media.webShopLogin },
       included: {
         title: "Od ideje do objave u prodavnici.",
@@ -264,7 +261,6 @@ export const services: Service[] = [
       title: "Veb aplikacije po meri, napravljene za vaš način rada.",
       intro:
         "Interni alati, dashboardi i SaaS proizvodi. Zamenite Excel tabele i ručni rad aplikacijom koja radi u pregledaču, na svakom uređaju.",
-      heroImage: "Screenshot: dashboard",
       heroMedia: { kind: "browser", image: media.webShopLogin, fit: "cover" },
       included: {
         title: "Alat koji vaš tim koristi svaki dan.",
@@ -333,7 +329,6 @@ export const services: Service[] = [
       title: "Snimanje dronom koje prodaje prostor, mesto i doživljaj.",
       intro:
         "Za agente za nekretnine, hotele, organizatore događaja i industriju. Piloti licencirani kod DCV i gotov materijal spreman za objavu.",
-      heroImage: "Foto iz drona: vila sa bazenom, zlatni sat",
       heroMedia: { kind: "video" },
       heroOverlay: { left: "REC 00:00:14", right: "ALT 85 M" },
       included: {
