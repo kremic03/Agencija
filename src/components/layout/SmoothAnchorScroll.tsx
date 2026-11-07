@@ -11,7 +11,10 @@ const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2
 /** Skrol do elementa, animiran osim ako je `instant`; korisnikov točkić, dodir ili taster ga prekida */
 function scrollToElement(target: HTMLElement, onDone: () => void, instant = false) {
   // Isti razmak ispod lepljivog headera kao scroll-padding-top u globals.css
-  const offset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+  // plus scroll-margin-top sekcije (npr. ispod podmenija na stranici „O nama”)
+  const offset =
+    (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0) +
+    (parseFloat(getComputedStyle(target).scrollMarginTop) || 0);
   const startY = window.scrollY;
   const endY = Math.min(
     target.getBoundingClientRect().top + startY - offset,
