@@ -3,7 +3,7 @@ import { ButtonLink } from "@/components/ui/Button";
 
 type Props = { title: string; intro: string; children?: ReactNode };
 
-/** Jednostavna tekstualna stranica (O nama, politika privatnosti, 404) */
+/** Jednostavna tekstualna stranica (politika privatnosti, 404) */
 export function SimplePage({ title, intro, children }: Props) {
   return (
     <section aria-labelledby="stranica-naslov" className="pt-[clamp(48px,6vw,96px)] pb-[clamp(88px,9.5vw,144px)]">
