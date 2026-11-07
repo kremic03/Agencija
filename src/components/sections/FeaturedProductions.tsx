@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 export function FeaturedProductions({ className = "", linkToService }: { className?: string; linkToService?: boolean }) {
   return (
     <section aria-labelledby="produkcije-naslov" className={`flex flex-col gap-10 ${className}`}>
-      <SectionHeading id="produkcije-naslov" eyebrow="Izdvojeni radovi" title="Više od 15 godina snimanja dronom, i za domaće produkcije." />
+      <SectionHeading id="produkcije-naslov" title="Više od 15 godina snimanja dronom, i za domaće produkcije." />
       <ul className="grid gap-4 md:grid-cols-2">
         {productions.map((p) => (
           <li key={p.name} className="flex flex-col gap-3 rounded-xl border border-line bg-surface p-7">

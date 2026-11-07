@@ -30,14 +30,13 @@ export default function HomePage() {
       <FeaturedProductions linkToService className="section-y container-page" />
       <ProcessSection
         id="proces"
-        eyebrow="(02) Proces rada"
         title="Četiri koraka. Bez iznenađenja."
         text="Pre nego što krenemo znate cenu, rok i ko tačno radi na vašem projektu."
         steps={defaultProcess}
       />
       <Stats />
       <Testimonials />
-      <FaqSection eyebrow="(04) Česta pitanja" title="Pitanja koja čujemo svake nedelje." items={homeFaq}>
+      <FaqSection title="Pitanja koja čujemo svake nedelje." items={homeFaq}>
         <p className="text-base leading-[1.6] text-muted">
           Niste našli odgovor? Pišite na{" "}
           <a href={`mailto:${site.email}`} className="text-fg underline underline-offset-3 hover:text-accent-text">

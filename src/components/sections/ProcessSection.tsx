@@ -3,7 +3,6 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 type Props = {
   id?: string;
-  eyebrow: string;
   title: string;
   text?: string;
   steps: Step[];
@@ -13,13 +12,13 @@ type Props = {
 
 const num = (i: number) => String(i + 1).padStart(2, "0");
 
-export function ProcessSection({ id, eyebrow, title, text, steps, variant = "home" }: Props) {
+export function ProcessSection({ id, title, text, steps, variant = "home" }: Props) {
   const headingId = `${id ?? "proces"}-naslov`;
 
   return (
     <section id={id} aria-labelledby={headingId} className="section-y">
       <div className="container-page flex flex-col gap-14">
-        <SectionHeading id={headingId} eyebrow={eyebrow} title={title} className="max-w-160">
+        <SectionHeading id={headingId} title={title} className="max-w-160">
           {text && <p className="text-[17px] leading-[1.6] text-muted">{text}</p>}
         </SectionHeading>
 

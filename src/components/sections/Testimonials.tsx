@@ -9,7 +9,7 @@ export function Testimonials() {
   return (
     <section aria-labelledby="utisci-naslov" className="section-y">
       <div className="container-page flex flex-col gap-10">
-        <SectionHeading id="utisci-naslov" eyebrow="(03) Utisci klijenata" title="Šta kažu ljudi s kojima radimo." />
+        <SectionHeading id="utisci-naslov" title="Šta kažu ljudi s kojima radimo." />
 
         <div className="flex flex-wrap gap-4">
           <figure className={`${box} min-w-0 flex-[7_1_460px] gap-10 p-[clamp(28px,3.4vw,48px)]`}>

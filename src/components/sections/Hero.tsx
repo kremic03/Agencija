@@ -32,10 +32,6 @@ export function Hero() {
       />
 
       <div className="container-page relative flex flex-col gap-7 pt-40 pb-[clamp(56px,6vw,96px)]">
-        <p className="flex h-8 items-center gap-2.5 self-start rounded-full border border-line-strong bg-surface/70 px-3 text-[13px] leading-none font-medium text-muted">
-          <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
-          {hero.badge}
-        </p>
         <h1 id="hero-naslov" className="text-display max-w-225">
           {hero.title}
         </h1>

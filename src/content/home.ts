@@ -7,7 +7,6 @@
 import type { Faq } from "./services";
 
 export const hero = {
-  badge: "Primamo nove projekte",
   title: "Sajtovi, aplikacije i snimci iz vazduha koji vašoj firmi donose nove klijente.",
   text: "Jedan tim za ceo digitalni nastup malih i srednjih preduzeća — od ideje do lansiranja, uz fiksnu cenu koju znate pre početka.",
   checks: ["Ponuda za 24 sata", "Fiksna cena pre početka", "Piloti licencirani kod DCV"],

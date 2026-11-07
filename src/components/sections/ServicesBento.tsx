@@ -32,7 +32,6 @@ export function ServicesBento() {
         <div className="flex flex-wrap items-end justify-between gap-x-16 gap-y-6">
           <SectionHeading
             id="usluge-naslov"
-            eyebrow="(01) Usluge"
             title="Četiri usluge, jedan tim. Od prvog piksela do poslednjeg kadra."
             className="max-w-180 flex-[1_1_520px]"
           />
