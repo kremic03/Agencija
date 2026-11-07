@@ -80,6 +80,8 @@ export function Footer() {
         <div className="flex flex-wrap justify-between gap-x-6 gap-y-3 border-t border-line pt-6 text-[13.5px] leading-normal text-subtle">
           <p>
             © <CopyrightYear /> {site.legalName || site.name}
+            {site.registeredAddress && ` · ${site.registeredAddress}`}
+            {site.registryNumber && ` · MB ${site.registryNumber}`}
             {site.taxId && ` · PIB ${site.taxId}`}
           </p>
           <ul className="flex gap-5">

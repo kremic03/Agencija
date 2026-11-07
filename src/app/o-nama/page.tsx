@@ -177,11 +177,14 @@ export default function AboutPage() {
                   </>
                 )}
                 <dt className={dt}>Kontakt</dt>
-                <dd className="flex flex-col">
-                  <a href={site.phone.href} className="w-fit transition-colors hover:text-accent-text">
+                <dd className="-mt-2 flex flex-col">
+                  <a href={site.phone.href} className="flex min-h-9 w-fit items-center transition-colors hover:text-accent-text">
                     {site.phone.display}
                   </a>
-                  <a href={`mailto:${site.email}`} className="w-fit break-all transition-colors hover:text-accent-text">
+                  <a
+                    href={`mailto:${site.email}`}
+                    className="flex min-h-9 w-fit items-center break-all transition-colors hover:text-accent-text"
+                  >
                     {site.email}
                   </a>
                 </dd>

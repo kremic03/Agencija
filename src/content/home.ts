@@ -32,18 +32,28 @@ export const productions = [
   },
 ];
 
-export const testimonials = [
-  // PRIVREMENO: predlog teksta — pre objave Marko Savić treba da odobri tačne reči i objavu
+/*
+ * Utisak se prikazuje tek kada klijent pisano (mejlom ili porukom) odobri tačan tekst
+ * i objavu imena; tada `approved` postaviti na true. Bez nijednog odobrenog utiska
+ * sekcija se ne prikazuje. Utisak bez dozvole je obrada podataka o ličnosti bez
+ * osnova (ZZPL) i može se smatrati obmanjujućim oglašavanjem.
+ */
+const allTestimonials = [
+  // PRIVREMENO: predlog teksta — čeka odobrenje Marka Savića
   {
     quote: "Snimanje sa Dejanom na setu bilo je pravo zadovoljstvo — opušteno i profesionalno. Kadrovi su vrhunski.",
     name: "Marko Savić",
+    approved: false,
   },
-  // PRIVREMENO: predlog teksta — pre objave Sanja treba da odobri tačne reči i objavu
+  // PRIVREMENO: predlog teksta — čeka odobrenje (Sanja)
   {
     quote: "Kadrovi iz drona sa naše proslave su vrhunskog kvaliteta, a sve je odrađeno potpuno profesionalno.",
     name: "Sanja",
+    approved: false,
   },
 ];
+
+export const testimonials = allTestimonials.filter((t) => t.approved);
 
 export const homeFaq: Faq[] = [
   {

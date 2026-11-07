@@ -10,9 +10,14 @@ export const site = {
   // PRIVREMENO: naziv iz dizajna, još nije konačan
   name: "Visina Studio",
   logoText: "visina",
-  // PRIVREMENO: pravni podaci za footer (prazno = ne prikazuje se)
+  // PRIVREMENO: pravni podaci za footer i politiku privatnosti (prazno = ne prikazuje se).
+  // Obavezni pre objave (Zakon o privrednim društvima, Zakon o elektronskoj trgovini):
+  // poslovno ime iz APR-a (npr. „Visina Studio Nikola Kremić PR Beograd”), matični broj, PIB i sedište.
   legalName: "",
+  registryNumber: "",
   taxId: "",
+  // Sedište iz APR-a (ulica i broj, mesto); može se razlikovati od adrese kancelarije
+  registeredAddress: "",
 
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   // Dok nije "true", pretraživači ne indeksiraju sajt (noindex + robots.txt)

@@ -367,18 +367,15 @@ export function QuoteForm({ serviceOptions }: { serviceOptions: ServiceOptionGro
                 <Chip key={v} type="radio" name="contactPreference" value={v} defaultChecked={v === "Email"} />
               ))}
             </ChoiceGroup>
-            <label className="group flex min-h-11 cursor-pointer items-start gap-3 text-[14.5px] leading-normal text-muted has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-accent-text">
-              <input type="checkbox" name="consent" value="da" className="sr-only" />
-              <CheckBox />
-              <span>
-                Slažem se da me {site.name} kontaktira u vezi sa ovim upitom. Podatke koristimo samo za odgovor na upit, u
-                skladu sa{" "}
-                <Link href="/politika-privatnosti" className="text-fg underline underline-offset-3 hover:text-accent-text">
-                  politikom privatnosti
-                </Link>
-                .
-              </span>
-            </label>
+            {/* Obaveštenje, ne pristanak: osnov obrade je odgovor na upit pre ugovora (čl. 12 st. 1 t. 2 ZZPL) */}
+            <p className="text-[14.5px] leading-normal text-muted">
+              Podatke iz forme koristimo samo da odgovorimo na vaš upit i pošaljemo ponudu. Kako ih čuvamo i koja su vaša
+              prava, piše u{" "}
+              <Link href="/politika-privatnosti" className="text-fg underline underline-offset-3 hover:text-accent-text">
+                politici privatnosti
+              </Link>
+              .
+            </p>
             {failure && (
               <p role="alert" className="rounded-lg border border-error bg-raised p-4 text-[15px] leading-normal text-error-text">
                 {failure}

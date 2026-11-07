@@ -85,7 +85,6 @@ export async function sendQuote(data: FormData): Promise<QuoteResult> {
     ["Okvirni datum", field(data, "date")],
     ["Budžet", field(data, "budget")],
     ["Rok", field(data, "timeline")],
-    ["Saglasnost za kontakt", field(data, "consent") ? "da" : "ne"],
   ];
   const about = text(data, "about", MAX_LONG);
   const body = [

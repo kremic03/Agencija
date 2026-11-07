@@ -5,6 +5,7 @@ const box = "m-0 flex flex-col justify-between rounded-xl border border-line bg-
 
 export function Testimonials() {
   const [main, ...rest] = testimonials;
+  if (!main) return null;
 
   return (
     <section aria-labelledby="utisci-naslov" className="section-y">

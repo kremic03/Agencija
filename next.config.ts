@@ -37,8 +37,24 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  // Ne otkriva koja tehnologija pokreće sajt
+  poweredByHeader: false,
   headers() {
     return [
+      {
+        // Osnovna zaštita: sajt se ne može ugraditi u tuđu stranicu (clickjacking), browser ne pogađa tip
+        // fajla, druge strane ne dobijaju punu adresu stranice, a kamera, mikrofon i lokacija su isključeni
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "Content-Security-Policy", value: "frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
+          // Browser ga poštuje samo preko https, pa lokalni rad na http-u ne smeta
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+        ],
+      },
       {
         // Imena video fajlova nose verziju (npr. beograd-720.v1.mp4), pa se mogu keširati trajno
         source: "/video/:file*",
