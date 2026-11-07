@@ -176,7 +176,6 @@ export function ServicePage({ slug }: { slug: string }) {
         <div className="container-page flex flex-wrap gap-x-16 gap-y-10">
           <SectionHeading
             id="ukljuceno-naslov"
-            eyebrow="Šta je uključeno"
             title={page.included.title}
             className="max-w-90 flex-[1_1_280px]"
           />
@@ -201,7 +200,7 @@ export function ServicePage({ slug }: { slug: string }) {
         <section aria-labelledby="primeri-naslov" className="section-y">
           <div className="container-page flex flex-col gap-10">
             <div className="flex flex-wrap items-end justify-between gap-5">
-              <SectionHeading id="primeri-naslov" eyebrow="Primeri radova" title={page.examplesTitle} />
+              <SectionHeading id="primeri-naslov" title={page.examplesTitle} />
               <ButtonLink href="/portfolio" variant="secondary" size="sm" arrow className="h-11 rounded-md text-[15px]">
                 Svi projekti
               </ButtonLink>
@@ -235,7 +234,7 @@ export function ServicePage({ slug }: { slug: string }) {
       <section id="paketi" aria-labelledby="paketi-naslov" className="section-y">
         <div className="container-page flex flex-col gap-10">
           <div className="flex flex-wrap items-end justify-between gap-x-16 gap-y-4">
-            <SectionHeading id="paketi-naslov" eyebrow="Paketi" title={page.packages.title} className="max-w-160" />
+            <SectionHeading id="paketi-naslov" title={page.packages.title} className="max-w-160" />
             {page.packages.note && (
               <p className="flex-[0_1_340px] text-[14.5px] leading-[1.55] text-subtle">{page.packages.note}</p>
             )}
@@ -280,14 +279,14 @@ export function ServicePage({ slug }: { slug: string }) {
         </div>
       </section>
 
-      <ProcessSection id="proces-usluge" eyebrow="Proces" title={page.process.title} steps={page.process.steps} variant="service" />
+      <ProcessSection id="proces-usluge" title={page.process.title} steps={page.process.steps} variant="service" />
 
-      <FaqSection eyebrow="FAQ" title={page.faqTitle} items={page.faq} />
+      <FaqSection title={page.faqTitle} items={page.faq} />
 
       {/* Ostale usluge */}
       <section aria-labelledby="druge-usluge-naslov" className="section-y">
         <div className="container-page flex flex-col gap-10">
-          <SectionHeading id="druge-usluge-naslov" eyebrow="Druge usluge" title="Sve to radi isti tim." />
+          <SectionHeading id="druge-usluge-naslov" title="Sve to radi isti tim." />
           <ul className="grid gap-4 md:grid-cols-3">
             {services
               .filter((s) => s.slug !== slug)
