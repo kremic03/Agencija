@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Paket vizuelnog identiteta iz Claude Design-a (support.js je njihov runtime)
+    "design_handoff_webdron_identitet/**",
   ]),
 ]);
 

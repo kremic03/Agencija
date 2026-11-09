@@ -87,7 +87,7 @@ export default function AboutPage() {
         <div className={split}>
           <div className={splitHead}>
             <h2 id="prica-naslov" className="text-section-title">
-              Sajt, aplikacija i snimak iz vazduha — od jednog tima.
+              Sajt, aplikacija i snimak iz vazduha od jednog tima.
             </h2>
             <p className="text-base leading-[1.6] text-pretty text-muted">
               Nalazimo se u Beogradu i radimo sa firmama iz cele Srbije. Sastanci su uživo ili online, a za snimanje

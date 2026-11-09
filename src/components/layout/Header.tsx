@@ -9,6 +9,10 @@ import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
 
 const MEGA_ID = "mega-meni-usluge";
+/** Do ove visine (px) header se ne sakriva */
+const TOP_ZONE = 96;
+/** Najmanji pomak (px) u jednom smeru koji menja vidljivost, da sitno trzanje ne pali animaciju */
+const SCROLL_THRESHOLD = 8;
 
 const navItem =
   "relative flex h-9 items-center gap-1.5 rounded-md px-3 text-[14.5px] leading-none font-medium transition-colors";
@@ -39,12 +43,46 @@ export function Header({ megaMenu, mobileServices }: Props) {
   // Prelaz mišem otvara meni neposredno pre klika (i na ekranu osetljivom na dodir), pa taj klik ne sme da ga zatvori
   const openedByHover = useRef(false);
 
+  const [hidden, setHidden] = useState(false);
+
+  // Skrol nadole sakriva header, skrol nagore ga vraća; pri vrhu stranice je uvek vidljiv
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
+    let lastY = Math.max(0, window.scrollY);
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const maxY = document.documentElement.scrollHeight - window.innerHeight;
+      // Odskok na iOS-u (iznad vrha ili ispod dna) ne menja smer
+      const y = Math.min(Math.max(0, window.scrollY), Math.max(0, maxY));
+      setScrolled(y > 8);
+      const delta = y - lastY;
+      if (y < TOP_ZONE) {
+        setHidden(false);
+        lastY = y;
+      } else if (Math.abs(delta) > SCROLL_THRESHOLD) {
+        setHidden(delta > 0);
+        lastY = y;
+      }
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(frame);
+    };
   }, []);
+
+  // Otvoren meni drži header na ekranu
+  const visible = !hidden || megaOpen || mobileOpen;
+
+  // Elementi zalepljeni ispod headera (npr. podmeni na „O nama”) se podižu zajedno sa njim
+  useEffect(() => {
+    document.documentElement.toggleAttribute("data-header-hidden", !visible);
+  }, [visible]);
+  useEffect(() => () => document.documentElement.removeAttribute("data-header-hidden"), []);
 
   const closeMega = () => {
     openedByHover.current = false;
@@ -72,7 +110,11 @@ export function Header({ megaMenu, mobileServices }: Props) {
         if (megaOpen && !e.currentTarget.contains(e.relatedTarget)) closeMega();
       }}
       onMouseLeave={closeMega}
-      className={`sticky top-0 z-50 border-b transition-colors ${
+      // Fokus tastature (Tab) vraća sakriven header
+      onFocus={() => setHidden(false)}
+      className={`sticky top-0 z-50 border-b transition-[translate,background-color,border-color] motion-reduce:transition-none ${
+        visible ? "translate-y-0 duration-300 ease-out" : "-translate-y-full duration-200 ease-in"
+      } ${
         overlay
           ? "border-transparent"
           : isHome
@@ -83,7 +125,7 @@ export function Header({ megaMenu, mobileServices }: Props) {
       {/* Desktop */}
       <div className="container-page hidden h-18 grid-cols-[1fr_auto_1fr] items-center nav:grid">
         <Link href="/" aria-label={`${site.name} – početna`} className="justify-self-start rounded-md focus-visible:outline-offset-4">
-          <Logo />
+          <Logo animated />
         </Link>
 
         <nav aria-label="Glavna navigacija">
@@ -146,7 +188,7 @@ export function Header({ megaMenu, mobileServices }: Props) {
       {/* Mobilni */}
       <div className="flex h-16 items-center justify-between px-5 nav:hidden">
         <Link href="/" aria-label={`${site.name} – početna`} className="flex min-h-11 items-center">
-          <Logo />
+          <Logo animated />
         </Link>
         <button
           type="button"

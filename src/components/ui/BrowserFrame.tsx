@@ -8,7 +8,11 @@ export function BrowserFrame({ url, children, className = "" }: { url?: string; 
         <span className="size-2 rounded-full bg-line-strong" />
         <span className="size-2 rounded-full bg-line-strong" />
         <span className="size-2 rounded-full bg-line-strong" />
-        {url && <span className="ml-3 font-mono text-[11.5px] leading-none text-subtle">{url}</span>}
+        {url && (
+          <span className="ml-3 truncate font-mono text-[11.5px] leading-none text-subtle">
+            {url.replace(/^https?:\/\//, "")}
+          </span>
+        )}
       </div>
       <div className="relative min-h-0 flex-1">{children}</div>
     </div>

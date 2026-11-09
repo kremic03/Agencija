@@ -27,7 +27,14 @@ export const ArrowRightIcon = (p: IconProps) => (
   </Svg>
 );
 
-export const ArrowLeftIcon = (p: IconProps) => (
+/** Link se otvara u novom prozoru */
+export const ExternalIcon = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M5 3h6v6M11 3L3.5 10.5" />
+  </Svg>
+);
+
+export const ArrowLeftIcon =(p: IconProps) => (
   <Svg {...p}>
     <path d="M11 7H3M6.5 3.5L3 7l3.5 3.5" />
   </Svg>

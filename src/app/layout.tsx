@@ -9,6 +9,7 @@ import { SmoothAnchorScroll } from "@/components/layout/SmoothAnchorScroll";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/content/site";
 import { organizationSchema } from "@/lib/structured-data";
+import { shareImage } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -26,8 +27,9 @@ export const metadata: Metadata = {
   title: { default: site.name, template: `%s | ${site.name}` },
   description: site.description,
   applicationName: site.name,
-  openGraph: { type: "website", siteName: site.name, locale: site.locale },
-  twitter: { card: "summary_large_image" },
+  // Stranice bez sopstvenih metapodataka (npr. 404) dobijaju banner odavde
+  openGraph: { type: "website", siteName: site.name, locale: site.locale, images: [shareImage] },
+  twitter: { card: "summary_large_image", images: [shareImage.url] },
   robots: site.indexable ? { index: true, follow: true } : { index: false, follow: false },
 };
 

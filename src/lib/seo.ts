@@ -11,8 +11,13 @@ type PageSeo = {
   noindex?: boolean;
 };
 
-// Slika iz app/opengraph-image.tsx; podstranice je ne nasleđuju same
-const shareImage = { url: "/opengraph-image", width: 1200, height: 630, alt: `${site.name} — sajtovi, aplikacije i snimanje dronom` };
+// Banner iz vizuelnog identiteta (public/); Open Graph objekat stranice zamenjuje roditeljski, pa se ponavlja ovde
+export const shareImage = {
+  url: "/og-1200x630.png",
+  width: 1200,
+  height: 630,
+  alt: `${site.name} — sajtovi, aplikacije i snimanje dronom`,
+};
 
 /**
  * Metapodaci jedne stranice: naslov, opis, kanonski URL i podaci za deljenje.

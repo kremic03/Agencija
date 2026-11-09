@@ -26,7 +26,8 @@ const filters = [
 
 const cards: PortfolioCard[] = projects.map((p, i) => ({
   id: p.id,
-  href: projectHref(p.id),
+  href: p.url ?? projectHref(p.id),
+  external: Boolean(p.url),
   service: p.service,
   title: p.title,
   description: p.description,

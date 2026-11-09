@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap&subset=latin-ext" rel="stylesheet">
+<style>html,body{margin:0;background:#0A0A0B;color:#F4F4F5;font-family:Geist,sans-serif}a{color:#F4F4F5}a:hover{color:#FF6B2C}@keyframes rec{0%,55%{opacity:1}60%,95%{opacity:0.15}100%{opacity:1}}</style>
+</helmet>
+<div style="width:1600px;background:#0A0A0B;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;gap:96px">
+
+  <header style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:40px;border-bottom:1px solid #26262B">
+    <img src="logo/webdron-agencija-dark.svg" alt="webdron agencija" style="height:40px;display:block">
+    <div style="display:flex;gap:40px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#A1A1AA">
+      <span>VIZUELNI IDENTITET</span><span>PRAVAC 2C · NADIR</span><span>V1 · 11/2026</span>
+    </div>
+  </header>
+
+  <section data-screen-label="01 Logo" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;align-items:baseline;gap:24px"><div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#A1A1AA">01</div><div style="font-size:28px;font-weight:600;letter-spacing:-0.02em">Logo</div></div>
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px">
+      <div style="border:1px solid #26262B;border-radius:12px;height:400px;display:flex;align-items:center;justify-content:center;position:relative">
+        <img src="logo/webdron-dark.svg" alt="webdron" style="height:96px;display:block">
+        <div style="position:absolute;left:24px;bottom:20px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#A1A1AA">PRIMARNI · WORDMARK</div>
+      </div>
+      <div style="border:1px solid #26262B;border-radius:12px;height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;position:relative">
+        {{ liveMark }}
+        <div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#A1A1AA;text-align:center;line-height:1.8">&lt;circle id="dot"&gt;<br>REC TREPTANJE NA SAJTU</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+      <div style="border:1px solid #26262B;border-radius:12px;height:200px;display:flex;align-items:center;justify-content:center;position:relative"><img src="logo/webdron-agencija-dark.svg" alt="" style="height:44px"><div style="position:absolute;left:24px;bottom:20px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#A1A1AA">A · LOCKUP SA OZNAKOM · TAMNA</div></div>
+      <div style="background:#F4F4F5;border-radius:12px;height:200px;display:flex;align-items:center;justify-content:center;position:relative"><img src="logo/webdron-agencija-light.svg" alt="" style="height:44px"><div style="position:absolute;left:24px;bottom:20px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#0A0A0B">D · LOCKUP SA OZNAKOM · SVETLA</div></div>
+      <div style="border:1px solid #26262B;border-radius:12px;height:200px;display:flex;align-items:center;justify-content:center;position:relative"><img src="logo/webdron-dark.svg" alt="" style="height:44px"><div style="position:absolute;left:24px;bottom:20px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#A1A1AA">C · BEZ OZNAKE · TAMNA</div></div>
+      <div style="background:#F4F4F5;border-radius:12px;height:200px;display:flex;align-items:center;justify-content:center;position:relative"><img src="logo/webdron-light.svg" alt="" style="height:44px"><div style="position:absolute;left:24px;bottom:20px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#0A0A0B">D · BEZ OZNAKE · SVETLA</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px">
+      <div style="border:1px solid #26262B;border-radius:12px;height:200px;display:flex;align-items:center;justify-content:center;position:relative"><img src="logo/znak-dark.svg" alt="" style="height:64px"><div style="position:absolute;left:24px;bottom:20px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#A1A1AA">B · ZNAK · TAMNA</div></div>
+      <div style="background:#F4F4F5;border-radius:12px;height:200px;display:flex;align-items:center;justify-content:center;position:relative"><img src="logo/znak-light.svg" alt="" style="height:64px"><div style="position:absolute;left:24px;bottom:20px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#0A0A0B">B · ZNAK · SVETLA</div></div>
+      <div style="border:1px solid #26262B;border-radius:12px;height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;position:relative"><img src="logo/webdron-mono-white.svg" alt="" style="height:30px"><img src="logo/znak-mono-white.svg" alt="" style="height:36px"><div style="position:absolute;left:24px;bottom:20px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#A1A1AA">E · JEDNOBOJNA BELA</div></div>
+      <div style="background:#FFFFFF;border-radius:12px;height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;position:relative"><img src="logo/webdron-mono-black.svg" alt="" style="height:30px"><img src="logo/znak-mono-black.svg" alt="" style="height:36px"><div style="position:absolute;left:24px;bottom:20px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#000000">E · JEDNOBOJNA CRNA</div></div>
+    </div>
+    <div style="border:1px solid #26262B;border-radius:12px;padding:32px;display:flex;align-items:flex-end;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start"><img src="logo/webdron-dark.svg" alt="" style="height:16px"><div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#A1A1AA">WORDMARK 16 PX</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start"><img src="logo/webdron-dark.svg" alt="" style="height:24px"><div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#A1A1AA">24 PX</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start"><img src="logo/znak-dark.svg" alt="" style="height:16px"><div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#A1A1AA">ZNAK 16</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start"><img src="logo/znak-dark.svg" alt="" style="height:22px"><div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#A1A1AA">22</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start"><img src="logo/znak-dark.svg" alt="" style="height:32px"><div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#A1A1AA">32</div></div>
+      <div style="margin-left:auto;font-size:14px;color:#A1A1AA;max-width:420px;text-wrap:pretty">Slovo „o“ je zaobljen kvadrat iste debljine kao potezi slova, sa tačkom u centru: ekran posmatran tačno odozgo. Samostalni znak je obris 1,5 px na 22 px.</div>
+    </div>
+  </section>
+
+  <section data-screen-label="02 Favicon" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;align-items:baseline;gap:24px"><div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#A1A1AA">02</div><div style="font-size:28px;font-weight:600;letter-spacing:-0.02em">Favicon</div><div style="font-size:14px;color:#A1A1AA">Debelo „o“ iz reči umesto tankog obrisa: jače i prepoznatljivije na 16 px.</div></div>
+    <div style="border:1px solid #26262B;border-radius:12px;padding:40px;display:flex;align-items:flex-end;gap:40px">
+      <sc-for list="{{ icons }}" as="ic" hint-placeholder-count="7">
+        <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+          <img src="{{ ic.src }}" alt="" width="{{ ic.show }}" height="{{ ic.show }}" style="display:block;image-rendering:auto">
+          <div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.16em;color:#A1A1AA;line-height:1.6">{{ ic.label }}<br>{{ ic.file }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+      <div style="border:1px solid #26262B;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="background:#1F1F23;padding:10px 12px 0;display:flex;align-items:flex-end;gap:4px;height:46px;box-sizing:border-box">
+          <div style="display:flex;gap:8px;padding:0 12px 12px 4px"><span style="width:12px;height:12px;border-radius:6px;background:#3F3F46"></span><span style="width:12px;height:12px;border-radius:6px;background:#3F3F46"></span><span style="width:12px;height:12px;border-radius:6px;background:#3F3F46"></span></div>
+          <div style="background:#0A0A0B;border-radius:8px 8px 0 0;height:36px;width:240px;padding:0 12px;box-sizing:border-box;display:flex;align-items:center;gap:8px"><img src="favicon/favicon.svg?v=2" alt="" width="16" height="16" style="display:block"><span style="font-size:12px;color:#F4F4F5;font-family:system-ui,sans-serif">WebDron agencija</span><span style="margin-left:auto;color:#A1A1AA;font-size:12px">×</span></div>
+          <div style="height:36px;width:200px;padding:0 12px;box-sizing:border-box;display:flex;align-items:center;gap:8px"><span style="width:16px;height:16px;border-radius:4px;background:#3F3F46"></span><span style="font-size:12px;color:#A1A1AA;font-family:system-ui,sans-serif">Nova kartica</span></div>
+        </div>
+        <div style="background:#0A0A0B;padding:10px 12px;border-bottom:1px solid #26262B"><div style="background:#1F1F23;border-radius:16px;height:32px;padding:0 16px;display:flex;align-items:center;font-size:13px;color:#F4F4F5;font-family:system-ui,sans-serif">webdron.rs</div></div>
+        <div style="height:180px;display:flex;align-items:center;justify-content:center"><img src="logo/webdron-dark.svg" alt="" style="height:28px"></div>
+        <div style="padding:14px 20px;border-top:1px solid #26262B;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#A1A1AA">TAB PREGLEDAČA · 16 PX STVARNA VELIČINA</div>
+      </div>
+      <div style="border:1px solid #26262B;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="background:#FFFFFF;flex:1;padding:40px;display:flex;flex-direction:column;justify-content:center;gap:8px;font-family:Arial,sans-serif">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:28px;height:28px;border-radius:14px;background:#F1F3F4;display:flex;align-items:center;justify-content:center"><img src="favicon/favicon-48.png?v=2" alt="" width="18" height="18" style="display:block"></div>
+            <div style="display:flex;flex-direction:column;gap:1px"><span style="font-size:14px;color:#202124">WebDron agencija</span><span style="font-size:12px;color:#4D5156">https://webdron.rs</span></div>
+          </div>
+          <div style="font-size:20px;color:#1A0DAB;line-height:1.3">WebDron agencija — izrada sajtova i snimanje dronom</div>
+          <div style="font-size:14px;color:#4D5156;line-height:1.55;max-width:560px">Sajtovi i snimci iz vazduha za firme u Srbiji. Dizajn, razvoj i video dronom na jednom mestu.</div>
+        </div>
+        <div style="padding:14px 20px;border-top:1px solid #26262B;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#A1A1AA">GOOGLE REZULTAT · IZVOR 48×48</div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="03 Banner" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;align-items:baseline;gap:24px"><div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#A1A1AA">03</div><div style="font-size:28px;font-weight:600;letter-spacing:-0.02em">Banner</div></div>
+    <div style="display:grid;grid-template-columns:600px minmax(0,1fr);gap:16px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:12px"><img src="banner/og-1200x630.svg" alt="" style="width:600px;height:315px;display:block;border:1px solid #26262B;border-radius:12px"><div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#A1A1AA">OG · 1200×630 · ZNAK „O“ = 56 PX</div></div>
+      <div style="font-size:14px;color:#A1A1AA;text-wrap:pretty;max-width:420px;padding-top:8px">Znak je deo reči, pa nema zasebnog simbola: reč je skalirana tako da „o“-kvadrat ima tačno 56 px. Poravnato levo, mnogo praznog prostora. WEBDRON.RS u donjem levom uglu, poravnato sa logom.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px"><img src="banner/cover-1920x600.svg" alt="" style="width:100%;display:block;border:1px solid #26262B;border-radius:12px"><div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#A1A1AA">HERO / COVER · 1920×600 · LINIJA HORIZONTA #26262B 1 PX</div></div>
+  </section>
+
+  <section data-screen-label="04 Specifikacija" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;align-items:baseline;gap:24px"><div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#A1A1AA">04</div><div style="font-size:28px;font-weight:600;letter-spacing:-0.02em">Specifikacija</div></div>
+    <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px">
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;border-radius:12px;background:#0A0A0B;border:1px solid #26262B"></div><div style="font-size:14px;font-weight:600">Pozadina</div><div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#A1A1AA">#0A0A0B</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;border-radius:12px;background:#F4F4F5"></div><div style="font-size:14px;font-weight:600">Svetla</div><div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#A1A1AA">#F4F4F5</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;border-radius:12px;background:#26262B"></div><div style="font-size:14px;font-weight:600">Linije</div><div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#A1A1AA">#26262B</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;border-radius:12px;background:#A1A1AA"></div><div style="font-size:14px;font-weight:600">Sekundarni tekst</div><div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#A1A1AA">#A1A1AA</div></div>
+      <div style="display:flex;flex-direction:column;gap:12px"><div style="height:120px;border-radius:12px;border:1px solid #26262B;display:flex;align-items:center;justify-content:center"><span style="width:16px;height:16px;border-radius:8px;background:#FF6B2C"></span></div><div style="font-size:14px;font-weight:600">Akcenat · samo tačka</div><div style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.1em;color:#A1A1AA">#FF6B2C</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px">
+      <div style="border:1px solid #26262B;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#A1A1AA">GEIST · SEMIBOLD 600 · −0,02EM</div>
+        <div style="font-size:56px;font-weight:600;letter-spacing:-0.02em;line-height:1.05">Čist kadar, žive ćelije, šuma, đak</div>
+        <div style="font-size:15px;color:#A1A1AA">Logotip i naslovi. Č Ć Š Ž Đ č ć š ž đ</div>
+      </div>
+      <div style="border:1px solid #26262B;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#A1A1AA">GEIST MONO · 500 · VELIKA SLOVA · +0,2EM</div>
+        <div style="font-family:'Geist Mono',monospace;font-size:28px;font-weight:500;letter-spacing:0.2em;line-height:1.4">AGENCIJA<br>WEB / VIDEO<br>ČĆŠŽĐ</div>
+        <div style="font-size:15px;color:#A1A1AA">Oznake, metapodaci, URL.</div>
+      </div>
+    </div>
+    <div style="border:1px solid #26262B;border-radius:12px;padding:32px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:0.06em;color:#A1A1AA;line-height:1.9">
+      <div><div style="color:#F4F4F5;letter-spacing:0.2em;margin-bottom:8px">LOGO/</div>webdron-{dark,light}.svg<br>webdron-agencija-{dark,light}.svg<br>webdron(-agencija)-mono-{white,black}.svg<br>znak-{dark,light,mono-white,mono-black}.svg</div>
+      <div><div style="color:#F4F4F5;letter-spacing:0.2em;margin-bottom:8px">FAVICON/</div>favicon.svg<br>favicon-16 / 32 / 48 / 96.png<br>apple-touch-icon.png (180)<br>android-chrome-192 / 512.png</div>
+      <div><div style="color:#F4F4F5;letter-spacing:0.2em;margin-bottom:8px">BANNER/</div>og-1200x630.svg + .png<br>cover-1920x600.svg + .png<br><span style="color:#F4F4F5">Sav tekst pretvoren u krive.</span></div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const h = React.createElement;
+    const liveMark = h('svg', { width: 120, height: 120, viewBox: '0 0 24 24', fill: 'none' },
+      h('rect', { x: 1.75, y: 1.75, width: 20.5, height: 20.5, rx: 5.25, stroke: '#F4F4F5', strokeWidth: 1.5 }),
+      h('circle', { id: 'dot', cx: 12, cy: 12, r: 2.75, fill: '#FF6B2C', style: { animation: 'rec 1.6s steps(1,end) infinite' } }));
+    const icons = [
+      { s: 16, file: 'favicon-16.png' }, { s: 32, file: 'favicon-32.png' }, { s: 48, file: 'favicon-48.png' },
+      { s: 96, file: 'favicon-96.png' }, { s: 180, file: 'apple-touch-icon.png' }, { s: 192, file: 'android-chrome-192.png' },
+      { s: 512, file: 'android-chrome-512.png', show: 256 }
+    ].map(i => ({ src: 'favicon/' + i.file + '?v=2', file: i.file, show: i.show || i.s, label: i.show ? i.s + ' (PRIKAZ 50%)' : i.s + ' PX' }));
+    return { liveMark, icons };
+  }
+}
+</script>
+</body>
+</html>

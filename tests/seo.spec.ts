@@ -7,6 +7,9 @@ const pages = [
   "/usluge/mobilne-aplikacije",
   "/usluge/veb-aplikacije",
   "/usluge/snimanje-dronom",
+  "/usluge/snimanje-nekretnina-dronom",
+  "/usluge/snimanje-dronom-za-tv-emisije",
+  "/usluge/snimanje-prirode-dronom",
   "/portfolio",
   "/portfolio/beograd-video",
   "/portfolio/web-shop-pocetna",
@@ -42,7 +45,27 @@ const serviceHeadings: [string, string][] = [
   ["/usluge/mobilne-aplikacije", "Izrada mobilnih aplikacija"],
   ["/usluge/veb-aplikacije", "Veb aplikacije po meri"],
   ["/usluge/snimanje-dronom", "Snimanje dronom"],
+  ["/usluge/snimanje-nekretnina-dronom", "Snimanje nekretnina dronom"],
+  ["/usluge/snimanje-dronom-za-tv-emisije", "Snimanje dronom za TV emisije"],
+  ["/usluge/snimanje-prirode-dronom", "Snimanje prirode dronom"],
 ];
+
+test("snimanje dronom vodi na podstranice, a one nazad na njega", async ({ request }) => {
+  const specialties = ["snimanje-nekretnina-dronom", "snimanje-dronom-za-tv-emisije", "snimanje-prirode-dronom"];
+  const hub = await (await request.get("/usluge/snimanje-dronom")).text();
+  for (const slug of specialties) expect(hub, slug).toContain(`href="/usluge/${slug}"`);
+  for (const slug of specialties) {
+    const html = await (await request.get(`/usluge/${slug}`)).text();
+    expect(html, slug).toContain('href="/usluge/snimanje-dronom"');
+    const crumbs = jsonLd(html).find((s) => s["@type"] === "BreadcrumbList");
+    expect(crumbs.itemListElement.map((i: { name: string }) => i.name)).toEqual([
+      "Početna",
+      "Usluge",
+      "Snimanje dronom",
+      expect.stringContaining("dronom"),
+    ]);
+  }
+});
 
 for (const [path, keyword] of serviceHeadings) {
   test(`H1 kaže koja je usluga: ${path}`, async ({ request }) => {
@@ -125,10 +148,14 @@ test("sve slike imaju alt, a fotografije iz drona i opis", async ({ request }) =
   expect(images.filter((image) => !image.includes('alt=""')).length).toBeGreaterThan(0);
 });
 
-test("portfolio vodi na svih sedam projekata", async ({ request }) => {
+test("portfolio vodi na svih sedam projekata: objavljene sajtove u novom prozoru, ostale na njihove stranice", async ({
+  request,
+}) => {
   const html = await (await request.get("/portfolio")).text();
-  const links = new Set(html.match(/href="\/portfolio\/[a-z-]+"/g));
-  expect(links.size).toBe(7);
+  const pages = new Set(html.match(/href="\/portfolio\/[a-z-]+"/g));
+  const live = new Set(html.match(/<a href="https:\/\/web-shop-iota-seven\.vercel\.app\/[a-z]+" target="_blank" rel="noopener"/g));
+  expect(pages.size).toBe(5);
+  expect(live.size).toBe(2);
 });
 
 test("putanja na stranici usluge vodi na /usluge", async ({ request }) => {

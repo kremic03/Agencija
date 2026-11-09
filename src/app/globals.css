@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Tabla iz Claude Design-a je referenca, ne deo sajta */
+@source not "../../design_handoff_webdron_identitet";
 
 /*
  * Dizajn tokeni (Claude Design: „Dizajn sistem”).
@@ -192,4 +194,29 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-subtle);
+}
+
+/* Logo: tačka trepće kao REC lampica (README vizuelnog identiteta); uz smanjeno kretanje miruje */
+@keyframes logo-rec {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  60%,
+  95% {
+    opacity: 0.15;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.logo-dot-rec {
+  animation: logo-rec 1.6s steps(1, end) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-dot-rec {
+    animation: none;
+  }
 }

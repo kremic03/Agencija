@@ -16,6 +16,12 @@ import belgradeSava from "@/assets/images/dron-beograd-sava.jpg";
 
 export type Media = { src: StaticImageData; alt: string };
 
+/** Objavljeni sajtovi sa screenshot-ova ispod; posetilac ih otvara u novom prozoru */
+export const liveSites = {
+  webShopHome: "https://web-shop-iota-seven.vercel.app/store",
+  webShopLogin: "https://web-shop-iota-seven.vercel.app/login",
+};
+
 export const media = {
   webShopHome: {
     src: webShopHome,

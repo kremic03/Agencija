@@ -7,12 +7,12 @@
  */
 
 export const site = {
-  // PRIVREMENO: naziv iz dizajna, još nije konačan
-  name: "Visina Studio",
-  logoText: "visina",
+  // Vizuelni identitet: design_handoff_webdron_identitet/README.md
+  name: "WebDron agencija",
+  shortName: "WebDron",
   // PRIVREMENO: pravni podaci za footer i politiku privatnosti (prazno = ne prikazuje se).
   // Obavezni pre objave (Zakon o privrednim društvima, Zakon o elektronskoj trgovini):
-  // poslovno ime iz APR-a (npr. „Visina Studio Nikola Kremić PR Beograd”), matični broj, PIB i sedište.
+  // poslovno ime iz APR-a (npr. „WebDron Nikola Kremić PR Beograd”), matični broj, PIB i sedište.
   legalName: "",
   registryNumber: "",
   taxId: "",

@@ -21,7 +21,7 @@ export function Footer() {
       <div className="container-page flex flex-col gap-14 pt-18 pb-8">
         <div className="flex flex-wrap gap-x-8 gap-y-12">
           <div className="flex max-w-95 flex-[2_1_300px] flex-col gap-5">
-            <Logo />
+            <Logo withLabel />
             <p className="text-[15px] leading-[1.6] text-pretty text-muted">{site.tagline}</p>
             <div className="flex flex-col gap-1">
               <a href={`mailto:${site.email}`} className="flex min-h-9 items-center text-[15px] font-medium hover:text-accent-text">

@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { droneVideo } from "@/content/media";
-import { getService, serviceHref, services, type Service } from "@/content/services";
+import { getService, serviceHref, services, specialtiesOf, type Service } from "@/content/services";
 import { projects } from "@/content/portfolio";
 import { pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema, serviceSchema } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/Button";
-import { CheckIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, CheckIcon, ExternalIcon } from "@/components/ui/icons";
 import { AutoplayVideo } from "@/components/ui/AutoplayVideo";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { PhoneFrame } from "@/components/ui/PhoneFrame";
@@ -51,12 +51,24 @@ function HeroMediaBox({ service }: { service: Service }) {
   }
 
   return (
-    <div className={`${heroBox} aspect-4/3 ${heroMedia.kind !== "video" ? "bg-raised" : ""}`}>
+    <div className={`${heroBox} aspect-4/3 ${heroMedia.kind === "browser" || heroMedia.kind === "phone" ? "bg-raised" : ""}`}>
+      {heroMedia.kind === "photo" && (
+        <Image
+          src={heroMedia.image.src}
+          alt={heroMedia.image.alt}
+          fill
+          sizes={heroSizes}
+          fetchPriority="high"
+          loading="eager"
+          placeholder="blur"
+          className="object-cover"
+        />
+      )}
       {heroMedia.kind === "video" && (
         <AutoplayVideo
-          sources={droneVideo.sources}
-          poster={droneVideo.poster}
-          alt={droneVideo.poster.alt}
+          sources={(heroMedia.clip ?? droneVideo).sources}
+          poster={(heroMedia.clip ?? droneVideo).poster}
+          alt={(heroMedia.clip ?? droneVideo).poster.alt}
           sizes={heroSizes}
           highPriority
           deferUntilLoad
@@ -107,6 +119,7 @@ export function ServicePage({ slug }: { slug: string }) {
     key: `${i}-${ex.title}`,
     title: ex.title,
     tag: ex.tag,
+    url: ex.url,
     duration: ex.video?.duration,
     media: ex.video ? (
       <ExampleVideo example={{ ...ex, video: ex.video }} sizes={exampleSizes[i % exampleSizes.length]} />
@@ -123,6 +136,12 @@ export function ServicePage({ slug }: { slug: string }) {
   }));
 
   const path = serviceHref(slug);
+  const parent = service.parent ? getService(service.parent) : undefined;
+  const children = specialtiesOf(slug);
+  // Na dnu: podstranica nudi nadređenu uslugu i ostale podstranice, a usluga ostale usluge
+  const related = parent
+    ? [parent, ...specialtiesOf(parent.slug).filter((s) => s.slug !== slug)]
+    : services.filter((s) => s.slug !== slug);
 
   return (
     <>
@@ -130,6 +149,7 @@ export function ServicePage({ slug }: { slug: string }) {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Usluge", path: "/usluge" },
+          ...(parent ? [{ name: parent.name, path: serviceHref(parent.slug) }] : []),
           { name: service.name, path },
         ])}
       />
@@ -145,9 +165,19 @@ export function ServicePage({ slug }: { slug: string }) {
                   </Link>
                 </li>
                 <li aria-hidden="true">/</li>
+                {parent && (
+                  <>
+                    <li>
+                      <Link href={serviceHref(parent.slug)} className="text-muted hover:text-fg">
+                        {parent.name}
+                      </Link>
+                    </li>
+                    <li aria-hidden="true">/</li>
+                  </>
+                )}
                 <li>
                   <span aria-current="page" className="text-fg">
-                    {service.name}
+                    {parent ? service.shortName : service.name}
                   </span>
                 </li>
               </ol>
@@ -191,6 +221,46 @@ export function ServicePage({ slug }: { slug: string }) {
         </div>
       </section>
 
+      {/* Za koga je i kako radimo */}
+      {page.about && (
+        <section aria-labelledby="o-usluzi-naslov" className="section-y">
+          <div className="container-page flex flex-wrap gap-x-16 gap-y-8">
+            <SectionHeading id="o-usluzi-naslov" title={page.about.title} className="max-w-90 flex-[1_1_280px]" />
+            <div className="flex max-w-180 flex-[2_1_520px] flex-col gap-5 text-[17px] leading-[1.7] text-muted">
+              {page.about.paragraphs.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Podstranice usluge (npr. snimanje nekretnina dronom) */}
+      {children.length > 0 && (
+        <section aria-labelledby="podstranice-naslov" className="section-y">
+          <div className="container-page flex flex-col gap-10">
+            <SectionHeading id="podstranice-naslov" title="Šta snimamo." />
+            <ul className="grid gap-4 md:grid-cols-3">
+              {children.map((s) => (
+                <li key={s.slug} className="flex">
+                  <Link
+                    href={serviceHref(s.slug)}
+                    className="flex w-full flex-col gap-2 rounded-xl border border-line bg-surface p-6 transition-colors hover:border-line-strong"
+                  >
+                    <span className="text-lg leading-[1.3] font-semibold">{s.name}</span>
+                    <span className="flex-1 text-[15px] leading-[1.5] text-muted">{s.cardText}</span>
+                    <span className="flex items-center gap-2 pt-2 text-[15px] font-semibold text-accent-text">
+                      Saznajte više
+                      <ArrowRightIcon />
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
       {page.showProductions && <FeaturedProductions className="section-y container-page" />}
 
       {/* Primeri radova */}
@@ -207,7 +277,9 @@ export function ServicePage({ slug }: { slug: string }) {
               {examples.map((ex, i) => (
                 <article
                   key={ex.key}
-                  className={`relative flex min-w-0 flex-col justify-end overflow-hidden rounded-xl border border-line ${exampleLayout[i % exampleLayout.length]}`}
+                  className={`group relative flex min-w-0 flex-col justify-end overflow-hidden rounded-xl border border-line ${exampleLayout[i % exampleLayout.length]} ${
+                    ex.url ? "transition-colors hover:border-line-strong" : ""
+                  }`}
                 >
                   <div className="absolute inset-0">{ex.media}</div>
                   <div
@@ -219,8 +291,21 @@ export function ServicePage({ slug }: { slug: string }) {
                       {ex.tag}
                       {ex.duration && ` · ${ex.duration}`}
                     </p>
-                    <h3 className="text-lg leading-[1.3] font-semibold">{ex.title}</h3>
+                    <h3 className="flex items-center gap-2 text-lg leading-[1.3] font-semibold group-hover:text-accent-text">
+                      {ex.title}
+                      {ex.url && <ExternalIcon size={14} className="flex-none" />}
+                    </h3>
                   </div>
+                  {ex.url && (
+                    // Objavljen rad: klik bilo gde na kartici ga otvara u novom prozoru
+                    <a
+                      href={ex.url}
+                      target="_blank"
+                      rel="noopener"
+                      aria-label={`${ex.title} – pogledajte sajt (otvara se u novom prozoru)`}
+                      className="absolute inset-0 rounded-xl"
+                    />
+                  )}
                 </article>
               ))}
             </div>
@@ -284,11 +369,9 @@ export function ServicePage({ slug }: { slug: string }) {
       {/* Ostale usluge */}
       <section aria-labelledby="druge-usluge-naslov" className="section-y">
         <div className="container-page flex flex-col gap-10">
-          <SectionHeading id="druge-usluge-naslov" title="Sve to radi isti tim." />
+          <SectionHeading id="druge-usluge-naslov" title={parent ? "Još snimanja dronom." : "Sve to radi isti tim."} />
           <ul className="grid gap-4 md:grid-cols-3">
-            {services
-              .filter((s) => s.slug !== slug)
-              .map((s) => (
+            {related.map((s) => (
                 <li key={s.slug} className="flex">
                   <Link
                     href={serviceHref(s.slug)}

@@ -29,7 +29,8 @@ export function AboutSubnav({ sections }: { sections: Section[] }) {
   return (
     <nav
       aria-label="Sadržaj stranice"
-      className="sticky top-[65px] z-40 border-b border-line bg-bg/88 backdrop-blur-md backdrop-saturate-140 nav:top-[73px]"
+      // Kad se header sakrije pri skrolu nadole, podmeni se penje do vrha ekrana istim tempom
+      className="sticky top-[65px] z-40 border-b border-line bg-bg/88 backdrop-blur-md backdrop-saturate-140 transition-[top] duration-300 ease-out motion-reduce:transition-none nav:top-[73px] [html[data-header-hidden]_&]:top-0 [html[data-header-hidden]_&]:duration-200 [html[data-header-hidden]_&]:ease-in"
     >
       <div className="container-page flex gap-1 overflow-x-auto [scrollbar-width:none]">
         {sections.map((s) => {

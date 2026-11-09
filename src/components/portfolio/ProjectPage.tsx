@@ -6,6 +6,7 @@ import { breadcrumbSchema } from "@/lib/structured-data";
 import { ProjectMedia } from "@/components/portfolio/ProjectMedia";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ButtonLink } from "@/components/ui/Button";
+import { ExternalIcon } from "@/components/ui/icons";
 
 export function projectMetadata(id: string) {
   const project = getProject(id);
@@ -51,6 +52,18 @@ export function ProjectPage({ id }: { id: string }) {
             {project.title}
           </h1>
           {project.description && <p className="text-lead">{project.description}</p>}
+          {project.url && (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex h-12 items-center gap-2.5 self-start rounded-lg bg-accent px-5 text-[15px] leading-none font-semibold text-on-accent transition-colors hover:bg-accent-hover active:bg-accent-active focus-visible:outline-fg focus-visible:outline-offset-3"
+            >
+              Pogledajte sajt uživo
+              <ExternalIcon size={15} />
+              <span className="sr-only"> (otvara se u novom prozoru)</span>
+            </a>
+          )}
         </div>
 
         <figure className="flex flex-col gap-3">

@@ -6,7 +6,7 @@
  * i primeri ne prikazuju dok se ne doda bar jedan projekat.
  * Nazive klijenata i rezultate unositi samo uz dozvolu klijenta.
  */
-import { belgradeVideo, droneVideo, media } from "./media";
+import { belgradeVideo, droneVideo, liveSites, media } from "./media";
 import type { Example } from "./services";
 
 /** Kako se medij prikazuje: video sa posterom, screenshot u okviru browsera ili telefona, fotografija */
@@ -23,7 +23,6 @@ export type Project = Example & {
    * indeksira i ulazi u sitemap tek kada ovo postoji, da pretraživači ne vide tanke stranice.
    */
   story?: string[];
-  url?: string;
   /** Raspored na desktopu: širina u kolonama (od 12) i visina u redovima */
   cols: number;
   rows: number;
@@ -53,6 +52,7 @@ export const projects: Project[] = [
     description: "Nalozi kupaca u modnom web shopu",
     tag: "Web shop",
     image: media.webShopLogin,
+    url: liveSites.webShopLogin,
   },
   {
     id: "beograd-kula",
@@ -75,6 +75,7 @@ export const projects: Project[] = [
     description: "Početna strana sa novom kolekcijom",
     tag: "Web shop",
     image: media.webShopHome,
+    url: liveSites.webShopHome,
   },
   {
     id: "beograd-mostovi",

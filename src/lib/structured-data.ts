@@ -14,7 +14,8 @@ export function organizationSchema() {
     "@id": organizationId,
     name: site.name,
     url: absoluteUrl("/"),
-    logo: absoluteUrl("/icon.svg"),
+    // Google traži rastersku sliku od bar 112×112 px
+    logo: absoluteUrl("/android-chrome-512.png"),
     description: site.description,
     areaServed: serbia,
     email: site.email,

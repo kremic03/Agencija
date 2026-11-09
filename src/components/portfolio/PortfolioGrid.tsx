@@ -2,11 +2,14 @@
 
 import Link from "next/link";
 import { useState, type CSSProperties, type ReactNode } from "react";
+import { ExternalIcon } from "@/components/ui/icons";
 
 /** Podaci kartice bez slika: medij se renderuje na serveru i stiže kao gotov element */
 export type PortfolioCard = {
   id: string;
+  /** Stranica projekta, ili adresa objavljenog sajta kada je `external` */
   href: string;
+  external: boolean;
   service: string;
   title: string;
   description?: string;
@@ -85,16 +88,34 @@ export function PortfolioGrid({ projects, filters }: Props) {
                 wideOnTablet ? "" : "min-[700px]:col-span-1"
               }`}
             >
-              <article className="flex h-full min-w-0 flex-col overflow-hidden rounded-xl border border-line bg-surface">
+              <article
+                className={`group relative flex h-full min-w-0 flex-col overflow-hidden rounded-xl border border-line bg-surface ${
+                  p.external ? "transition-colors hover:border-line-strong" : ""
+                }`}
+              >
                 <div className="relative min-h-0 flex-1 overflow-hidden">
                   {p.media}
                 </div>
                 <div className="flex flex-none items-center justify-between gap-4 border-t border-line px-5 py-4">
                   <div className="flex min-w-0 flex-col gap-[5px]">
                     <h2 className="text-base leading-[1.25] font-semibold">
-                      <Link href={p.href} className="underline-offset-4 hover:text-accent-text hover:underline">
-                        {p.title}
-                      </Link>
+                      {p.external ? (
+                        // Objavljen sajt: cela kartica je link (::after je preko kartice) i otvara novi prozor
+                        <a
+                          href={p.href}
+                          target="_blank"
+                          rel="noopener"
+                          className="inline-flex items-center gap-1.5 underline-offset-4 group-hover:text-accent-text group-hover:underline after:absolute after:inset-0 after:rounded-xl"
+                        >
+                          {p.title}
+                          <ExternalIcon size={13} className="flex-none" />
+                          <span className="sr-only"> (otvara se u novom prozoru)</span>
+                        </a>
+                      ) : (
+                        <Link href={p.href} className="underline-offset-4 hover:text-accent-text hover:underline">
+                          {p.title}
+                        </Link>
+                      )}
                     </h2>
                     {p.description && (
                       <p className="text-sm leading-[1.3] text-muted">
