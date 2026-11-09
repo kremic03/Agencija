@@ -370,7 +370,7 @@ export const services: Service[] = [
     icon: "drone",
     summary: "Nekretnine, emisije, priroda, događaji",
     cardText:
-      "Nekretnine, eventi, turizam i industrija — sa pilotima licenciranim kod DCV.",
+      "Nekretnine, događaji, emisije i priroda — sa pilotima licenciranim kod DCV.",
     seo: {
       title: "Snimanje dronom u Beogradu i širom Srbije",
       description:

@@ -70,20 +70,13 @@ export function ServicesBento() {
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <Link href={serviceHref(webapp.slug)} className={`${card} flex-[5_1_320px]`}>
-              <CardText service={webapp} className="p-7" />
-              <div className="mt-auto h-60 pl-7">
-                <div className="relative h-full overflow-hidden rounded-tl-md border-t border-l border-line-strong">
-                  <Image
-                    src={media.webShopLogin.src}
-                    alt=""
-                    fill
-                    sizes="(min-width: 1100px) 500px, (min-width: 880px) 36vw, 100vw"
-                    placeholder="blur"
-                    className="object-cover object-top"
-                  />
-                </div>
-              </div>
+            {/* Bez slike dok ne bude pravog primera veb aplikacije */}
+            <Link href={serviceHref(webapp.slug)} className={`${card} flex-[5_1_320px] p-7`}>
+              <CardText service={webapp} />
+              <span className="mt-auto flex items-center gap-2 pt-8 text-[15px] font-semibold text-accent-text">
+                Pogledaj pakete
+                <ArrowRightIcon />
+              </span>
             </Link>
             <Link
               href={serviceHref(drone.slug)}
