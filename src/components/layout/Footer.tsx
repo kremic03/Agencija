@@ -3,7 +3,10 @@ import { cacheLife } from "next/cache";
 import { mainNav, site } from "@/content/site";
 import { serviceHref, services } from "@/content/services";
 import { ConsentSettingsButton } from "@/components/consent/ConsentSettingsButton";
+import { InstagramIcon } from "@/components/ui/icons";
 import { Logo } from "./Logo";
+
+const socialIcons = { instagram: InstagramIcon };
 
 const linkClass = "flex min-h-9 items-center text-[15px] leading-[1.3] text-muted hover:text-fg";
 const columnTitle = "pb-3 font-mono text-[11.5px] leading-none tracking-[0.06em] text-subtle uppercase";
@@ -32,6 +35,27 @@ export function Footer() {
                 {site.phone.display}
               </a>
             </div>
+            {site.social.length > 0 && (
+              <ul className="-ml-2.5 flex gap-1">
+                {site.social.map((s) => {
+                  const Icon = socialIcons[s.icon];
+                  return (
+                    <li key={s.href}>
+                      <a
+                        href={s.href}
+                        aria-label={`${s.label} (otvara se u novom prozoru)`}
+                        title={s.label}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        className="flex size-11 items-center justify-center rounded-lg text-muted hover:bg-raised hover:text-fg"
+                      >
+                        <Icon size={22} />
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </div>
 
           <nav aria-labelledby="footer-usluge" className="flex flex-[1_1_160px] flex-col gap-1">
@@ -96,13 +120,6 @@ export function Footer() {
                 <ConsentSettingsButton className="hover:text-fg" />
               </li>
             )}
-            {site.social.map((s) => (
-              <li key={s.href}>
-                <a href={s.href} className="hover:text-fg" rel="noopener noreferrer" target="_blank">
-                  {s.label}
-                </a>
-              </li>
-            ))}
           </ul>
         </div>
       </div>

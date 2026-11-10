@@ -37,8 +37,12 @@ export const site = {
   address: { street: "", city: "Beograd" },
   hours: "",
 
-  // Prikazuju se samo mreže sa unetom adresom
-  social: [] as { label: string; href: string }[],
+  // Ikonice u footeru (Footer.tsx) i sameAs u strukturiranim podacima
+  social: [{ label: "Instagram", href: "https://www.instagram.com/izradisajt/", icon: "instagram" }] as {
+    label: string;
+    href: string;
+    icon: "instagram";
+  }[],
 };
 
 export const mainNav = [
