@@ -1,5 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
-import { MOCK_RESEND_PORT } from "./tests/support/constants";
+import { GA_TEST_ID, MOCK_RESEND_PORT } from "./tests/support/constants";
 
 const PORT = 3457;
 
@@ -35,6 +35,8 @@ export default defineConfig({
         RESEND_API_KEY: "test",
         CONTACT_TO_EMAIL: "primalac@test.local",
         CONTACT_FROM_EMAIL: "posiljalac@test.local",
+        // Lažni GA ID: baner i analitika rade kao na produkciji, a Google zahteve presreću testovi (fixtures.ts)
+        NEXT_PUBLIC_GA_ID: GA_TEST_ID,
       },
     },
   ],

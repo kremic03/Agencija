@@ -23,6 +23,9 @@ export const site = {
   // Dok nije "true", pretraživači ne indeksiraju sajt (noindex + robots.txt)
   indexable: process.env.NEXT_PUBLIC_SITE_INDEXABLE === "true",
 
+  // Google Analytics 4 (ID toka „WebDron sajt”); prazno = bez analitike, banera i linka u footeru
+  gaMeasurementId: process.env.NEXT_PUBLIC_GA_ID ?? "",
+
   locale: "sr_RS",
   description:
     "Agencija iz Beograda: izrada veb sajtova, mobilnih i veb aplikacija i snimanje dronom za mala i srednja preduzeća.",

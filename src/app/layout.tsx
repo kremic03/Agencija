@@ -7,6 +7,8 @@ import { MobileServiceLinks } from "@/components/layout/MobileServiceLinks";
 import { NavigationProgress } from "@/components/layout/NavigationProgress";
 import { SmoothAnchorScroll } from "@/components/layout/SmoothAnchorScroll";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Analytics } from "@/components/consent/Analytics";
+import { ConsentBanner } from "@/components/consent/ConsentBanner";
 import { site } from "@/content/site";
 import { organizationSchema } from "@/lib/structured-data";
 import { shareImage } from "@/lib/seo";
@@ -63,6 +65,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <Footer />
+        {site.gaMeasurementId && (
+          <>
+            <Analytics measurementId={site.gaMeasurementId} />
+            <ConsentBanner />
+          </>
+        )}
       </body>
     </html>
   );

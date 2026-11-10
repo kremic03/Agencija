@@ -2,26 +2,30 @@ import { expect, test } from "./support/fixtures";
 
 /*
  * Pravne garancije koje politika privatnosti obećava posetiocu.
- * Ako neki od ovih testova padne, prvo dopuniti politiku privatnosti (i po potrebi uvesti pristanak za kolačiće).
+ * Ako neki od ovih testova padne, prvo dopuniti politiku privatnosti. Pristanak za analitiku: analytics.spec.ts.
  */
 
 const pages = ["/", "/usluge/snimanje-dronom", "/portfolio", "/portfolio/beograd-video", "/kontakt", "/o-nama", "/politika-privatnosti"];
 
-test("nema kolačića ni zahteva ka trećim stranama", async ({ page, context, baseURL }) => {
-  const origin = new URL(baseURL!).origin;
-  const thirdParty = new Set<string>();
-  page.on("request", (r) => {
-    const url = new URL(r.url());
-    if (url.protocol.startsWith("http") && url.origin !== origin) thirdParty.add(url.host);
+test.describe("prva poseta, pre izbora za kolačiće", () => {
+  test.use({ consent: null });
+
+  test("nema kolačića ni zahteva ka trećim stranama", async ({ page, context, baseURL }) => {
+    const origin = new URL(baseURL!).origin;
+    const thirdParty = new Set<string>();
+    page.on("request", (r) => {
+      const url = new URL(r.url());
+      if (url.protocol.startsWith("http") && url.origin !== origin) thirdParty.add(url.host);
+    });
+    for (const path of pages) {
+      await page.goto(path, { waitUntil: "networkidle" });
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+      await page.waitForTimeout(300);
+    }
+    expect([...thirdParty], "zahtevi ka drugim domenima").toEqual([]);
+    expect(await context.cookies(), "kolačići").toEqual([]);
+    expect(await page.evaluate(() => localStorage.length + sessionStorage.length), "lokalno skladište").toBe(0);
   });
-  for (const path of pages) {
-    await page.goto(path, { waitUntil: "networkidle" });
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-    await page.waitForTimeout(300);
-  }
-  expect([...thirdParty], "zahtevi ka drugim domenima").toEqual([]);
-  expect(await context.cookies(), "kolačići").toEqual([]);
-  expect(await page.evaluate(() => localStorage.length + sessionStorage.length), "lokalno skladište").toBe(0);
 });
 
 test("bezbednosna zaglavlja su postavljena", async ({ request }) => {

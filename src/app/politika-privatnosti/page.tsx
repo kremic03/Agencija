@@ -5,7 +5,7 @@ import { SimplePage } from "@/components/sections/SimplePage";
 
 export const metadata = pageMetadata({
   title: "Politika privatnosti",
-  description: `Kako ${site.name} prikuplja, koristi i čuva lične podatke poslate preko kontakt forme, ko im ima pristup i koja su vaša prava.`,
+  description: `Kako ${site.name} prikuplja, koristi i čuva lične podatke iz kontakt forme i analitike sajta, ko im ima pristup i koja su vaša prava.`,
   path: "/politika-privatnosti",
 });
 
@@ -16,12 +16,11 @@ const textLink = "text-fg underline underline-offset-4 hover:text-accent-text";
  * Sadržaj prati obaveze iz člana 23 Zakona o zaštiti podataka o ličnosti („Sl. glasnik RS”, br. 87/2018).
  * PRIVREMENO: pre objave
  *  - upisati poslovno ime, sedište, matični broj i PIB u src/content/site.ts (prikazuju se ovde i u footeru);
- *  - upisati stvarnog pružaoca hostinga (hostingProvider) kada bude izabran;
  *  - ažurirati datum izmene pri svakoj promeni;
  *  - dati pravniku da pregleda tekst.
  */
-const hostingProvider = ""; // PRIVREMENO: npr. „Vercel Inc., SAD” — prazno = opšti opis
-const lastUpdated = "7. novembra 2026.";
+const hostingProvider = "Vercel Inc. (SAD)";
+const lastUpdated = "10. novembra 2026.";
 
 export default function PrivacyPage() {
   const mail = (
@@ -66,6 +65,14 @@ export default function PrivacyPage() {
         na kome je sajt, kao i svaki veb server, beleži osnovne podatke o pristupu (IP adresa, vreme, tražena stranica,
         vrsta pregledača) radi bezbednosti i otklanjanja grešaka.
       </p>
+      {site.gaMeasurementId && (
+        <p>
+          <strong className="text-fg">Podaci o korišćenju sajta.</strong> Samo ako na to pristanete: koje stranice
+          otvarate, odakle ste došli na sajt (npr. pretraga ili društvena mreža), približna lokacija (grad i država),
+          vrsta uređaja, pregledača i operativnog sistema, kao i da li ste poslali upit ili kliknuli na telefon ili mejl.
+          Detalji su u delu <a href="#kolacici" className={textLink}>Kolačići i analitika</a>.
+        </p>
+      )}
 
       <h2 className={heading}>Zašto ih koristimo i na osnovu čega</h2>
       <ul className="flex list-disc flex-col gap-2 pl-5">
@@ -76,6 +83,12 @@ export default function PrivacyPage() {
         <li>
           Da zaštitimo sajt i formu od zloupotrebe. Osnov je naš legitimni interes (član 12, stav 1, tačka 6 ZZPL).
         </li>
+        {site.gaMeasurementId && (
+          <li>
+            Da razumemo kako se sajt koristi i da ga poboljšamo (analitika). Osnov je vaš pristanak (član 12, stav 1,
+            tačka 1 ZZPL), koji možete povući u svakom trenutku.
+          </li>
+        )}
         <li>Ako sarađujemo, podatke čuvamo i koliko to traže propisi o računovodstvu i porezima (pravna obaveza).</li>
       </ul>
       <p>
@@ -90,7 +103,10 @@ export default function PrivacyPage() {
       </p>
       <ul className="flex list-disc flex-col gap-2 pl-5">
         <li>Resend, Inc. (SAD) — šalje nam upit sa forme mejlom;</li>
-        <li>Google LLC (SAD) — Gmail, gde primamo i čuvamo mejlove;</li>
+        <li>
+          Google LLC (SAD) — Gmail, gde primamo i čuvamo mejlove
+          {site.gaMeasurementId && ", i Google Analytics, samo uz vaš pristanak"};
+        </li>
         <li>
           {hostingProvider || "pružalac hostinga"} — server na kome se nalazi sajt i koji beleži tehničke podatke o
           pristupu.
@@ -118,7 +134,8 @@ export default function PrivacyPage() {
         <li>brisanje podataka;</li>
         <li>ograničenje obrade;</li>
         <li>prenos podataka drugom rukovaocu;</li>
-        <li>prigovor na obradu zasnovanu na legitimnom interesu.</li>
+        <li>prigovor na obradu zasnovanu na legitimnom interesu;</li>
+        <li>povlačenje pristanka (za analitiku), bez uticaja na zakonitost obrade pre povlačenja.</li>
       </ul>
       <p>
         Zahtev pošaljite na {mail}. Odgovaramo bez odlaganja, a najkasnije u roku od 30 dana. Ako smatrate da
@@ -130,12 +147,40 @@ export default function PrivacyPage() {
         ).
       </p>
 
-      <h2 className={heading}>Kolačići i praćenje</h2>
-      <p>
-        Sajt ne postavlja kolačiće i ne koristi alate za analitiku, praćenje ni oglašavanje. Fontovi, slike i video se
-        učitavaju sa našeg servera, pa vaš pregledač ne šalje podatke trećim stranama dok razgledate sajt. Ako to
-        promenimo, prvo ćemo dopuniti ovu politiku i, gde je potrebno, tražiti vaš pristanak.
-      </p>
+      {site.gaMeasurementId ? (
+        <>
+          <h2 id="kolacici" className={heading}>
+            Kolačići i analitika
+          </h2>
+          <p>
+            Pri prvoj poseti pitamo vas da li pristajete na analitiku. Dok ne kliknete „Prihvatam”, sajt ne postavlja
+            kolačiće i ne učitava Google Analytics, pa vaš pregledač ne šalje podatke trećim stranama. Fontovi, slike i
+            video se uvek učitavaju sa našeg servera.
+          </p>
+          <p>
+            Ako pristanete, koristimo Google Analytics (Google LLC, SAD) da vidimo koliko ljudi poseti sajt, koje
+            stranice čitaju i odakle dolaze. Google pri tome postavlja dva kolačića, <code>_ga</code> i{" "}
+            <code>_ga_…</code>, koji traju do dve godine i služe da razlikuju posetioce. Prema Google-u, Google
+            Analytics ne čuva IP adresu. Podatke u izveštajima čuvamo 14 meseci. Ne koristimo ih za oglašavanje:
+            oglasni kolačići, Google signali i personalizacija oglasa su isključeni.
+          </p>
+          <p>
+            Vaš izbor pamtimo u skladištu pregledača (localStorage), da vas ne bismo pitali pri svakoj poseti. Taj zapis
+            ostaje na vašem uređaju i ne šalje se nikome. Pristanak možete da povučete ili promenite u svakom trenutku,
+            linkom „Podešavanja kolačića” na dnu svake stranice. Kada ga povučete, brišemo kolačiće Google Analytics-a i
+            prestajemo da šaljemo podatke. Ako odbijete, sajt radi potpuno isto.
+          </p>
+        </>
+      ) : (
+        <>
+          <h2 className={heading}>Kolačići i praćenje</h2>
+          <p>
+            Sajt ne postavlja kolačiće i ne koristi alate za analitiku, praćenje ni oglašavanje. Fontovi, slike i video
+            se učitavaju sa našeg servera, pa vaš pregledač ne šalje podatke trećim stranama dok razgledate sajt. Ako to
+            promenimo, prvo ćemo dopuniti ovu politiku i, gde je potrebno, tražiti vaš pristanak.
+          </p>
+        </>
+      )}
 
       <h2 className={heading}>Bezbednost</h2>
       <p>

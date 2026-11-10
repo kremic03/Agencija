@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRef, useState, useSyncExternalStore, useTransition, type FormEvent, type ReactNode } from "react";
 import { sendQuote } from "@/app/kontakt/actions";
 import { site } from "@/content/site";
+import { trackEvent } from "@/lib/analytics";
 import { AlertIcon, ArrowLeftIcon, ArrowRightIcon, CheckIcon } from "@/components/ui/icons";
 
 const STEPS = ["Usluga", "Detalji", "Budžet i rok", "Kontakt"];
@@ -119,6 +120,8 @@ export function QuoteForm({ serviceOptions }: { serviceOptions: ServiceOptionGro
         const result = await Promise.race([sendQuote(data), rejectAfter(SEND_TIMEOUT_MS)]);
         if (result.ok) {
           setSent(true);
+          // Ključni događaj u GA (bez ličnih podataka); bez pristanka se ne šalje
+          trackEvent("generate_lead", { form: "kontakt" });
         } else {
           setFailure(result.message);
           if (result.fields) setErrors(result.fields);
